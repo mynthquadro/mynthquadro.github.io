@@ -24,6 +24,7 @@ const kits=['My First QUADRO','STARTER','BASIC','JUNIOR','UNIVERSAL','ULTIMATE',
 
 
 document.addEventListener('DOMContentLoaded', () => {
+  document.getElementsByTagName("h2")[0].textContent+=window.innerWidth;
   const imgs=document.getElementsByClassName("part-row-img");
   for (let i =0;i<imgs.length;i++){
     /*add svg to part list*/
