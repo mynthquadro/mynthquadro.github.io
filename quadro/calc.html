@@ -2,7 +2,9 @@
 <head>
 <style>
 button{font-size:2em;height:64px;}
-.kits-amount{font-size:2em;height:2em;border:none;display:block;min-width:2em;}
+.kits-input{display:block;margin-top:0.5em;}
+.reducekit{display:none;height:45px;width:45px;}
+.kits-amount{display:inline-block;font-size:2em;height:64px;border:none;min-width:2em;}
 .kits-row,.part-row{float:left;margin-left:1em;}
 .amount{font-size:2em;height:2em;border:none;display:block;min-width:2em;}
 .part-row-img{display:block;cursor:pointer;}
@@ -26,19 +28,27 @@ const kits=['My First QUADRO','STARTER','BASIC','JUNIOR','UNIVERSAL','ULTIMATE',
 document.addEventListener('DOMContentLoaded', () => {
   const imgs=document.getElementsByClassName("part-row-img");
   for (let i =0;i<imgs.length;i++){
-    /*add svg to part list*/
-    /*imgs[i].innerHTML=document.getElementById(partsImgSrc[i]).innerHTML;*/
     /*click svg to display part name*/
     imgs[i].addEventListener('click', ()=>{
       alert(imgs[i].getAttribute('name'));
     });
   }
+
   const kitsbtn=document.getElementsByClassName("addkit");
   const kitsa=document.getElementsByClassName("kits-amount");
+  const reducekitsbtn=document.getElementsByClassName("reducekit");
   for (let i =0;i<kitsbtn.length;i++){
     /*click button to add kit and calculate*/
     kitsbtn[i].addEventListener('click', ()=>{
       kitsa[i].textContent=parseInt(kitsa[i].textContent)+1;
+      Calc();
+    });
+  }
+
+  for (let i =0;i<reducekitsbtn.length;i++){
+    /*click button to reduce kit and calculate*/
+    reducekitsbtn[i].addEventListener('click', ()=>{
+      kitsa[i].textContent=parseInt(kitsa[i].textContent)-1;
       Calc();
     });
   }
@@ -70,12 +80,14 @@ function Calc(){
   /*kit name to Array*/
   cks.forEach(
     function(listObj){
-        if(!listObj.textContent){
-          listObj.textContent='0';
-        }else{
           const n = parseInt(listObj.textContent);
+          if(isNaN(n) || n<=0){
+            listObj.textContent='0';
+            listObj.nextElementSibling.style.display="none";
+            return;
+          }
+          listObj.nextElementSibling.style.display="inline-block";
           rs.push(listObj.getAttribute('name'),n);
-        }
     }
   );
 
@@ -112,29 +124,29 @@ function Calc(){
 Click kit name or enter their amounts below. 请点击套装名字进行添加或在其下方手动输入数量。
 </div>
 
-<div class="kits-row"><button class="addkit" >My First</button><div  contenteditable="true" oninput="Calc();" class="kits-amount" name="My First QUADRO">0</div></div>
-<div class="kits-row"><button class="addkit" >STARTER</button><div  contenteditable="true" oninput="Calc();" class="kits-amount" name="STARTER">0</div></div>
-<div class="kits-row"><button class="addkit" >BASIC</button><div  contenteditable="true" oninput="Calc();" class="kits-amount" name="BASIC">0</div></div>
-<div class="kits-row"><button class="addkit" >JUNIOR</button><div  contenteditable="true" oninput="Calc();" class="kits-amount" name="JUNIOR">0</div></div>
-<div class="kits-row"><button class="addkit" >UNIVERSAL</button><div  contenteditable="true" oninput="Calc();" class="kits-amount" name="UNIVERSAL">0</div></div>
-<div class="kits-row"><button class="addkit" >ULTIMATE</button><div  contenteditable="true" oninput="Calc();" class="kits-amount" name="ULTIMATE">0</div></div>
-<div class="kits-row"><button class="addkit" >BEGIN</button><div  contenteditable="true" oninput="Calc();" class="kits-amount" name="BEGINNER">0</div></div>
-<div class="kits-row"><button class="addkit" >ADV</button><div  contenteditable="true" oninput="Calc();" class="kits-amount" name="ADVENTURE">0</div></div>
-<div class="kits-row"><button class="addkit" >ADV+</button><div  contenteditable="true" oninput="Calc();" class="kits-amount" name="ADVENTURE PLUS">0</div></div>
-<div class="kits-row"><button class="addkit" >KL(CL)</button><div  contenteditable="true" oninput="Calc();" class="kits-amount" name="KLETTERPYRAMIDE">0</div></div>
-<div class="kits-row"><button class="addkit" >EVO</button><div  contenteditable="true" oninput="Calc();" class="kits-amount" name="EVOLUTION">0</div></div>
-<div class="kits-row"><button class="addkit" >MOeBEL S</button><div  contenteditable="true" oninput="Calc();" class="kits-amount" name="MOeBEL KIT S">0</div></div>
-<div class="kits-row"><button class="addkit" >MOeBEL L</button><div  contenteditable="true" oninput="Calc();" class="kits-amount" name="MOeBEL KIT L">0</div></div>
-<div class="kits-row"><button class="addkit" style="font-size:1.5em;">MOD-RUTSCH<br>(模块滑梯)</button><div  contenteditable="true" oninput="Calc();" class="kits-amount" name="MODULARRUTSCHE">0</div></div>
-<div class="kits-row"><button class="addkit" style="font-size:1.5em;">BOG-RUTSCH<br>(弧形滑梯)</button><div  contenteditable="true" oninput="Calc();" class="kits-amount" name="BOGENRUTSCHE">0</div></div>
-<div class="kits-row"><button class="addkit" style="font-size:1.5em;">INT-RUTSCH<br>(整合滑梯)</button><div  contenteditable="true" oninput="Calc();" class="kits-amount" name="INTEGRALRUTSCHE">0</div></div>
-<div class="kits-row"><button class="addkit" >POOL S</button><div  contenteditable="true" oninput="Calc();" class="kits-amount" name="POOL S">0</div></div>
-<div class="kits-row"><button class="addkit" >POOL L</button><div  contenteditable="true" oninput="Calc();" class="kits-amount" name="POOL L">0</div></div>
-<div class="kits-row"><button class="addkit" >POOL XXL</button><div  contenteditable="true" oninput="Calc();" class="kits-amount" name="POOL XXL">0</div></div>
-<div class="kits-row"><button class="addkit" >MOBIL</button><div  contenteditable="true" oninput="Calc();" class="kits-amount" name="MOBIL">0</div></div>
-<div class="kits-row"><button class="addkit" >SPECIAL</button><div  contenteditable="true" oninput="Calc();" class="kits-amount" name="SPECIAL KIT">0</div></div>
-<div class="kits-row"><button class="addkit" >HOME</button><div  contenteditable="true" oninput="Calc();" class="kits-amount" name="HOME ACTION KIT">0</div></div>
-<div class="kits-row"><button class="addkit" >UPGRADE</button><div  contenteditable="true" oninput="Calc();" class="kits-amount" name="UPGRADE KIT">0</div></div>
+<div class="kits-row"><button class="addkit" >My First</button><div class="kits-input"><div  contenteditable="true" oninput="Calc();" class="kits-amount" name="My First QUADRO">0</div><button class="reducekit">-</button></div></div>
+<div class="kits-row"><button class="addkit" >STARTER</button><div class="kits-input"><div  contenteditable="true" oninput="Calc();" class="kits-amount" name="STARTER">0</div><button class="reducekit">-</button></div></div>
+<div class="kits-row"><button class="addkit" >BASIC</button><div class="kits-input"><div  contenteditable="true" oninput="Calc();" class="kits-amount" name="BASIC">0</div><button class="reducekit">-</button></div></div>
+<div class="kits-row"><button class="addkit" >JUNIOR</button><div class="kits-input"><div  contenteditable="true" oninput="Calc();" class="kits-amount" name="JUNIOR">0</div><button class="reducekit">-</button></div></div>
+<div class="kits-row"><button class="addkit" >UNIVERSAL</button><div class="kits-input"><div  contenteditable="true" oninput="Calc();" class="kits-amount" name="UNIVERSAL">0</div><button class="reducekit">-</button></div></div>
+<div class="kits-row"><button class="addkit" >ULTIMATE</button><div class="kits-input"><div  contenteditable="true" oninput="Calc();" class="kits-amount" name="ULTIMATE">0</div><button class="reducekit">-</button></div></div>
+<div class="kits-row"><button class="addkit" >BEGIN</button><div class="kits-input"><div  contenteditable="true" oninput="Calc();" class="kits-amount" name="BEGINNER">0</div><button class="reducekit">-</button></div></div>
+<div class="kits-row"><button class="addkit" >ADV</button><div class="kits-input"><div  contenteditable="true" oninput="Calc();" class="kits-amount" name="ADVENTURE">0</div><button class="reducekit">-</button></div></div>
+<div class="kits-row"><button class="addkit" >ADV+</button><div class="kits-input"><div  contenteditable="true" oninput="Calc();" class="kits-amount" name="ADVENTURE PLUS">0</div><button class="reducekit">-</button></div></div>
+<div class="kits-row"><button class="addkit" >KL(CL)</button><div class="kits-input"><div  contenteditable="true" oninput="Calc();" class="kits-amount" name="KLETTERPYRAMIDE">0</div><button class="reducekit">-</button></div></div>
+<div class="kits-row"><button class="addkit" >EVO</button><div class="kits-input"><div  contenteditable="true" oninput="Calc();" class="kits-amount" name="EVOLUTION">0</div><button class="reducekit">-</button></div></div>
+<div class="kits-row"><button class="addkit" >MOeBEL S</button><div class="kits-input"><div  contenteditable="true" oninput="Calc();" class="kits-amount" name="MOeBEL KIT S">0</div><button class="reducekit">-</button></div></div>
+<div class="kits-row"><button class="addkit" >MOeBEL L</button><div class="kits-input"><div  contenteditable="true" oninput="Calc();" class="kits-amount" name="MOeBEL KIT L">0</div><button class="reducekit">-</button></div></div>
+<div class="kits-row"><button class="addkit" style="font-size:1.5em;">MOD-RUTSCH<br>(模块滑梯)</button><div class="kits-input"><div  contenteditable="true" oninput="Calc();" class="kits-amount" name="MODULARRUTSCHE">0</div><button class="reducekit">-</button></div></div>
+<div class="kits-row"><button class="addkit" style="font-size:1.5em;">BOG-RUTSCH<br>(弧形滑梯)</button><div class="kits-input"><div  contenteditable="true" oninput="Calc();" class="kits-amount" name="BOGENRUTSCHE">0</div><button class="reducekit">-</button></div></div>
+<div class="kits-row"><button class="addkit" style="font-size:1.5em;">INT-RUTSCH<br>(整合滑梯)</button><div class="kits-input"><div  contenteditable="true" oninput="Calc();" class="kits-amount" name="INTEGRALRUTSCHE">0</div><button class="reducekit">-</button></div></div>
+<div class="kits-row"><button class="addkit" >POOL S</button><div class="kits-input"><div  contenteditable="true" oninput="Calc();" class="kits-amount" name="POOL S">0</div><button class="reducekit">-</button></div></div>
+<div class="kits-row"><button class="addkit" >POOL L</button><div class="kits-input"><div  contenteditable="true" oninput="Calc();" class="kits-amount" name="POOL L">0</div><button class="reducekit">-</button></div></div>
+<div class="kits-row"><button class="addkit" >POOL XXL</button><div class="kits-input"><div  contenteditable="true" oninput="Calc();" class="kits-amount" name="POOL XXL">0</div><button class="reducekit">-</button></div></div>
+<div class="kits-row"><button class="addkit" >MOBIL</button><div class="kits-input"><div  contenteditable="true" oninput="Calc();" class="kits-amount" name="MOBIL">0</div><button class="reducekit">-</button></div></div>
+<div class="kits-row"><button class="addkit" >SPECIAL</button><div class="kits-input"><div  contenteditable="true" oninput="Calc();" class="kits-amount" name="SPECIAL KIT">0</div><button class="reducekit">-</button></div></div>
+<div class="kits-row"><button class="addkit" >HOME</button><div class="kits-input"><div  contenteditable="true" oninput="Calc();" class="kits-amount" name="HOME ACTION KIT">0</div><button class="reducekit">-</button></div></div>
+<div class="kits-row"><button class="addkit" >UPGRADE</button><div class="kits-input"><div  contenteditable="true" oninput="Calc();" class="kits-amount" name="UPGRADE KIT">0</div><button class="reducekit">-</button></div></div>
 
 <div style="clear:left;">
 <hr>
