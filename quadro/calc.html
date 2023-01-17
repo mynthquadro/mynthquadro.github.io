@@ -60,6 +60,7 @@ const rs=document.querySelectorAll('.kits-amount');
 rs.forEach(
   function(listObj){
     listObj.textContent='0';
+    listObj.nextElementSibling.style.display="none";
   }
 );
 }
