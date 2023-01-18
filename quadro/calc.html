@@ -3,7 +3,7 @@
 <style>
 button{font-size:2em;height:64px;}
 .kits-input{display:block;margin-top:0.5em;}
-.reducekit{display:none;height:45px;width:45px;}
+.reducekit{filter:opacity(0);display:inline-block;height:45px;width:45px;}
 .kits-amount{display:inline-block;font-size:2em;height:64px;border:none;min-width:2em;}
 .kits-row,.part-row{float:left;margin-left:1em;}
 .amount{font-size:2em;height:2em;border:none;display:block;min-width:2em;}
@@ -84,10 +84,10 @@ function Calc(){
           const n = parseInt(listObj.textContent);
           if(isNaN(n) || n<=0){
             listObj.textContent='0';
-            listObj.nextElementSibling.style.display="none";
+            listObj.nextElementSibling.style.filter="opacity(0)";
             return;
           }
-          listObj.nextElementSibling.style.display="inline-block";
+          listObj.nextElementSibling.style.filter="opacity(1)";
           rs.push(listObj.getAttribute('name'),n);
     }
   );
