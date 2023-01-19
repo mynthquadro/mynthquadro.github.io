@@ -18,11 +18,23 @@ button{font-size:2em;height:64px;}
 const imgSrcPrev='https://quadromdb.com/sites/default/files/mdb/components/';
 const partLinkPrev='https://quadromdb.com/de/parts/';
 
-const parts =['Raumkupplung 5-armig','Raumkupplung 4-armig','Raumkupplung 3-armig','Flaechenkupplung 4-armig','Flaechenkupplung 3-armig','Flaechenkupplung 2-armig (90Grad)','Flaechenkupplung 2-armig (180Grad)','Winkelkupplung (45Grad)','Rohr 10 cm','Rohr 15 cm','Rohr 20 cm','Rohr 25 cm','Rohr 35 cm','Rohr 35 cm 135Grad (3 Loecher)','Rohr 75 cm','Bogenrohr','Platte 40 × 40 cm','Platte 40 × 20 cm','Lochplatte 40 × 40 cm','Rundtextile','Multirad','Multirad Radlager','Multirad Arretierung','Laufreifen','Dachtextil','Doppelrohrverbinder','Aluminiumprofil','Aluminiumprofil-Verbinder','Dachtextil (Baby Ballcage)','Laufrolle','Laufrolle Adapter','Spielsack','Modularrutsche','Rutschenauslauf','Bogenrutsche','Poolfolie S','Poolfolie L','Poolfolie XXL'];
+const parts =['Raumkupplung 5-armig','Raumkupplung 4-armig','Raumkupplung 3-armig','Flaechenkupplung 4-armig','Flaechenkupplung 3-armig',
+              'Flaechenkupplung 2-armig (90Grad)','Flaechenkupplung 2-armig (180Grad)','Winkelkupplung (45Grad)','Rohr 10 cm','Rohr 15 cm',
+              'Rohr 20 cm','Rohr 25 cm','Rohr 35 cm','Rohr 35 cm 135Grad (3 Loecher)','Rohr 75 cm','Bogenrohr','Platte 40 × 40 cm','Platte 40 × 20 cm',
+              'Lochplatte 40 × 40 cm','Rundtextile','Multirad','Multirad Radlager','Multirad Arretierung','Laufreifen','Dachtextil',
+              'Doppelrohrverbinder','Aluminiumprofil','Aluminiumprofil-Verbinder','Dachtextil (Baby Ballcage)','Laufrolle',
+              'Laufrolle Adapter','Spielsack','Modularrutsche','Rutschenauslauf','Bogenrutsche','Poolfolie S','Poolfolie L','Poolfolie XXL','All-Terrain Rad','All-Terrain Rad Arretierung'];
 
-const partsImgSrc=['cs5-scaled.svg','cs4-scaled.svg','cs3-scaled_0.svg','cf4-scaled.svg','cf3-scaled.svg','cs2-scaled.svg','cf2-scaled.svg','c45-scaled.svg','t10-scaled.svg','t15.svg','t20-scaled.svg','t25-scaled.svg','t35.svg','ts5-scaled_1.svg','t75-scaled.svg','tc1-scaled.svg','pa4-scaled_0.svg','pa2-scaled_0.svg','po4-scaled_0.svg','xrd-scaled.svg','wmu-scaled.svg','wmb-scaled.svg','wml-scaled.svg','wtr-scaled.svg','xrf-scaled.svg','cdt-scaled_0.svg','alu-scaled.svg','alc-scaled.svg','xbb-scaled.svg','mcr-scaled.svg','wra-scaled.svg','xpb-scaled.svg','msb-scaled.svg','sro-scaled.svg','csb-scaled.svg','pls-scaled.svg','pll-scaled.svg','plx-scaled.svg'];
+const partsImgSrc=['cs5-scaled.svg','cs4-scaled.svg','cs3-scaled_0.svg','cf4-scaled.svg','cf3-scaled.svg','cs2-scaled.svg','cf2-scaled.svg',
+                   'c45-scaled.svg','t10-scaled.svg','t15.svg','t20-scaled.svg','t25-scaled.svg','t35.svg','ts5-scaled_1.svg','t75-scaled.svg',
+                   'tc1-scaled.svg','pa4-scaled_0.svg','pa2-scaled_0.svg','po4-scaled_0.svg','xrd-scaled.svg','wmu-scaled.svg','wmb-scaled.svg',
+                   'wml-scaled.svg','wtr-scaled.svg','xrf-scaled.svg','cdt-scaled_0.svg','alu-scaled.svg','alc-scaled.svg','xbb-scaled.svg',
+                   'mcr-scaled.svg','wra-scaled.svg','xpb-scaled.svg','msb-scaled.svg','sro-scaled.svg','csb-scaled.svg','pls-scaled.svg',
+                   'pll-scaled.svg','plx-scaled.svg','mat-scaled.svg','mal-scaled.svg'];
 
-const kits=['My First QUADRO','STARTER','BASIC','JUNIOR','UNIVERSAL','ULTIMATE','BEGINNER','ADVENTURE','ADVENTURE PLUS','KLETTERPYRAMIDE','EVOLUTION','MOeBEL KIT S','MOeBEL KIT L','MODULARRUTSCHE','BOGENRUTSCHE','INTEGRALRUTSCHE','POOL S','POOL L','POOL XXL','MOBIL','SPECIAL KIT','HOME ACTION KIT','UPGRADE KIT'];
+const kits=['My First QUADRO','STARTER','BASIC','JUNIOR','UNIVERSAL','ULTIMATE','BEGINNER','ADVENTURE','ADVENTURE PLUS','KLETTERPYRAMIDE','EVOLUTION',
+            'OFFROAD','MOeBEL KIT S','MOeBEL KIT L','MODULARRUTSCHE','BOGENRUTSCHE','INTEGRALRUTSCHE','POOL S','POOL L','POOL XXL','MOBIL','SPECIAL KIT',
+            'HOME ACTION KIT','UPGRADE KIT'];
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -899,6 +911,78 @@ Click kit name or enter their amounts below. 请点击套装名字进行添加�
 <div class="part-num">2</div>
 <img class="part-img" value="wra-scaled.svg">
 <div class="part-link">mobil/mca</div>
+</div>
+
+<div class="title-block">
+<h2>OFFROAD</h2><div class="product-sku">13320</div>
+<div class="part-name">Raumkupplung 5-armig</div>
+<div class="part-num">2</div>
+<img class="part-img" value="cs5-scaled.svg">
+<div class="part-link">connectors/cs5</div>
+<div class="part-name">Raumkupplung 4-armig</div>
+<div class="part-num">10</div>
+<img class="part-img" value="cs4-scaled.svg">
+<div class="part-link">connectors/cs4</div>
+<div class="part-name">Raumkupplung 3-armig</div>
+<div class="part-num">6</div>
+<img class="part-img" value="cs3-scaled_0.svg">
+<div class="part-link">connectors/cs3</div>
+<div class="part-name">Flächenkupplung 4-armig</div>
+<div class="part-num">2</div>
+<img class="part-img" value="cf4-scaled.svg">
+<div class="part-link">connectors/cf4</div>
+<div class="part-name">Flächenkupplung 3-armig</div>
+<div class="part-num">8</div>
+<img class="part-img" value="cf3-scaled.svg">
+<div class="part-link">connectors/cf3</div>
+<div class="part-name">Flächenkupplung 2-armig (90°)</div>
+<div class="part-num">8</div>
+<img class="part-img" value="cs2-scaled.svg">
+<div class="part-link">connectors/cs2</div>
+<div class="part-name">Flächenkupplung 2-armig (180°)</div>
+<div class="part-num">5</div>
+<img class="part-img" value="cf2-scaled.svg">
+<div class="part-link">connectors/cf2</div>
+<div class="part-name">Winkelkupplung (45°)</div>
+<div class="part-num">4</div>
+<img class="part-img" value="c45-scaled.svg">
+<div class="part-link">connectors/c45</div>
+<div class="part-name">Rohr 15 cm</div>
+<div class="part-num">12</div>
+<img class="part-img" value="t15.svg">
+<div class="part-link">tubes/t15</div>
+<div class="part-name">Rohr 35 cm</div>
+<div class="part-num">46</div>
+<img class="part-img" value="t35.svg">
+<div class="part-link">tubes/t35</div>
+<div class="part-name">Platte 40 × 20 cm</div>
+<div class="part-num">2</div>
+<img class="part-img" value="pa2-scaled_0.svg">
+<div class="part-link">panels/pa2</div>
+<div class="part-name">Platte 40 × 40 cm</div>
+<div class="part-num">4</div>
+<img class="part-img" value="pa4-scaled_0.svg">
+<div class="part-link">panels/pa4</div>
+<div class="part-name">Aluminiumprofil</div>
+<div class="part-num">2</div>
+<img class="part-img" value="alu-scaled.svg">
+<div class="part-link">miscellaneous/alu</div>
+<div class="part-name">Rundtextile</div>
+<div class="part-num">1</div>
+<img class="part-img" value="xrd-scaled.svg">
+<div class="part-link">textiles/xrd</div>
+<div class="part-name">All-Terrain Rad</div>
+<div class="part-num">4</div>
+<img class="part-img" value="mat-scaled.svg">
+<div class="part-link">mobil/mat</div>
+<div class="part-name">All-Terrain Rad Arretierung</div>
+<div class="part-num">4</div>
+<img class="part-img" value="mal-scaled.svg">
+<div class="part-link">mobil/mal</div>
+<div class="part-name">Laufreifen</div>
+<div class="part-num">4</div>
+<img class="part-img" value="wtr-scaled.svg">
+<div class="part-link">mobil/mwt</div>
 </div>
 
 <div class="title-block">
