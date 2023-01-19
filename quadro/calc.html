@@ -25,6 +25,8 @@ const parts =['Raumkupplung 5-armig','Raumkupplung 4-armig','Raumkupplung 3-armi
               'Doppelrohrverbinder','Aluminiumprofil','Aluminiumprofil-Verbinder','Dachtextil (Baby Ballcage)','Laufrolle',
               'Laufrolle Adapter','Spielsack','Modularrutsche','Rutschenauslauf','Bogenrutsche','Poolfolie S','Poolfolie L','Poolfolie XXL','All-Terrain Rad','All-Terrain Rad Arretierung'];
 
+const partsCh=['5向链接件','4向连接件','3向连接件','十字连接件','T形连接件','L形连接件','1形连接件','斜角件','10厘米管','15厘米管','20厘米管','25厘米管','35厘米管','135度3洞35厘米管','75厘米管','弧形管','大板','半板','洞洞板','圆形布','多用轮','多用轮垫圈','多用轮固定件','轮胎带','顶棚','双管8字连接件','铝管','铝管连接件','宝宝球池顶棚','脚轮','脚轮适配器','游戏袋','模块式滑梯','模块式滑梯下板','弧形滑梯','小号泳池','大号泳池','加大号泳池','越野轮','越野轮连接件'];
+
 const partsImgSrc=['cs5-scaled.svg','cs4-scaled.svg','cs3-scaled_0.svg','cf4-scaled.svg','cf3-scaled.svg','cs2-scaled.svg','cf2-scaled.svg',
                    'c45-scaled.svg','t10-scaled.svg','t15.svg','t20-scaled.svg','t25-scaled.svg','t35.svg','ts5-scaled_1.svg','t75-scaled.svg',
                    'tc1-scaled.svg','pa4-scaled_0.svg','pa2-scaled_0.svg','po4-scaled_0.svg','xrd-scaled.svg','wmu-scaled.svg','wmb-scaled.svg',
@@ -38,13 +40,13 @@ const kits=['My First QUADRO','STARTER','BASIC','JUNIOR','UNIVERSAL','ULTIMATE',
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  const imgs=document.getElementsByClassName("part-row-img");
-  for (let i =0;i<imgs.length;i++){
-    /*click svg to display part name*/
-    imgs[i].addEventListener('click', ()=>{
-      alert(imgs[i].getAttribute('name'));
-    });
+  /*fill partslist*/
+  let addHtml='';
+  for (let i = 0;i<parts.length;i++){
+    const p="alert('"+parts[i]+"("+partsCh[i]+")"+"');";
+    addHtml+='<div class="part-row"><div class="part-row-img" onclick="'+p+'"><img src="'+partsImgSrc[i]+'"></div><div  contenteditable="true" class="amount"></div></div>';
   }
+  document.getElementById("partslistdech").innerHTML=addHtml;
 
   const kitsbtn=document.getElementsByClassName("addkit");
   const kitsa=document.getElementsByClassName("kits-amount");
@@ -90,24 +92,23 @@ function Calc(){
   ResetPartsNum();
   let rs=[],result,temp;
   const cks=document.querySelectorAll('.kits-amount');
-  /*kit name to Array*/
-  cks.forEach(
-    function(listObj){
-          const n = parseInt(listObj.textContent);
+  /*kit name and amount to Array*/
+  for (let i =0;i<cks.length;i++){
+          const n = parseInt(cks[i].textContent);
           if(isNaN(n) || n<=0){
-            listObj.textContent='0';
-            listObj.nextElementSibling.style.filter="opacity(0)";
-            return;
+            cks[i].textContent='0';
+            cks[i].nextElementSibling.style.filter="opacity(0)";
+            continue;
+          }else{
+            cks[i].nextElementSibling.style.filter="opacity(1)";
+            rs.push(i,n);
           }
-          listObj.nextElementSibling.style.filter="opacity(1)";
-          rs.push(listObj.getAttribute('name'),n);
-    }
-  );
+  }
 
   const qs=document.querySelectorAll('.title-block');
   /*find kit data and calculate*/
   for (let i =0;i<rs.length;i+=2){
-    result=qs[kits.indexOf(rs[i])].querySelectorAll('.part-name');
+    result=qs[rs[i]].querySelectorAll('.part-name');
     result.forEach(
         function(listObj){
                const pi=parts.indexOf(listObj.textContent);
@@ -167,48 +168,8 @@ Click kit name or enter their amounts below. 请点击套装名字进行添加�
 <button onclick="ResetKitsNum();">Reset（重置）</button>
 </div>
 
-<div>
-<div class="part-row"><div class="part-row-img" name="Raumkupplung 5-armig （5向链接件）" value="cs5-scaled.svg"><img src="cs5-scaled.svg"></div><div  contenteditable="true" class="amount"></div></div>
-<div class="part-row"><div class="part-row-img" name="Raumkupplung 4-armig （4向连接件）" value="cs4-scaled.svg"><img src="cs4-scaled.svg"></div><div  contenteditable="true" class="amount"></div></div>
-<div class="part-row"><div class="part-row-img" name="Raumkupplung 3-armig （3向连接件）" value="cs3-scaled_0.svg"><img src="cs3-scaled_0.svg"></div><div  contenteditable="true" class="amount"></div></div>
-<div class="part-row"><div class="part-row-img" name="Flaechenkupplung 4-armig （十字连接件）" value="cf4-scaled.svg"><img src="cf4-scaled.svg"></div><div  contenteditable="true" class="amount"></div></div>
-<div class="part-row"><div class="part-row-img" name="Flaechenkupplung 3-armig （T形连接件）" value="cf3-scaled.svg"><img src="cf3-scaled.svg"></div><div  contenteditable="true" class="amount"></div></div>
-<div class="part-row"><div class="part-row-img" name="Flaechenkupplung 2-armig (90Grad) （L形连接件）" value="cs2-scaled.svg"><img src="cs2-scaled.svg"></div><div  contenteditable="true" class="amount"></div></div>
-<div class="part-row"><div class="part-row-img" name="Flaechenkupplung 2-armig (180Grad) （1形连接件）" value="cf2-scaled.svg"><img src="cf2-scaled.svg"></div><div  contenteditable="true" class="amount"></div></div>
-<div class="part-row"><div class="part-row-img" name="Winkelkupplung (45Grad) （斜角件）" value="c45-scaled.svg"><img src="c45-scaled.svg"></div><div  contenteditable="true" class="amount"></div></div>
-<div class="part-row"><div class="part-row-img" name="Rohr 10 cm （10厘米管）" value="t10-scaled.svg"><img src="t10-scaled.svg"></div><div  contenteditable="true" class="amount"></div></div>
-<div class="part-row"><div class="part-row-img" name="Rohr 15 cm （15厘米管）" value="t15.svg"><img src="t15.svg"></div><div  contenteditable="true" class="amount"></div></div>
-<div class="part-row"><div class="part-row-img" name="Rohr 20 cm （20厘米管）" value="t20-scaled.svg"><img src="t20-scaled.svg"></div><div  contenteditable="true" class="amount"></div></div>
-<div class="part-row"><div class="part-row-img" name="Rohr 25 cm （25厘米管）" value="t25-scaled.svg"><img src="t25-scaled.svg"></div><div  contenteditable="true" class="amount"></div></div>
-<div class="part-row"><div class="part-row-img" name="Rohr 35 cm （35厘米管）" value="t35.svg"><img src="t35.svg"></div><div  contenteditable="true" class="amount"></div></div>
-<div class="part-row"><div class="part-row-img" name="Rohr 35 cm 135Grad (3 Loecher) （135度3洞35厘米管）" value="ts5-scaled_1.svg"><img src="ts5-scaled_1.svg"></div><div  contenteditable="true" class="amount"></div></div>
-<div class="part-row"><div class="part-row-img" name="Rohr 75 cm （75厘米管）" value="t75-scaled.svg"><img src="t75-scaled.svg"></div><div  contenteditable="true" class="amount"></div></div>
-<div class="part-row"><div class="part-row-img" name="Bogenrohr （弧形管）" value="tc1-scaled.svg"><img src="tc1-scaled.svg"></div><div  contenteditable="true" class="amount"></div></div>
-<div class="part-row"><div class="part-row-img" name="Platte 40 × 40 cm （大板）" value="pa4-scaled_0.svg"><img src="pa4-scaled_0.svg"></div><div  contenteditable="true" class="amount"></div></div>
-<div class="part-row"><div class="part-row-img" name="Platte 40 × 20 cm （半板）" value="pa2-scaled_0.svg"><img src="pa2-scaled_0.svg"></div><div  contenteditable="true" class="amount"></div></div>
-<div class="part-row"><div class="part-row-img" name="Lochplatte 40 × 40 cm（洞洞板）" value="po4-scaled_0.svg"><img src="po4-scaled_0.svg"></div><div  contenteditable="true" class="amount"></div></div>
-<div class="part-row"><div class="part-row-img" name="Rundtextile （圆形布）" value="xrd-scaled.svg"><img src="xrd-scaled.svg"></div><div  contenteditable="true" class="amount"></div></div>
-<div class="part-row"><div class="part-row-img" name="Multirad （多轮）" value="wmu-scaled.svg"><img src="wmu-scaled.svg"></div><div  contenteditable="true" class="amount"></div></div>
-<div class="part-row"><div class="part-row-img" name="Multirad Radlager （多轮垫圈）" value="wmb-scaled.svg"><img src="wmb-scaled.svg"></div><div  contenteditable="true" class="amount"></div></div>
-<div class="part-row"><div class="part-row-img" name="Multirad Arretierung （多轮固定件）" value="wml-scaled.svg"><img src="wml-scaled.svg"></div><div  contenteditable="true" class="amount"></div></div>
-<div class="part-row"><div class="part-row-img" name="Laufreifen （轮胎带）" value="wtr-scaled.svg"><img src="wtr-scaled.svg"></div><div  contenteditable="true" class="amount"></div></div>
-<div class="part-row"><div class="part-row-img" name="Dachtextil （顶棚）" value="xrf-scaled.svg"><img src="xrf-scaled.svg"></div><div  contenteditable="true" class="amount"></div></div>
-<div class="part-row"><div class="part-row-img" name="Doppelrohrverbinder （双管8字连接件）" value="cdt-scaled_0.svg"><img src="cdt-scaled_0.svg"></div><div  contenteditable="true" class="amount"></div></div>
-<div class="part-row"><div class="part-row-img" name="Aluminiumprofil （铝管）" value="alu-scaled.svg"><img src="alu-scaled.svg"></div><div  contenteditable="true" class="amount"></div></div>
-<div class="part-row"><div class="part-row-img" name="Aluminiumprofil-Verbinder （铝管连接件）" value="alc-scaled.svg"><img src="alc-scaled.svg"></div><div  contenteditable="true" class="amount"></div></div>
-<div class="part-row"><div class="part-row-img" name="Dachtextil (Baby Ballcage) （宝宝球池专用顶棚）" value="xbb-scaled.svg"><img src="xbb-scaled.svg"></div><div  contenteditable="true" class="amount"></div></div>
-<div class="part-row"><div class="part-row-img" name="Laufrolle （脚轮）" value="mcr-scaled.svg"><img src="mcr-scaled.svg"></div><div  contenteditable="true" class="amount"></div></div>
-<div class="part-row"><div class="part-row-img" name="Laufrolle Adapter （脚轮适配器）" value="wra-scaled.svg"><img src="wra-scaled.svg"></div><div  contenteditable="true" class="amount"></div></div>
-<div class="part-row"><div class="part-row-img" name="Spielsack（游戏袋）" value="xpb-scaled.svg"><img src="xpb-scaled.svg"></div><div  contenteditable="true" class="amount"></div></div>
-<div class="part-row"><div class="part-row-img" name="Modularrutsche （模块式滑梯）" value="msb-scaled.svg"><img src="msb-scaled.svg"></div><div  contenteditable="true" class="amount"></div></div>
-<div class="part-row"><div class="part-row-img" name="Rutschenauslauf （模块式滑梯下板）" value="sro-scaled.svg"><img src="sro-scaled.svg"></div><div  contenteditable="true" class="amount"></div></div>
-<div class="part-row"><div class="part-row-img" name="Bogenrutsche （弧形滑梯）" value="csb-scaled.svg"><img src="csb-scaled.svg"></div><div  contenteditable="true" class="amount"></div></div>
-<div class="part-row"><div class="part-row-img" name="Poolfolie S （小号泳池）" value="pls-scaled.svg"><img src="pls-scaled.svg"></div><div  contenteditable="true" class="amount"></div></div>
-<div class="part-row"><div class="part-row-img" name="Poolfolie L （大号泳池）" value="pll-scaled.svg"><img src="pll-scaled.svg"></div><div  contenteditable="true" class="amount"></div></div>
-<div class="part-row"><div class="part-row-img" name="Poolfolie XXL （加大号泳池）" value="plx-scaled.svg"><img src="plx-scaled.svg"></div><div  contenteditable="true" class="amount"></div></div>
-<div class="part-row"><div class="part-row-img" name="All-Terrain Rad （越野轮）" value="mat-scaled.svg"><img src="mat-scaled.svg"></div><div  contenteditable="true" class="amount"></div></div>
-<div class="part-row"><div class="part-row-img" name="All-Terrain Rad Arretierung （越野轮连接件）" value="mal-scaled.svg"><img src="mal-scaled.svg"></div><div  contenteditable="true" class="amount"></div></div>
-
+<div id="partslistdech">
+loading
 </div>
 
 <details style="clear:left;">
