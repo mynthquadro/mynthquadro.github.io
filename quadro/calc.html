@@ -79,7 +79,20 @@ const design=[["M1",1,5,25,11,2,26,12,9,8,0,14,0,0,129,0,0,0,13,0,0,2,0,0,0,0,0,
               ["a0025",0,0,4,7,0,7,4,0,0,0,0,0,4,29,0,0,0,1,0,0,0,0,0,0,0,0,0],
               ["a0026",0,0,4,6,0,8,4,0,0,0,0,0,4,29,0,0,0,1,0,0,0,0,0,0,0,0,0]];
 
+let recommendhtml=[];
+let perpagedefault=10;
+let currentpage=0;
+
 function getdesign(){
+    recommendhtml=[];
+    document.getElementsByClassName('re-container')[0].innerHTML='';
+    document.getElementsByClassName('re-footer')[0].style.display='none';
+    document.getElementsByClassName('recommendinfo')[0].textContent='';
+
+    let imgwidth=9;
+    if(window.innerWidth<window.innerHeight+100){
+        imgwidth=18;
+    }
     const amounts=document.getElementsByClassName('amount');
     let pass,info,designamount,resulthtml='',link;
     for (let i =0;i<design.length;i++){
@@ -87,21 +100,21 @@ function getdesign(){
         info='';
         for (let j =0;j<amounts.length;j++){
             designamount=design[i][j+2];/*design[i][0]:designname,design[i][1]:img_num*/
-            if (amounts[j].textContent<designamount){
-                if (j==18){
-                    info+='<br>you need '+designamount+' Lochplatte.';
-                }else if(j==19){
-                    info+='<br>you need '+designamount+' Rundtextile.';
+            if (parseInt(amounts[j].textContent)<designamount){
+                if (j==18 && parseInt(amounts[16].textContent)>(designamount+design[i][18])){
+                    info+='<div>you need '+designamount+' Lochplatte or replace with Lochplatte 40 × 40 cm.</div>';
+                }else if(j==19 && j==24){
+                    info+='<div>Textile is not included.</div>';
                 }/*else if(j==20){
-                    info+='<br>you need '+designamount+' Multirad.';
+                    info+='<div>you need '+designamount+' Multirad.</div>';
                 }else if(j==21){
-                    info+='<br>you need '+designamount+' Multirad Radlager.';
+                    info+='<div>you need '+designamount+' Multirad Radlager.</div>';
                 }else if(j==22){
-                    info+='<br>you need '+designamount+' Multirad Arretierung.';
-                }*/else if(j==24){
-                    info+='<br>you need '+designamount+' Dachtextil.';
-                }else if(j==25){
-                    info+='<br>you need '+designamount+' Doppelrohrverbinder.';
+                    info+='<div>you need '+designamount+' Multirad Arretierung.</div>';
+                }else if(j==24){
+                    info+='<div>you need '+designamount+' Dachtextil.</div>';
+                }*/else if(j==25){
+                    info+='<div>you need '+designamount+' Doppelrohrverbinder or replace with tie wrap.</div>';
                 }else{
                     pass=false;
                     break;
@@ -110,20 +123,66 @@ function getdesign(){
         }
         if(pass){
             if(design[i][0].substring(0,1)=='M'){
-                resulthtml+='<div class="possible" style="display:inline-block;"><img style="cursor:pointer;" src="'+design[i][0]+'.jpg" onclick="showdesign(this);"><span style="display:none;">'+info+'</span></div>';
+                recommendhtml.push('<div class="possible" style="display:inline-block;"><img style="height:5em;width:'+imgwidth+'vw;cursor:pointer;object-fit:contain;" src="../quadro/diy/'
+                                   +design[i][0]+
+                                   '.jpg" onclick="showdesign(this);"><div style="display:none;">'
+                                   +info+'</div></div>');
             }else{
-                resulthtml+='<div class="possible" style="display:inline-block;"><a href="https://quadromdb.com/de/designs/'+design[i][0]+'">quadromdb<img style="height:10em;" value="https://quadromdb.com/sites/default/files/mdb/'+design[i][0].toUpperCase()+'/'+design[i][0].toUpperCase()+'-brand.jpg"></a><span style="display:none;">'+info+'</span></div>';
+                recommendhtml.push('<div class="possible" style="display:inline-block;"><a href="https://quadromdb.com/de/designs/'
+                                   +design[i][0]+
+                                   '"><img style="height:5em;width:'+imgwidth+'vw;object-fit:contain;" src="https://quadromdb.com/sites/default/files/styles/mdb_design_brand_1x/public/mdb/'
+                                   +design[i][0].toUpperCase()+'/'
+                                   +design[i][0].toUpperCase()+'-brand.webp"></a><div style="display:none;">'
+                                   +info+'</div></div>');
             }
 
         }
     }
-    document.getElementsByClassName('recommend')[0].innerHTML=resulthtml;
+
+    if(recommendhtml.length==0){
+      document.getElementsByClassName('recommendinfo')[0].textContent='No available design.';
+      document.getElementsByClassName('re-footer')[0].style.display='none';
+    }else{
+      document.getElementsByClassName('re-footer')[0].style.display='block';
+      forpage(0,perpagedefault);
+    }
+}
+
+function forpage(page,perpage){
+    document.getElementsByClassName('re-footer')[0].style.display='block';
+    perpagedefault=perpage;
+    let maxindex = perpagedefault;
+    let pagehtml='';
+    if(page==0){
+      document.getElementById('re-prev').style.display='none';
+    }else{
+      document.getElementById('re-prev').style.display='inline';
+    }
+    if((page+1)*perpage >= recommendhtml.length){
+      document.getElementById('re-next').style.display='none';
+      maxindex=recommendhtml.length-page*perpage;
+    }else{
+      document.getElementById('re-next').style.display='inline';
+    }
+    for (let i =0;i<maxindex;i++){
+        pagehtml+=recommendhtml[page*perpagedefault+i];
+    }
+    document.getElementsByClassName('re-container')[0].innerHTML=pagehtml;
+}
+
+function prevpage(){
+  currentpage--;
+  forpage(currentpage,perpagedefault);
+}
+function nextpage(){
+  currentpage++;
+  forpage(currentpage,perpagedefault);
 }
 
 function showdesign(obj){
-  document.getElementsByClassName('pdf-container')[0].style.display='block';
-  document.getElementsByClassName('design-info')[0].textContent=obj.nextSibling.textContent;
-  document.getElementsByClassName('design-pdf')[0].src=obj.src.replace('jpg','pdf');
+    document.getElementsByClassName('pdf-container')[0].style.display='block';
+    document.getElementsByClassName('design-info')[0].innerHTML=obj.nextSibling.innerHTML;
+    document.getElementsByClassName('design-pdf')[0].src=obj.src.replace('jpg','pdf');
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -261,16 +320,26 @@ Click kit name or enter their amounts below. 请点击套装名字进行添加�
 </div>
 </div>
 
-<div>Click the number or blank under the images to input amounts of parts manually. 点击零件图片下方的数字或空白可手动输入零件数。</div>
+<div class="parts-info">Click the number or blank under the images to input amounts of parts manually. 点击零件图片下方的数字或空白可手动输入零件数。</div>
 <div id="partslistdech" style="margin-top:1.5em;">
 loading
 </div>
-<!--<button style="clear:left;" onclick="getdesign();">可用设计</button>-->
 
 <div class='recommend' style="clear:left;">
+  <button onclick="getdesign();">test</button>
   <div class='recommendinfo'>
   </div>
   <div class='re-container'>
+  </div>
+  <div class='re-footer' style="display:none;">
+    models per page: 
+    <select id="re-page" onchange="forpage(0,this.value);">
+      <option value="10">10</option>
+      <option value="20">20</option>
+      <option value="50">50</option>
+    </select>
+    <span id="re-prev" onclick="prevpage();" style="cursor:pointer;border:1px solid grey;">prev</span>
+    <span id="re-next" onclick="nextpage();" style="cursor:pointer;border:1px solid grey;">next</span>
   </div>
 </div>
 
