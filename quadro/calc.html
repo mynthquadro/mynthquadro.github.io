@@ -23,61 +23,74 @@ const parts =['Raumkupplung 5-armig','Raumkupplung 4-armig','Raumkupplung 3-armi
               'Rohr 20 cm','Rohr 25 cm','Rohr 35 cm','Rohr 35 cm 135Grad (3 Loecher)','Rohr 75 cm','Bogenrohr','Platte 40 × 40 cm','Platte 40 × 20 cm',
               'Lochplatte 40 × 40 cm','Rundtextile','Multirad','Multirad Radlager','Multirad Arretierung','Laufreifen','Dachtextil',
               'Doppelrohrverbinder','Aluminiumprofil','Aluminiumprofil-Verbinder','Dachtextil (Baby Ballcage)','Laufrolle',
-              'Laufrolle Adapter','Spielsack','Modularrutsche','Rutschenauslauf','Bogenrutsche','Poolfolie S','Poolfolie L','Poolfolie XXL','All-Terrain Rad','All-Terrain Rad Arretierung'];
+              'Laufrolle Adapter','Spielsack','Modularrutsche','Rutschenauslauf','Bogenrutsche','Poolfolie S','Poolfolie L','Poolfolie XXL','All-Terrain Rad',
+              'All-Terrain Rad Arretierung','Raumkupplung 6-armig','Plexiglass'];
 
-const partsCh=['5向链接件','4向连接件','3向连接件','十字连接件','T形连接件','L形连接件','1形连接件','斜角件','10厘米管','15厘米管','20厘米管','25厘米管',
+const partsCh=['5向连接件','4向连接件','3向连接件','十字连接件','T形连接件','L形连接件','1形连接件','斜角件','10厘米管','15厘米管','20厘米管','25厘米管',
                '35厘米管','135度3洞35厘米管','75厘米管','弧形管','大板','半板','洞洞板','方形布','多用轮','多用轮垫圈','多用轮固定件','轮胎带','顶棚',
                '双管8字连接件','铝管','铝管连接件','宝宝球池顶棚','脚轮','脚轮适配器','游戏袋','模块式滑梯','模块式滑梯下板','弧形滑梯','小号泳池','大号泳池',
-               '加大号泳池','越野轮','越野轮连接件'];
+               '加大号泳池','越野轮','越野轮连接件','6向连接件','亚克力板'];
 
 const partsImgSrc=['cs5-scaled.svg','cs4-scaled.svg','cs3-scaled_0.svg','cf4-scaled.svg','cf3-scaled.svg','cs2-scaled.svg','cf2-scaled.svg',
                    'c45-scaled.svg','t10-scaled.svg','t15.svg','t20-scaled.svg','t25-scaled.svg','t35.svg','ts5-scaled_1.svg','t75-scaled.svg',
                    'tc1-scaled.svg','pa4-scaled_0.svg','pa2-scaled_0.svg','po4-scaled_0.svg','xrd-scaled.svg','wmu-scaled.svg','wmb-scaled.svg',
                    'wml-scaled.svg','wtr-scaled.svg','xrf-scaled.svg','cdt-scaled_0.svg','alu-scaled.svg','alc-scaled.svg','xbb-scaled.svg',
                    'mcr-scaled.svg','wra-scaled.svg','xpb-scaled.svg','msb-scaled.svg','sro-scaled.svg','csb-scaled.svg','pls-scaled.svg',
-                   'pll-scaled.svg','plx-scaled.svg','mat-scaled.svg','mal-scaled.svg'];
+                   'pll-scaled.svg','plx-scaled.svg','mat-scaled.svg','mal-scaled.svg','cs6-scaled.svg','pxg-scaled.svg'];
 
 const kits=['My First QUADRO','STARTER','BASIC','JUNIOR','UNIVERSAL','ULTIMATE','BEGINNER','ADVENTURE','ADVENTURE PLUS','KLETTERPYRAMIDE','EVOLUTION',
             'OFFROAD','MOeBEL KIT S','MOeBEL KIT L','MODULARRUTSCHE','BOGENRUTSCHE','INTEGRALRUTSCHE','POOL S','POOL L','POOL XXL','MOBIL','SPECIAL KIT',
             'HOME ACTION KIT','UPGRADE KIT','YOUNGSTER','GENIUS'];
 
-const design=[["M1",1,5,25,11,2,26,12,9,8,0,14,0,0,129,0,0,0,13,0,0,2,0,0,0,0,0,2],
-              ["M2",1,5,22,12,1,20,18,3,0,0,31,0,0,98,0,0,0,16,8,0,0,0,0,0,0,0,2],
-              ["M3",1,1,6,6,1,9,11,0,0,0,4,0,2,43,0,0,1,0,1,0,0,0,0,0,0,0,0],
-              ["M4",1,9,36,13,7,28,9,11,8,0,10,0,2,176,0,0,2,10,2,0,1,4,4,4,0,0,0],
-              ["M5",1,4,15,8,0,8,18,2,0,0,20,0,0,64,0,0,0,7,0,0,0,0,0,0,0,0,2],
-              ["M6",1,6,29,30,4,22,26,6,2,0,24,0,0,167,0,0,0,18,2,0,0,0,0,0,0,0,0],
-              ["M7",1,6,30,28,4,22,27,5,2,0,26,0,0,164,0,0,0,16,0,0,0,0,0,0,0,0,2],
-              ["M8",1,6,30,31,4,21,32,5,0,0,26,0,0,172,0,0,0,17,2,0,0,0,0,0,0,0,2],
-              ["M9",1,6,30,29,4,21,32,6,8,0,27,0,0,169,0,0,0,16,2,0,0,0,0,0,0,0,2],
-              ["M10",1,6,30,32,4,22,32,5,4,0,29,0,0,173,0,0,0,18,2,0,0,0,0,0,0,0,2],
-              ["M11",1,9,27,17,7,22,9,10,4,0,31,0,4,141,0,0,0,32,4,0,2,0,0,0,0,0,0],
-              ["M12",1,2,14,8,1,8,22,3,4,0,19,0,0,66,0,0,0,10,0,0,0,0,0,0,0,0,4],
-              ["M13",1,3,14,15,0,12,11,2,0,0,16,0,0,73,0,0,0,10,2,0,0,0,0,0,0,0,2],
-              ["M14",1,3,8,15,2,6,5,0,0,0,0,0,0,64,0,0,0,0,0,0,0,0,0,0,0,0,0],
-              ["M15",1,3,8,15,2,6,5,0,0,0,0,0,0,64,0,0,0,0,0,0,0,0,0,0,0,0,0],
-              ["M16",1,8,20,14,1,24,13,5,8,0,14,0,0,123,0,0,0,8,0,0,1,0,0,0,0,1,0],
-              ["M17",1,3,11,14,1,11,12,3,0,0,15,0,0,70,0,0,0,10,2,0,0,0,0,0,0,0,4],
-              ["M18",1,2,10,12,0,10,12,4,0,0,15,0,0,69,0,0,0,9,2,0,0,0,0,0,0,0,4],
-              ["M19",1,0,2,2,0,0,2,2,4,0,2,0,0,9,0,0,0,0,0,0,0,0,0,0,0,0,0],
-              ["M20",1,0,2,0,0,0,6,2,2,0,2,0,0,10,0,0,0,0,0,0,0,0,0,0,0,0,0],
-              ["M21",1,2,7,4,0,4,12,1,0,0,10,0,0,34,0,0,0,6,0,0,0,0,0,0,0,0,0],
-              ["M22",1,6,18,16,2,14,19,6,4,0,27,0,4,95,0,0,0,10,0,0,0,1,1,1,0,0,2],
-              ["M23",1,2,7,4,2,10,4,2,0,0,0,0,0,50,0,0,0,8,0,0,0,0,0,0,0,0,0],
-              ["M24",1,2,11,4,2,8,4,2,0,0,0,0,0,55,0,0,0,10,0,0,0,0,0,0,0,0,0],
-              ["M25",1,5,17,11,1,12,15,3,2,0,18,0,0,83,0,0,0,11,1,4,0,0,0,0,0,0,2],
-              ["a0015",0,0,0,6,0,6,4,0,4,0,0,0,0,22,0,0,0,1,0,0,0,0,0,0,0,0,0],
-              ["a0016",0,0,4,6,0,2,4,0,4,0,0,0,4,20,0,0,0,1,0,0,0,0,0,0,0,0,0],
-              ["a0017",0,0,4,7,0,7,4,0,4,0,0,0,4,29,0,0,0,1,0,0,0,0,0,0,0,0,0],
-              ["a0018",0,0,2,2,0,8,4,0,4,0,0,0,4,19,0,0,0,1,0,0,0,0,0,0,0,0,0],
-              ["a0019",0,0,4,4,0,6,2,0,4,0,0,0,4,21,0,0,0,1,0,0,0,0,0,0,0,0,0],
-              ["a0020",0,0,4,6,0,8,4,1,0,0,0,0,4,30,0,0,0,1,0,0,0,0,0,0,0,0,0],
-              ["a0021",0,0,4,7,0,9,2,0,4,0,0,0,4,30,0,0,0,1,0,0,0,0,0,0,0,0,0],
-              ["a0022",0,0,3,7,0,9,4,0,4,0,0,0,4,30,0,0,0,1,0,0,0,0,0,0,0,0,0],
-              ["a0023",0,0,4,7,0,7,4,0,4,0,0,0,4,29,0,0,0,1,0,0,0,0,0,0,0,0,0],
-              ["a0024",0,0,4,6,0,8,2,1,4,0,0,0,4,28,0,0,0,1,0,0,0,0,0,0,0,0,0],
-              ["a0025",0,0,4,7,0,7,4,0,0,0,0,0,4,29,0,0,0,1,0,0,0,0,0,0,0,0,0],
-              ["a0026",0,0,4,6,0,8,4,0,0,0,0,0,4,29,0,0,0,1,0,0,0,0,0,0,0,0,0]];
+const design=[["M1",1,5,25,11,2,26,12,9,8,0,14,0,0,129,0,0,0,13,0,0,2,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["M2",1,5,22,12,1,20,18,3,0,0,31,0,0,98,0,0,0,16,8,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["M3",1,1,6,6,1,9,11,0,0,0,4,0,2,43,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["M4",1,9,36,13,7,28,9,11,8,0,10,0,2,176,0,0,2,10,2,0,1,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["M5",1,4,15,8,0,8,18,2,0,0,20,0,0,64,0,0,0,7,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["M6",1,6,29,30,4,22,26,6,2,0,24,0,0,167,0,0,0,18,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["M7",1,6,30,28,4,22,27,5,2,0,26,0,0,164,0,0,0,16,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["M8",1,6,30,31,4,21,32,5,0,0,26,0,0,172,0,0,0,17,2,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["M9",1,6,30,29,4,21,32,6,8,0,27,0,0,169,0,0,0,16,2,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["M10",1,6,30,32,4,22,32,5,4,0,29,0,0,173,0,0,0,18,2,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["M11",1,9,27,17,7,22,9,10,4,0,31,0,4,141,0,0,0,32,4,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["M12",1,2,14,8,1,8,22,3,4,0,19,0,0,66,0,0,0,10,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["M13",1,3,14,15,0,12,11,2,0,0,16,0,0,73,0,0,0,10,2,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["M14",1,3,8,15,2,6,5,0,0,0,0,0,0,64,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["M15",1,3,8,15,2,6,5,0,0,0,0,0,0,64,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["M16",1,8,20,14,1,24,13,5,8,0,14,0,0,123,0,0,0,8,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["M17",1,3,11,14,1,11,12,3,0,0,15,0,0,70,0,0,0,10,2,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["M18",1,2,10,12,0,10,12,4,0,0,15,0,0,60,0,0,0,8,4,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["M19",1,0,2,2,0,0,2,2,4,0,2,0,0,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["M20",1,0,2,0,0,0,6,2,2,0,2,0,0,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["M21",1,2,7,4,0,4,12,1,0,0,10,0,0,34,0,0,0,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["M22",1,6,18,16,2,14,19,6,4,0,27,0,4,95,0,0,0,10,0,0,0,1,1,1,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["M23",1,2,7,4,2,10,4,2,0,0,0,0,0,50,0,0,0,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["M24",1,2,11,4,2,8,4,2,0,0,0,0,0,55,0,0,0,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["M25",1,5,17,11,1,12,15,3,2,0,18,0,0,83,0,0,0,11,1,4,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["a0015",0,0,0,6,0,6,4,0,4,0,0,0,0,22,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["a0016",0,0,4,6,0,2,4,0,4,0,0,0,4,20,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["a0017",0,0,4,7,0,7,4,0,4,0,0,0,4,29,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["a0018",0,0,2,2,0,8,4,0,4,0,0,0,4,19,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["a0019",0,0,4,4,0,6,2,0,4,0,0,0,4,21,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["a0020",0,0,4,6,0,8,4,1,0,0,0,0,4,30,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["a0021",0,0,4,7,0,9,2,0,4,0,0,0,4,30,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["a0022",0,0,3,7,0,9,4,0,4,0,0,0,4,30,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["a0023",0,0,4,7,0,7,4,0,4,0,0,0,4,29,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["a0024",0,0,4,6,0,8,2,1,4,0,0,0,4,28,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["a0025",0,0,4,7,0,7,4,0,0,0,0,0,4,29,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["a0026",0,0,4,6,0,8,4,0,0,0,0,0,4,29,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["M26",0,6,26,26,4,20,28,5,4,0,27,0,0,151,0,0,0,17,2,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["M27",0,6,26,22,4,20,23,5,6,0,29,0,0,137,0,0,0,10,0,0,1,0,0,0,0,0,2,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0],
+["M28",0,0,12,8,0,0,0,0,0,0,0,0,0,36,0,0,0,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["M29",0,4,15,19,0,14,18,4,4,0,16,0,4,81,0,0,0,12,3,0,0,1,1,1,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["M30",0,9,23,24,3,20,11,2,0,0,27,0,2,124,0,0,0,8,5,0,0,1,1,1,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["M31",0,4,22,8,2,20,7,4,4,0,9,0,0,102,0,0,0,10,2,0,2,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["M32",0,2,17,15,1,15,20,5,2,0,25,0,0,86,0,0,0,16,3,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["M33",0,3,6,7,0,2,2,0,0,0,8,0,0,27,0,0,0,4,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["M53001",0,7,17,15,0,14,16,2,4,0,35,0,0,81,0,0,0,12,11,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
+["a0165",0,0,8,4,0,4,8,0,0,0,8,0,0,28,0,0,0,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["a0173",0,0,8,0,4,0,14,0,0,0,6,0,0,30,0,0,0,7,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["a0138",0,4,10,12,1,11,12,3,4,0,18,0,4,58,0,0,0,8,6,0,0,1,1,1,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]];
 
 let recommendhtml=[];
 let perpagedefault=10;
@@ -101,9 +114,9 @@ function getdesign(){
         for (let j =0;j<amounts.length;j++){
             designamount=design[i][j+2];/*design[i][0]:designname,design[i][1]:img_num*/
             if (amounts[j].textContent<designamount){
-                if (j==18 && amounts[16].textContent>(designamount+design[i][18])){
+                if (j==18 && amounts[16].textContent>=(design[i][20]+design[i][18]+design[i][43])){
                     info+='<div>you need '+designamount+' Lochplatte or replace with Lochplatte 40 × 40 cm.</div>';
-                }else if(j==19 && j==24){
+                }else if(j==19 || j==24){
                     info+='<div>Textile is not included.</div>';
                 }/*else if(j==20){
                     info+='<div>you need '+designamount+' Multirad.</div>';
@@ -111,11 +124,16 @@ function getdesign(){
                     info+='<div>you need '+designamount+' Multirad Radlager.</div>';
                 }else if(j==22){
                     info+='<div>you need '+designamount+' Multirad Arretierung.</div>';
-                }else if(j==24){
+                }*/else if(j==24){
                     info+='<div>you need '+designamount+' Dachtextil.</div>';
-                }*/else if(j==25){
+                }else if(j==25){
                     info+='<div>you need '+designamount+' Doppelrohrverbinder or replace with tie wrap.</div>';
+                }else if(j==32){
+                    info+='<div>you need '+designamount+' Spielsack.</div>';
+                }else if(j==41 && amounts[16].textContent>=(design[i][20]+design[i][18]+design[i][43])){
+                    info+='<div>you need '+designamount+' Plexiglass or replace with Lochplatte 40 × 40 cm.</div>';
                 }else{
+                    /*console.log('design'+i+'a'+j+':'+amounts[j].textContent+'<'+designamount);*/
                     pass=false;
                     break;
                 }
@@ -125,14 +143,14 @@ function getdesign(){
             if(design[i][0].substring(0,1)=='M'){
                 recommendhtml.push('<div class="possible" style="display:inline-block;"><a target="_blank" href="../quadro/diy/'
                                    +design[i][0]+
-                                   '.pdf"><img style="height:5em;width:'+imgwidth+'vw;cursor:pointer;object-fit:contain;" src="../quadro/diy/'
+                                   '.pdf"><img style="height:8em;width:'+imgwidth+'vw;cursor:pointer;object-fit:contain;" src="../quadro/diy/'
                                    +design[i][0]+
                                    '.JPG"></a><div style="display:none;">'
                                    +info+'</div></div>');
             }else{
                 recommendhtml.push('<div class="possible" style="display:inline-block;"><a target="_blank" href="https://quadromdb.com/de/designs/'
                                    +design[i][0]+
-                                   '"><img style="height:5em;width:'+imgwidth+'vw;object-fit:contain;" src="https://quadromdb.com/sites/default/files/styles/mdb_design_brand_1x/public/mdb/'
+                                   '"><img style="height:8em;width:'+imgwidth+'vw;object-fit:contain;" src="https://quadromdb.com/sites/default/files/styles/mdb_design_brand_1x/public/mdb/'
                                    +design[i][0].toUpperCase()+'/'
                                    +design[i][0].toUpperCase()+'-brand.webp"></a><div style="display:none;">'
                                    +info+'</div></div>');
@@ -188,7 +206,6 @@ function showdesign(obj){
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-
   /*fill partslist*/
   let addHtml='';
   for (let i = 0;i<parts.length;i++){
@@ -218,14 +235,17 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function ResetKitsNum(){
-ResetPartsNum();
-const rs=document.querySelectorAll('.kits-amount');
-rs.forEach(
-  function(listObj){
-    listObj.textContent='0';
-    listObj.nextElementSibling.style.filter="opacity(0)";
-  }
-);
+  ResetPartsNum();
+  const rs=document.querySelectorAll('.kits-amount');
+  rs.forEach(
+    function(listObj){
+      listObj.textContent='0';
+      listObj.nextElementSibling.style.filter="opacity(0)";
+    }
+  );
+  document.getElementsByClassName('re-container')[0].innerHTML='';
+  document.getElementsByClassName('re-footer')[0].style.display='none';
+  document.getElementsByClassName('recommendinfo')[0].textContent='';
 }
 
 function ResetPartsNum(){
@@ -318,7 +338,7 @@ Click kit name or enter their amounts below. 请点击套装名字进行添加�
 <hr>
 <button onclick="ResetKitsNum();">Reset（重置）</button>
 <div style="font-size:1.9em;margin-left:1.5em;display:inline;" class="coupon">
-&#127873;<span style="font-weight:700;" onclick="getdesign();">10% Coupon</span> for quadro shop: <img style='height:1em;' src='Flag_of_Europe.svg'>Cheryl_EU_10 <img style='height:1em;' src='Flag_of_the_United_States.svg'>Cheryl_US_10
+&#127873;<span style="font-weight:700;">10% Coupon</span> for quadro shop 官网优惠券：欧洲：<img style='height:1em;' src='Flag_of_Europe.svg'>Cheryl_EU_10 <img style='height:1em;' src='Flag_of_the_United_States.svg'>Cheryl_US_10
 </div>
 </div>
 
@@ -328,7 +348,8 @@ loading
 </div>
 
 <div class='recommend' style="clear:left;">
-  <button onclick="getdesign();">test</button>
+  <button onclick="getdesign();">available models/refresh</button>
+  <div></div>
   <div class='recommendinfo'>
   </div>
   <div class='re-container'>
@@ -358,7 +379,7 @@ loading
 <div style="margin-top:5em;"> </div>
 <hr>
 
-<details style="clear:left;">
+<details style="display:none;clear:left;">
   <summary>data Stand: 2023.1.10 数据更新于2023年1月10日</summary>
 <div class="title-block">
 <h2>My First QUADRO</h2><div class="product-sku">11960</div>
@@ -1693,7 +1714,7 @@ loading
 </div>
 
 <div class="title-block">
-<h1>YOUNGSTER</h1><div class="product-sku">30400</div>
+<h2>YOUNGSTER</h2><div class="product-sku">30400</div>
 <div class="part-name">Raumkupplung 4-armig</div>
 <div class="part-num">6</div>
 <img class="part-img" value="/sites/default/files/mdb/components/cs4-scaled.svg">
@@ -1737,7 +1758,7 @@ loading
 </div>
 
 <div class="title-block">
-<h1>GENIUS</h1>
+<h2>GENIUS</h2>
 <div class="part-name">Raumkupplung 5-armig</div>
 <div class="part-num">3</div>
 <img class="part-img" value="/sites/default/files/mdb/components/cs5-scaled.svg">
