@@ -123,12 +123,14 @@ function getdesign(){
         }
         if(pass){
             if(design[i][0].substring(0,1)=='M'){
-                recommendhtml.push('<div class="possible" style="display:inline-block;"><img style="height:5em;width:'+imgwidth+'vw;cursor:pointer;object-fit:contain;" src="../quadro/diy/'
+                recommendhtml.push('<div class="possible" style="display:inline-block;"><a target="_blank" href="../quadro/diy/'
                                    +design[i][0]+
-                                   '.JPG" onclick="showdesign(this);"><div style="display:none;">'
+                                   '.pdf"><img style="height:5em;width:'+imgwidth+'vw;cursor:pointer;object-fit:contain;" src="../quadro/diy/'
+                                   +design[i][0]+
+                                   '.JPG"></a><div style="display:none;">'
                                    +info+'</div></div>');
             }else{
-                recommendhtml.push('<div class="possible" style="display:inline-block;"><a href="https://quadromdb.com/de/designs/'
+                recommendhtml.push('<div class="possible" style="display:inline-block;"><a target="_blank" href="https://quadromdb.com/de/designs/'
                                    +design[i][0]+
                                    '"><img style="height:5em;width:'+imgwidth+'vw;object-fit:contain;" src="https://quadromdb.com/sites/default/files/styles/mdb_design_brand_1x/public/mdb/'
                                    +design[i][0].toUpperCase()+'/'
