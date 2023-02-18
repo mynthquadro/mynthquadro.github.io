@@ -143,26 +143,26 @@ function getdesign(){
       document.getElementsByClassName('recommendinfo')[0].textContent='No available design.';
       document.getElementsByClassName('re-footer')[0].style.display='none';
     }else{
+      document.getElementsByClassName('recommendinfo')[0].textContent='Available design: '+recommendhtml.length;
       document.getElementsByClassName('re-footer')[0].style.display='block';
       forpage(0,perpagedefault);
     }
 }
 
 function forpage(page,perpage){
-    document.getElementsByClassName('re-footer')[0].style.display='block';
     perpagedefault=perpage;
     let maxindex = perpagedefault;
     let pagehtml='';
     if(page==0){
-      document.getElementById('re-prev').style.display='none';
+      document.getElementById('re-prev').disabled = true;
     }else{
-      document.getElementById('re-prev').style.display='inline';
+      document.getElementById('re-prev').disabled = false;
     }
     if((page+1)*perpage >= recommendhtml.length){
-      document.getElementById('re-next').style.display='none';
+      document.getElementById('re-next').disabled = true;
       maxindex=recommendhtml.length-page*perpage;
     }else{
-      document.getElementById('re-next').style.display='inline';
+      document.getElementById('re-next').disabled = false;
     }
     for (let i =0;i<maxindex;i++){
         pagehtml+=recommendhtml[page*perpagedefault+i];
@@ -332,14 +332,14 @@ loading
   <div class='re-container'>
   </div>
   <div class='re-footer' style="display:none;">
-    models per page: 
-    <select id="re-page" onchange="forpage(0,this.value);">
+    <span style="font-size:2em;">models per page: </span>
+    <select style="font-size:2em;" id="re-page" onchange="forpage(0,this.value);">
       <option value="10">10</option>
       <option value="20">20</option>
       <option value="50">50</option>
     </select>
-    <span id="re-prev" onclick="prevpage();" style="cursor:pointer;border:1px solid grey;">prev</span>
-    <span id="re-next" onclick="nextpage();" style="cursor:pointer;border:1px solid grey;">next</span>
+    <button id="re-prev" onclick="prevpage();">prev</button>
+    <button id="re-next" onclick="nextpage();">next</button>
   </div>
 </div>
 
@@ -353,6 +353,8 @@ loading
     <iframe class="design-pdf" style="width:100%;height:100%;"></iframe>
   </div>
 </div>
+<div style="margin-top:5em;"> </div>
+<hr>
 
 <details style="clear:left;">
   <summary>data Stand: 2023.1.10 数据更新于2023年1月10日</summary>
