@@ -100,8 +100,8 @@ function getdesign(){
         info='';
         for (let j =0;j<amounts.length;j++){
             designamount=design[i][j+2];/*design[i][0]:designname,design[i][1]:img_num*/
-            if (parseInt(amounts[j].textContent)<designamount){
-                if (j==18 && parseInt(amounts[16].textContent)>(designamount+design[i][18])){
+            if (amounts[j].textContent<designamount){
+                if (j==18 && amounts[16].textContent>(designamount+design[i][18])){
                     info+='<div>you need '+designamount+' Lochplatte or replace with Lochplatte 40 × 40 cm.</div>';
                 }else if(j==19 && j==24){
                     info+='<div>Textile is not included.</div>';
