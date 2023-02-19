@@ -1,0 +1,26 @@
+<head>
+<script>
+  function getFrameContents(){
+   var iFrame = document.getElementById('myiframe');
+   var iFrameBody;
+   if ( iFrame.contentDocument ) 
+   { // FF
+     iFrameBody = iFrame.contentDocument.getElementsByTagName('body')[0];
+   }
+   else if ( iFrame.contentWindow ) 
+   { // IE
+     iFrameBody = iFrame.contentWindow.document.getElementsByTagName('body')[0];
+   }
+    alert(iFrameBody.innerHTML);
+ }
+
+window.addEventListener('load', () => {
+  /*read partsImgSrc*/
+  getFrameContents();
+});
+  </script>
+</head>
+<body>
+  123
+  <iframe id="myiframe" style="display:none;" src="test.txt"></iframe>
+</body>
