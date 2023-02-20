@@ -6,7 +6,7 @@
     /*read iframe*/
     const iFrame = document.getElementById('myiframe');
     const iFrameContent = iFrame.contentDocument || iFrame.contentWindow.document;
-    array1=iFrameContent.getElementsByTagName('pre')[0].textContent.split(',');
+    array1=iFrameContent.getElementById('parts').textContent.split(',');
     console.log(array1[0]);
   });
 </script>
