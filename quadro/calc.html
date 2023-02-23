@@ -114,14 +114,15 @@ function getdesign(){
         imgwidth=18;
     }
     const amounts=document.getElementsByClassName('amount');
-    let pass,info,designamount,resulthtml='',link;
+    let pass,info,designamount,resulthtml='',havePartNum;
     for (let i =0;i<design.length;i++){
         pass=true;
         info='';
         for (let j =0;j<amounts.length;j++){
             designamount=design[i][j+2];/*design[i][0]:designname,design[i][1]:img_num*/
-            if (amounts[j].textContent<designamount){
-                if (j==18 && amounts[16].textContent>=(design[i][20]+design[i][18]+design[i][43])){
+            havePartNum=amounts[j].textContent ? parseInt(amounts[j].textContent) : 0;
+            if (havePartNum<designamount){
+                if (j==18 && parseInt(amounts[16].textContent)>=(design[i][20]+design[i][18]+design[i][43])){
                     info+='<div>you need '+designamount+' Lochplatte or replace with Lochplatte 40 × 40 cm.</div>';
                 }else if(j==19 || j==24 || j==28){
                     info+='<div>Textile is not included.</div>';
@@ -133,14 +134,14 @@ function getdesign(){
                     info+='<div>you need '+designamount+' Multirad Arretierung.</div>';
                 }*/else if(j==25){
                     info+='<div>you need '+designamount+' Doppelrohrverbinder or replace with tie wrap.</div>';
-                }else if(j==32){
+                }else if(j==31){
                     info+='<div>you need '+designamount+' Spielsack.</div>';
                 }else if(j==35 || j==36 || j==37){
                     info+='<div>you need '+designamount+' Pool.</div>';
-                }else if(j==41 && amounts[16].textContent>=(design[i][20]+design[i][18]+design[i][43])){
+                }else if(j==41 && parseInt(amounts[16].textContent)>=(design[i][20]+design[i][18]+design[i][43])){
                     info+='<div>you need '+designamount+' Plexiglass or replace with Lochplatte 40 × 40 cm.</div>';
                 }else{
-                    /*console.log('design'+i+'a'+j+':'+amounts[j].textContent+'<'+designamount);*/
+                    /*console.log('design'+i+','+parts[j]+':'+amounts[j].textContent+'<'+designamount);*/
                     pass=false;
                     break;
                 }
