@@ -76,7 +76,7 @@ window.addEventListener('load', () => {
   /*fill partslist*/
   let addHtml='';
   for (let i = 0;i<parts.length;i++){
-    const p="alert('"+parts[i]+"("+partsCh[i]+")"+"');";
+    const p="alert('"+parts[i]+"["+partsCh[i].replaceAll('(','[').replaceAll(')',']')+"]"+"');";
     addHtml+='<div class="part-row"><div class="part-row-img" onclick="'+p+'"><img src="'+partsImgSrc[i]+'"></div><div  contenteditable="true" class="amount"></div></div>';
   }
   document.getElementById("partslistdech").innerHTML=addHtml;
