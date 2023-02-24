@@ -57,9 +57,9 @@ window.addEventListener('load', () => {
     /*read data from iframe*/
     const iFrame = document.getElementById('myiframe');
     const iFrameContent = iFrame.contentDocument || iFrame.contentWindow.document;
-    parts=iFrameContent.getElementById('parts').textContent.split(',');
-    partsCh=iFrameContent.getElementById('partsCh').textContent.split(',');
-    partsImgSrc=iFrameContent.getElementById('partsImgSrc').textContent.split(',');
+    parts=iFrameContent.getElementById('parts').textContent.replaceAll('\n','').split(',');
+    partsCh=iFrameContent.getElementById('partsCh').textContent.replaceAll('\n','').split(',');
+    partsImgSrc=iFrameContent.getElementById('partsImgSrc').textContent.replaceAll('\n','').split(',');
     if(parts.length != partsCh.length || parts.length != partsImgSrc.length){
       console.log("Error:parts data length");
     }
