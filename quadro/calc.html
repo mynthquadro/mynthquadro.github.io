@@ -108,6 +108,12 @@ const design=[['M1',1,5,25,11,2,26,12,9,8,0,14,0,0,129,0,0,0,13,0,0,2,0,0,0,0,0,
 ["M55",0,52,71,27,21,69,30,19,11,5,83,0,8,422,0,0,14,54,10,0,0,4,4,4,0,0,2,0,0,0,0,0,0,1,0,0,0,0,0,0,0,8,8,0],
 ["M56",0,0,0,0,0,0,8,0,2,0,2,0,0,6,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 ["M57",0,0,0,0,2,6,2,0,2,0,4,0,0,11,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["M58",0,4,9,15,2,7,11,0,4,0,6,0,0,70,0,0,0,6,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["M59",0,4,19,13,1,15,15,4,2,0,22,0,0,87,0,0,0,11,2,4,0,2,2,2,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["M60",0,5,29,25,5,41,39,10,4,0,35,0,0,207,0,0,1,16,4,0,0,1,1,1,0,0,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["M61",0,6,29,26,4,21,28,5,3,0,32,0,0,162,0,0,1,12,1,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["M62",0,6,30,24,4,22,26,4,2,0,25,0,0,168,0,0,0,10,2,0,0,4,4,4,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["M63",0,5,16,12,1,21,10,2,8,0,24,0,2,83,0,0,3,11,1,0,0,2,1,1,1,0,2,0,0,0,0,0,2,0,0,0,0,0,0,0,0,2,0,0],
 ['a0001',0,0,2,6,0,4,4,1,4,0,8,0,0,16,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 ['a0002',0,0,2,6,0,4,4,0,0,0,7,0,0,16,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 ['a0003',0,0,2,6,0,4,4,0,0,0,8,0,0,15,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -854,6 +860,7 @@ function Calc(){
 }
 
 let searchresult='';
+let resultCount=0;
 function searchmodel(){
     let imgwidth=9;
     if(window.innerWidth<window.innerHeight+100){
@@ -861,35 +868,51 @@ function searchmodel(){
     }
   const resultdom = document.getElementById("search-result");
   resultdom.innerHTML='';
-  searchresult=[];
+  document.getElementsByClassName("se-footer")[0].style.display='none';
+  searchresult='';
+  resultCount=0;
+  currentSearchPage=1;
+  document.getElementById('se-current').textContent=currentSearchPage;
+
   const searchNum=document.getElementById("search-num").value.toUpperCase();
   const searchPart=document.getElementById("search-part").value;
 
+/*搜索编号*/
   if(searchNum){
     for(let i =0;i<design.length;i++){
       if(design[i][0].toUpperCase() == searchNum){
+        resultCount++;
         if(design[i][0].substring(0,1)=='M'){
-            searchresult+='<div class="se-re" style="display:inline-block;"><img  onclick="showdesign('+i+')" style="height:7em;width:'+imgwidth+'vw;cursor:pointer;object-fit:contain;" src="../quadro/diy/'
-                                   +design[i][0]+
-                                   '.JPG"></div>';
+            searchresult+='<div class="se-re" style="display:inline-block;"><img  onclick="showdesign('
+		+i+')" style="height:7em;width:'+imgwidth+'vw;cursor:pointer;object-fit:contain;" src="../quadro/diy/'
+                                   +design[i][0]+'.JPG"></div>';
         }else{
-            searchresult+='<div class="se-re"  style="display:inline-block;"><img  onclick="showdesign('+i+')" style="height:7em;width:'+imgwidth+'vw;cursor:pointer;object-fit:contain;" src="../quadro/webimg/'
+            searchresult+='<div class="se-re"  style="display:inline-block;"><img  onclick="showdesign('
+		+i+')" style="height:7em;width:'+imgwidth+'vw;cursor:pointer;object-fit:contain;" src="../quadro/webimg/'
                                    +design[i][0].toUpperCase()+'-brand.webp"></div>';
         }
         break;
       }
     }
   }
-
+/*搜索部件*/
+  let resultDisplay='inline-block';
   if(searchPart){
     for(let i =0;i<design.length;i++){
       if(design[i][searchPart] > 0){
+        resultCount++;
+        if (resultCount>perpagedefault ){
+          resultDisplay='none';
+        }
         if(design[i][0].substring(0,1)=='M'){
-            searchresult+='<div class="se-re" style="display:inline-block;"><img  onclick="showdesign('+i+')" style="height:7em;width:'+imgwidth+'vw;cursor:pointer;object-fit:contain;" src="../quadro/diy/'
-                                   +design[i][0]+
-                                   '.JPG"></div>';
+            searchresult+='<div class="se-re" style="display:'+resultDisplay+';"><img  onclick="showdesign('
+		+i+')" style="height:7em;width:'
+		+imgwidth+'vw;cursor:pointer;object-fit:contain;" src="../quadro/diy/'
+                                   +design[i][0]+'.JPG"></div>';
         }else{
-            searchresult+='<div class="se-re" style="display:inline-block;"><img  onclick="showdesign('+i+')" style="height:7em;width:'+imgwidth+'vw;cursor:pointer;object-fit:contain;" src="../quadro/webimg/'
+            searchresult+='<div class="se-re" style="display:'+resultDisplay+';"><img  onclick="showdesign('
+		+i+')" style="height:7em;width:'
+		+imgwidth+'vw;cursor:pointer;object-fit:contain;" src="../quadro/webimg/'
                                    +design[i][0].toUpperCase()+'-brand.webp"></div>';
         }
       }
@@ -897,8 +920,60 @@ function searchmodel(){
   }
   if (searchresult){
     resultdom.innerHTML=searchresult;
+    if (resultCount>perpagedefault){
+      document.getElementsByClassName("se-footer")[0].style.display='block';
+      document.getElementById('se-prev').disabled = true;
+      document.getElementById('se-next').disabled = false;
+    }
   } else {
     resultdom.innerHTML='no result';
+  }
+}
+
+let currentSearchPage=1;
+function prevsepage(){
+  currentSearchPage--;
+  if(currentSearchPage<=1){
+    document.getElementById('se-prev').disabled = true;
+  }
+  document.getElementById('se-next').disabled = false;
+
+  document.getElementById('se-current').textContent=currentSearchPage;
+  const searchResult=document.getElementsByClassName("se-re");
+  let maxindex;
+  if((currentSearchPage+1)*perpagedefault>resultCount){
+    maxindex=resultCount;
+  }else{
+    maxindex=(currentSearchPage+1)*perpagedefault;
+  }
+  for(let i=currentSearchPage*perpagedefault; i<maxindex; i++){
+    searchResult[i].style.display='none';
+  }
+  for(let i=(currentSearchPage-1)*perpagedefault; i<currentSearchPage*perpagedefault; i++){
+    searchResult[i].style.display='inline-block';
+  }
+}
+
+function nextsepage(){
+  currentSearchPage++;
+  document.getElementById('se-prev').disabled = false;
+  if(currentSearchPage>= resultCount/perpagedefault){
+    document.getElementById('se-next').disabled = true;
+  }
+  
+  document.getElementById('se-current').textContent=currentSearchPage;
+  const searchResult=document.getElementsByClassName("se-re");
+  let maxindex;
+  if(currentSearchPage*perpagedefault>resultCount){
+    maxindex=resultCount;
+  }else{
+    maxindex=currentSearchPage*perpagedefault;
+  }
+  for(let i=(currentSearchPage-2)*perpagedefault; i<(currentSearchPage-1)*perpagedefault; i++){
+    searchResult[i].style.display='none';
+  }
+  for(let i=(currentSearchPage-1)*perpagedefault; i<maxindex; i++){
+    searchResult[i].style.display='inline-block';
   }
 }
 
@@ -997,23 +1072,28 @@ loading
 
 <hr>
 <div class='search-model'>
-  <input style="font-size:2em;max-width:30vw;" placeholder="model number" id="search-num">
-  <span style="font-size:2em;">includes: </span>
+  <input style="font-size:2em;max-width:30vw;" placeholder="model number[编号]" id="search-num">
+  <span style="font-size:2em;">includes[包含]</span>
   <select style="font-size:2em;" id="search-part">
-    <option value="0">请选择</option>
-    <option value="34">直梯</option>
-    <option value="36">弧形梯</option>
-    <option value="27">斜板</option>
-    <option value="22">多功能轮</option>
+    <option value="0">none[请选择]</option>
+    <option value="34">straight slide[直梯]</option>
+    <option value="36">curved slide[弧形梯]</option>
+    <option value="27">ramp[斜坡]</option>
+    <option value="22">multi wheel[多功能轮]</option>
   </select>
   <button onclick="searchmodel();">search</button>
   <div id="search-result"></div>
+  <div class='se-footer' style="display:none;">
+    <button id="se-prev" onclick="prevsepage();" style="margin-left:1em;">prev</button>
+    <div id="se-current" style="display:inline-block;font-size:2em;color:#0008;min-width:1.5em;text-align: center;">1</div>
+    <button id="se-next" onclick="nextsepage();">next</button>
+  </div>
 </div>
 
 <div class='se-container' style="display:none;border:1px solid grey;position:fixed;left:10vw;top:10vh;width:80vw;height:80vh;background:white;">
   <div class="container-head" style="font-size:2em;">
     <span id="design-info"></span>
-    <span style="border:1px solid #5555;cursor:pointer;display:inline-block;float: right;text-align:center;" onclick="document.getElementsByClassName('se-container')[0].style.display='none';">close</span>
+    <span style="width:1.6em;cursor:pointer;display:inline-block;float: right;text-align:center;" onclick="document.getElementsByClassName('se-container')[0].style.display='none';">☒</span>
   </div>
   <div id="part-info" style="width:100%;height:calc(100% - 3em);overflow-y: scroll;"></div>
 </div>
