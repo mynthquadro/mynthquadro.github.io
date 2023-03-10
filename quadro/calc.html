@@ -879,7 +879,7 @@ function searchmodel(){
 
   const searchNum=document.getElementById("search-num").value.toUpperCase();
   /*下拉菜单分语言*/
-  const searchPart=document.getElementsByClassName("search-part")[document.getElementById('change-lang').value].value;
+  const searchPart=document.getElementsByClassName("search-part")[lang].value;
 
 /*搜索编号*/
   if(searchNum){
@@ -1003,16 +1003,16 @@ function showdesign(num){
   document.getElementById('design-info').innerHTML=designinfo;
   document.getElementById('part-info').innerHTML=partinfo;
 }
-
+let lang=0;
 function changeLang(la){
   if (la == 1){
     document.getElementById('la-ch').innerHTML='.lang-ch{display:none;}';
     document.getElementById('la-en').innerHTML='.lang-en{display:inline;}';
-    document.getElementById('change-lang').value=1;
+    lang=1;
   }else{
     document.getElementById('la-ch').innerHTML='.lang-ch{display:inline;}';
     document.getElementById('la-en').innerHTML='.lang-en{display:none;}';
-    document.getElementById('change-lang').value=0;
+    lang=0;
   }
 }
 
@@ -1071,7 +1071,7 @@ function loadParts(){
 </head>
 
 <body>
-  <div style="font-size:2em;" id="change-lang" value="0">
+  <div style="font-size:2em;">
     <a href="javascript:changeLang(0)">中文</a>
     <a href="javascript:changeLang(1)" style="margin-left:2em;">English</a>
   </div>
