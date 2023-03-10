@@ -1000,8 +1000,14 @@ function showdesign(num){
   document.getElementById('part-info').innerHTML=partinfo;
 }
 
-function setCookie(cname, cvalue) {
-  document.cookie = cname + "=" + cvalue + ";";
+function setCookie(cname, cvalue, exdays) {
+  let expires ='';
+  if(exdays != 0){
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    expires = "expires="+ d.toUTCString()+";";
+  }
+  document.cookie = cname + "=" + cvalue + ";" + expires + "path=/;";
 }
 
 function getCookie(cname) {
@@ -1022,9 +1028,14 @@ function getCookie(cname) {
 
 function saveParts(){
   const partsAmount=document.getElementsByClassName('amount');
+  let amount;
   for(let i=0;i<partsAmount.length;i++){
-    if(partsAmount[i].textContent==''){continue;}
-    setCookie('pA'+i, partsAmount[i].textContent);
+    //setCookie('pA'+i, amount,-22);
+    amount=partsAmount[i].textContent;
+    if(amount==''){
+      amount=0;
+    }
+    setCookie('pA'+i, amount,0);
   }
 }
 
@@ -1033,8 +1044,11 @@ function loadParts(){
   let temp;
   for(let i=0;i<partsAmount.length;i++){
     temp=getCookie('pA'+i);
-    if (temp==''){continue;}
-    partsAmount[i].textContent=temp;
+    if (temp==0){
+      partsAmount[i].textContent='';
+    }else{
+      partsAmount[i].textContent=temp;
+    }
   }
 }
 </script>
