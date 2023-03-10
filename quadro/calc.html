@@ -1085,7 +1085,7 @@ function loadParts(){
   for(let i=0;i<kitsAmount.length;i++){
     temp=getCookie('kA'+i);
     kitsvalue[i]=parseInt(temp);
-    kitsAmount.textContent=temp;
+    kitsAmount[i].textContent=temp;
   }
   const partsAmount=document.getElementsByClassName('amount');
   for(let i=0;i<partsAmount.length;i++){
