@@ -8,12 +8,15 @@ button{font-size:2em;height:64px;}
 .kits-amount{display:inline-block;font-size:2em;height:64px;border:none;min-width:2em;}
 .kits-row,.part-row{float:left;margin-left:1em;}
 .amount{font-size:2em;height:2em;border:none;display:block;min-width:2em;}
+.se-amount{font-size:2em;height:2em;border:none;display:block;min-width:2em;}
 .part-row-img{display:block;cursor:pointer;}
 .part-row-img>img{width:5em;height:4em;}
 .part-num{color:red;}
 .part-link{color:#3333}
 .part-img{display:none;}
 </style>
+<style id="la-en">.lang-en{display:none;}</style>
+<style id="la-ch">.lang-ch{display:inline;}</style>
 
 <script>
 const parts=['Raumkupplung 5-armig','Raumkupplung 4-armig','Raumkupplung 3-armig','Flaechenkupplung 4-armig','Flaechenkupplung 3-armig','Flaechenkupplung 2-armig (90Grad)','Flaechenkupplung 2-armig (180Grad)','Winkelkupplung (45Grad)','Rohr 10 cm','Rohr 15 cm','Rohr 20 cm','Rohr 25 cm','Rohr 35 cm','Rohr 35 cm 135Grad (3 Loecher)','Rohr 75 cm','Bogenrohr','Platte 40 × 40 cm','Platte 40 × 20 cm','Lochplatte 40 × 40 cm','Rundtextile','Multirad','Multirad Radlager','Multirad Arretierung','Laufreifen','Dachtextil','Doppelrohrverbinder','Aluminiumprofil','Aluminiumprofil-Verbinder','Dachtextil (Baby Ballcage)','Laufrolle','Laufrolle Adapter','Spielsack','Rutsche','Rutschenauslauf','Bogenrutsche','Poolfolie S','Poolfolie L','Poolfolie XXL','All-Terrain Rad','All-Terrain Rad Arretierung','Raumkupplung 6-armig','Plexiglass','Lagerkupplung','Lochzapfenkupplung 1-armig'];
@@ -367,8 +370,8 @@ const design=[['M1',1,5,25,11,2,26,12,9,8,0,14,0,0,129,0,0,0,13,0,0,2,0,0,0,0,0,
 ['b0015',0,0,4,2,0,8,4,0,0,0,4,0,0,21,0,0,2,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 ['b0016',0,2,4,4,0,6,4,0,0,0,4,0,0,26,0,0,2,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 ['b0017',0,0,6,6,0,8,2,0,0,0,4,0,0,29,0,0,2,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-['b0018',0,2,7,6,0,6,8,6,4,0,3,0,0,48,0,0,0,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-['b0019',0,2,9,6,1,4,3,6,4,0,3,0,0,46,0,0,0,12,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+['b0018',0,2,7,6,0,6,8,6,4,0,3,0,0,48,0,0,0,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0],
+['b0019',0,2,9,6,1,4,3,6,4,0,3,0,0,46,0,0,0,12,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0],
 ['b0020',0,2,7,6,0,6,10,9,0,0,4,0,0,52,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0],
 ['b0021',0,2,7,6,0,8,10,7,0,0,4,0,0,53,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0],
 ['b0022',0,2,7,6,0,8,8,9,0,0,4,0,0,53,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0],
@@ -378,7 +381,7 @@ const design=[['M1',1,5,25,11,2,26,12,9,8,0,14,0,0,129,0,0,0,13,0,0,2,0,0,0,0,0,
 ['b0026',0,4,14,12,0,16,8,6,0,0,0,0,0,94,0,0,0,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 ['b0027',0,4,21,14,1,18,15,14,4,0,2,0,0,129,0,0,0,11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 ['b0028',0,0,8,4,0,8,4,2,0,0,8,0,0,30,0,0,2,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-['b0029',0,2,10,4,1,3,7,7,4,0,6,0,0,45,0,0,0,12,0,0,0,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+['b0029',0,2,10,4,1,3,7,7,4,0,6,0,0,45,0,0,0,12,0,0,0,2,2,2,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0],
 ['b0030',0,2,10,6,2,8,8,9,0,0,12,0,0,53,0,0,0,4,0,0,0,4,4,4,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0],
 ['b0031',0,2,10,6,2,11,10,7,0,1,15,1,3,49,1,0,0,4,0,0,0,4,4,4,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0],
 ['b0032',0,2,7,6,2,8,8,4,0,0,8,0,0,46,0,0,0,4,0,0,0,4,4,4,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0],
@@ -449,7 +452,7 @@ const design=[['M1',1,5,25,11,2,26,12,9,8,0,14,0,0,129,0,0,0,13,0,0,2,0,0,0,0,0,
 ['b0147',0,3,13,15,1,12,13,4,4,0,16,0,0,77,0,0,0,10,2,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 ['c0001',0,2,11,13,0,17,11,10,4,0,4,0,4,85,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0],
 ['c0002',0,2,11,11,0,20,15,8,4,1,6,1,7,81,1,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0],
-['c0003',0,2,10,13,1,20,13,11,8,1,10,1,7,81,1,0,0,13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0],
+['c0003',0,2,10,13,1,20,13,11,8,1,10,1,7,81,1,0,0,13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,0,0,0,0,0,0,0],
 ['c0004',0,2,15,29,0,21,15,7,4,0,4,0,4,120,0,4,0,6,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,1,1,0,0,1,0,0,0,0,0],
 ['c0005',0,4,23,25,2,25,24,14,8,0,25,0,4,138,0,4,0,8,1,0,0,4,4,4,0,0,0,3,0,0,0,0,0,1,1,0,1,0,0,0,0,0,0],
 ['c0006',0,1,11,12,2,17,13,12,8,0,8,0,4,83,0,0,0,5,0,0,0,4,4,4,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0],
@@ -477,7 +480,7 @@ const design=[['M1',1,5,25,11,2,26,12,9,8,0,14,0,0,129,0,0,0,13,0,0,2,0,0,0,0,0,
 ['c0028',0,4,32,32,2,20,23,22,4,0,4,0,0,187,0,6,4,12,0,0,0,0,0,0,0,0,0,6,4,0,0,0,0,1,0,0,0,0,0,0,0,0,0],
 ['c0029',0,4,24,14,2,20,19,17,8,0,4,0,0,145,0,0,0,13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0],
 ['c0030',0,4,40,34,2,20,19,25,8,0,4,0,0,205,0,6,4,15,0,0,0,0,0,0,0,0,0,6,4,0,0,0,0,1,0,0,0,2,0,0,0,0,0],
-['c0031',0,2,15,8,2,10,9,12,4,0,4,0,0,81,0,0,0,15,0,0,0,2,2,2,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0],
+['c0031',0,2,15,8,2,10,9,12,4,0,4,0,0,81,0,0,0,15,0,0,0,2,2,2,0,0,0,0,0,0,2,0,1,0,0,0,0,0,0,0,0,0,0],
 ['c0032',0,4,28,16,2,23,24,26,8,1,10,1,3,163,1,0,0,14,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0],
 ['c0033',0,2,18,24,1,14,16,20,4,0,6,0,0,126,0,4,0,10,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,1,1,0,0,1,0,0,0,0,0],
 ['c0034',0,2,18,24,1,17,18,18,4,1,8,1,3,121,1,6,0,10,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,1,1,0,1,0,0,0,0,0],
@@ -575,21 +578,21 @@ const design=[['M1',1,5,25,11,2,26,12,9,8,0,14,0,0,129,0,0,0,13,0,0,2,0,0,0,0,0,
 ['a0191',0,3,8,15,2,6,5,0,0,0,0,0,0,64,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 ['a0192',0,4,10,12,0,10,12,4,0,0,18,0,4,55,0,0,0,8,4,0,0,2,2,2,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0],
 ['a0193',0,4,10,12,0,11,12,4,0,0,18,0,4,57,0,0,0,8,4,0,0,2,2,2,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0],
-['a0197',0,1,6,9,0,2,9,1,0,0,6,0,0,35,0,0,0,3,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-['a0198',0,0,5,8,0,2,8,1,0,0,6,0,0,28,0,0,0,3,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-['a0199',0,1,4,9,0,2,8,1,0,0,4,0,0,32,0,0,0,3,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-['a0200',0,1,6,9,0,0,8,0,0,0,6,0,0,30,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-['a0201',0,1,5,12,0,1,6,0,0,0,4,0,0,34,0,0,0,3,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-['a0202',0,4,12,12,0,11,9,3,0,0,23,0,0,57,0,0,0,4,4,0,0,1,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-['a0203',0,1,13,12,0,12,12,3,0,0,23,0,0,56,0,0,0,4,4,0,0,1,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-['a0204',0,1,13,13,0,10,13,2,0,0,23,0,0,55,0,0,0,4,4,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-['a0205',0,4,11,13,0,8,13,0,0,0,23,0,0,53,0,0,0,4,4,0,0,1,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-['a0206',0,4,13,7,0,10,12,1,0,0,21,0,0,53,0,0,0,4,4,0,0,1,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-['a0207',0,4,12,14,0,5,13,1,0,0,23,0,0,53,0,0,0,4,4,0,0,1,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-['a0208',0,4,12,13,0,6,9,2,0,0,16,0,0,57,0,0,0,4,4,0,0,1,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-['a0209',0,1,13,13,0,11,13,3,0,0,23,0,0,57,0,0,0,4,4,0,0,1,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-['a0210',0,3,13,12,0,8,13,3,0,0,23,0,0,56,0,0,0,4,4,0,0,1,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-['a0211',0,4,12,13,0,8,13,1,0,0,23,0,0,56,0,0,0,4,4,0,0,1,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+['a0197',0,1,6,9,0,2,9,1,0,0,6,0,0,35,0,0,0,3,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0],
+['a0198',0,0,5,8,0,2,8,1,0,0,6,0,0,28,0,0,0,3,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0],
+['a0199',0,1,4,9,0,2,8,1,0,0,4,0,0,32,0,0,0,3,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0],
+['a0200',0,1,6,9,0,0,8,0,0,0,6,0,0,30,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0],
+['a0201',0,1,5,12,0,1,6,0,0,0,4,0,0,34,0,0,0,3,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0],
+['a0202',0,4,12,12,0,11,9,3,0,0,23,0,0,57,0,0,0,4,4,0,0,1,1,1,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0],
+['a0203',0,1,13,12,0,12,12,3,0,0,23,0,0,56,0,0,0,4,4,0,0,1,1,1,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0],
+['a0204',0,1,13,13,0,10,13,2,0,0,23,0,0,55,0,0,0,4,4,0,0,1,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0],
+['a0205',0,4,11,13,0,8,13,0,0,0,23,0,0,53,0,0,0,4,4,0,0,1,1,1,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0],
+['a0206',0,4,13,7,0,10,12,1,0,0,21,0,0,53,0,0,0,4,4,0,0,1,1,1,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0],
+['a0207',0,4,12,14,0,5,13,1,0,0,23,0,0,53,0,0,0,4,4,0,0,1,1,1,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0],
+['a0208',0,4,12,13,0,6,9,2,0,0,16,0,0,57,0,0,0,4,4,0,0,1,1,1,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0],
+['a0209',0,1,13,13,0,11,13,3,0,0,23,0,0,57,0,0,0,4,4,0,0,1,1,1,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0],
+['a0210',0,3,13,12,0,8,13,3,0,0,23,0,0,56,0,0,0,4,4,0,0,1,1,1,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0],
+['a0211',0,4,12,13,0,8,13,1,0,0,23,0,0,56,0,0,0,4,4,0,0,1,1,1,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0],
 ['a0216',0,3,7,15,2,6,5,0,0,0,0,0,0,62,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 ['b0002',0,3,12,15,2,12,13,4,0,0,16,0,0,77,0,0,0,10,2,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 ['b0004',0,2,14,14,2,12,13,4,0,0,16,0,0,77,0,0,0,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -755,7 +758,7 @@ function getdesign(){
       document.getElementsByClassName('recommendinfo')[0].textContent='No available design.';
       document.getElementsByClassName('re-footer')[0].style.display='none';
     }else{
-      document.getElementsByClassName('recommendinfo')[0].textContent='Available design: '+recommendhtml.length;
+      document.getElementsByClassName('recommendinfo')[0].innerHTML='<span class="lang-en">Available design</span><span class="lang-ch">可用模型</span>: '+recommendhtml.length;
       document.getElementsByClassName('re-footer')[0].style.display='block';
       forpage(0,perpagedefault);
     }
@@ -875,7 +878,8 @@ function searchmodel(){
   document.getElementById('se-current').textContent=currentSearchPage;
 
   const searchNum=document.getElementById("search-num").value.toUpperCase();
-  const searchPart=document.getElementById("search-part").value;
+  /*下拉菜单分语言*/
+  const searchPart=document.getElementsByClassName("search-part")[document.getElementById('change-lang').value].value;
 
 /*搜索编号*/
   if(searchNum){
@@ -926,7 +930,7 @@ function searchmodel(){
       document.getElementById('se-next').disabled = false;
     }
   } else {
-    resultdom.innerHTML='no result';
+    resultdom.innerHTML='<span class="lang-en">no result</span><span class="lang-ch">没有结果</span>';
   }
 }
 
@@ -992,12 +996,24 @@ function showdesign(num){
   for(let i =2;i<design[num].length;i++){
     if(design[num][i]>0){
       const p="alert('"+parts[i-2]+"["+partsCh[i-2].replaceAll('(','[').replaceAll(')',']')+"]"+"');";
-      partinfo+='<div class="part-row"><div class="part-row-img" onclick="'+p+'"><img src="'+partsImgSrc[i-2]+'"></div><div  class="amount">'+design[num][i]+'</div></div>'
+      partinfo+='<div class="part-row"><div class="part-row-img" onclick="'+p+'"><img src="'+partsImgSrc[i-2]+'"></div><div  class="se-amount">'+design[num][i]+'</div></div>'
     }
   }
   document.getElementsByClassName('se-container')[0].style.display='block';
   document.getElementById('design-info').innerHTML=designinfo;
   document.getElementById('part-info').innerHTML=partinfo;
+}
+
+function changeLang(la){
+  if (la == 1){
+    document.getElementById('la-ch').innerHTML='.lang-ch{display:none;}';
+    document.getElementById('la-en').innerHTML='.lang-en{display:inline;}';
+    document.getElementById('change-lang').value=1;
+  }else{
+    document.getElementById('la-ch').innerHTML='.lang-ch{display:inline;}';
+    document.getElementById('la-en').innerHTML='.lang-en{display:none;}';
+    document.getElementById('change-lang').value=0;
+  }
 }
 
 function setCookie(cname, cvalue, exdays) {
@@ -1030,7 +1046,6 @@ function saveParts(){
   const partsAmount=document.getElementsByClassName('amount');
   let amount;
   for(let i=0;i<partsAmount.length;i++){
-    //setCookie('pA'+i, amount,-22);
     amount=partsAmount[i].textContent;
     if(amount==''){
       amount=0;
@@ -1051,12 +1066,17 @@ function loadParts(){
     }
   }
 }
+
 </script>
 </head>
 
 <body>
+  <div style="font-size:2em;" id="change-lang" value="0">
+    <a href="javascript:changeLang(0)">中文</a>
+    <a href="javascript:changeLang(1)" style="margin-left:2em;">English</a>
+  </div>
 <div style="display:block;" class="info">
-Click kit name or enter their amounts below. 请点击套装名字进行添加或在其下方手动输入数量。
+<span class="lang-en">Click kit name or enter their amounts below. </span><span class="lang-ch">请点击套装名字进行添加或在其下方手动输入数量。</span>
 </div>
 
 <div class="kits-row"><button class="addkit" >My First</button></div>
@@ -1088,59 +1108,75 @@ Click kit name or enter their amounts below. 请点击套装名字进行添加�
 
 <div style="clear:left;">
 <hr>
-<button onclick="ResetKitsNum();">Reset（重置）</button>
-<button onclick="saveParts();">save</button>
-<button onclick="loadParts();">load</button>
+<button onclick="ResetKitsNum();"><span class="lang-en">Reset</span><span class="lang-ch">重置</span></button>
+<button onclick="saveParts();"><span class="lang-en">Save</span><span class="lang-ch">保存</span></button>
+<button onclick="loadParts();"><span class="lang-en">Load</span><span class="lang-ch">读取</span></button>
+
 <div style="font-size:1.6em;" class="coupon">
-&#127873;<span style="font-weight:700;">Coupon</span> for quadro shop 官网优惠码<br>Europe <span style="font-size:0.9em;">欧洲（不含英国）：</span>Cheryl_EU_10 <br>North America <span style="font-size:0.9em;">北美：</span>cheryl_us_15
+&#127873;<span class="lang-en"><span style="font-weight:700;">Coupon</span> for quadro shop</span><span class="lang-ch">官网优惠码</span>
+<br>
+<a href="https://quadroshop.com"><span class="lang-en">Europe: </span><span class="lang-ch">欧洲（不含英国）：</span></a>Cheryl_EU_10
+<br>
+<a href="https://quadrotoys.com"><span class="lang-en">North America: </span><span class="lang-ch">北美：</span></a>cheryl_us_15
 </div>
 </div>
 
-<div class="parts-info">Click the number or blank under the images to input amounts of parts manually. 点击零件图片下方的数字或空白可手动输入零件数。</div>
+<div class="parts-info"><span class="lang-en">Click the number or blank under the images to input amounts of parts manually.</span><span class="lang-ch">点击零件图片下方的数字或空白可手动输入零件数。</span></div>
 <div id="partslistdech" style="margin-top:1.5em;">
 loading
 </div>
 
 <div class='recommend' style="clear:left;">
-  <button onclick="getdesign();">Available models模型/Refresh刷新</button>
-  <br>Texile,double tube connector,alu-profile and pools are not considered. Holey panel and plexiglass could be replaced. 
-  布品、8字件、铝管及泳池布不考虑在计算结果内，洞洞板及亚克力板可被普通板代替。
+  <button onclick="getdesign();"><span class="lang-en">Available models/Refresh</span><span class="lang-ch">可用模型/刷新</span></button>
+  <br><span class="lang-en">Texile,double tube connector,alu-profile and pools are not considered. Holey panel and plexiglass could be replaced. </span><span class="lang-ch">布品、8字件、铝管及泳池布不考虑在计算结果内，洞洞板及亚克力板可被普通板代替。</span>
   <div> </div>
   <div class='recommendinfo'>
   </div>
   <div class='re-container'>
   </div>
   <div class='re-footer' style="display:none;">
-    <span style="font-size:2em;">models per page: </span>
+    <span style="font-size:2em;"><span class="lang-en">models per page</span><span class="lang-ch">每页显示</span>: </span>
     <select style="font-size:2em;" id="re-page" onchange="forpage(0,this.value);">
       <option value="10">10</option>
       <option value="20">20</option>
       <option value="50">50</option>
     </select>
-    <button id="re-prev" onclick="prevpage();" style="margin-left:1em;">prev</button>
+    <button id="re-prev" onclick="prevpage();" style="margin-left:1em;"><span class="lang-en">prev</span><span class="lang-ch">上一页</span></button>
     <div id="re-current" style="display:inline-block;font-size:2em;color:#0008;min-width:1.5em;text-align: center;"></div>
-    <button id="re-next" onclick="nextpage();">next</button>
+    <button id="re-next" onclick="nextpage();"><span class="lang-en">next</span><span class="lang-ch">下一页</span></button>
   </div>
 </div>
 
 <hr>
 <div class='search-model'>
-  <input style="font-size:2em;max-width:30vw;" placeholder="model number[编号]" id="search-num">
-  <span style="font-size:2em;">includes[包含]</span>
-  <select style="font-size:2em;" id="search-part">
-    <option value="0">none[请选择]</option>
-    <option value="34">straight slide[直梯]</option>
-    <option value="36">curved slide[弧形梯]</option>
-    <option value="27">ramp[斜坡]</option>
-    <option value="22">multi wheel[多功能轮]</option>
+  <input style="font-size:2em;" placeholder="model number[编号]" id="search-num">
+  <br>
+  <span style="font-size:2em;"><span class="lang-en">includes</span><span class="lang-ch">包含</span></span>
+
+  <select style="font-size:2em;" class="search-part lang-ch">
+    <option value="0">请选择</option>
+    <option value="34">直梯</option>
+    <option value="36">弧形梯</option>
+    <option value="27">斜坡</option>
+    <option value="22">多轮</option>
+    <option value="33">游戏袋</option>
+  </select>
+
+  <select style="font-size:2em;" class="search-part lang-en">
+    <option value="0">none</option>
+    <option value="34">straight slide</option>
+    <option value="36">curved slide</option>
+    <option value="27">ramp</option>
+    <option value="22">multi wheel</option>
     <option value="33">play bag</option>
   </select>
-  <button onclick="searchmodel();">search</button>
+
+  <button onclick="searchmodel();"><span class="lang-en">search</span><span class="lang-ch">搜索</span></button>
   <div id="search-result"></div>
   <div class='se-footer' style="display:none;">
-    <button id="se-prev" onclick="prevsepage();" style="margin-left:1em;">prev</button>
+    <button id="se-prev" onclick="prevsepage();" style="margin-left:1em;"><span class="lang-en">prev</span><span class="lang-ch">上一页</span></button>
     <div id="se-current" style="display:inline-block;font-size:2em;color:#0008;min-width:1.5em;text-align: center;">1</div>
-    <button id="se-next" onclick="nextsepage();">next</button>
+    <button id="se-next" onclick="nextsepage();"><span class="lang-en">next</span><span class="lang-ch">下一页</span></button>
   </div>
 </div>
 
@@ -1154,7 +1190,7 @@ loading
 
 <div style="margin-top:5em;"> </div>
 <hr>
-Copy right of images from quadromdb.com belongs to QUADRO. Copy right of images from quadro fans belongs to the authors.
-quadromdb.com下载的模型缩图版权属于QUADRO，爱好者设计的模型及照片版权属于作者。
+<span class="lang-en">Copy right of images from quadromdb.com belongs to QUADRO. Copy right of images from quadro fans belongs to the authors.</span><span class="lang-ch">
+来自quadromdb.com模型缩图版权属于QUADRO，爱好者设计的模型及照片版权属于作者。</span>
 </body>
 </html>
