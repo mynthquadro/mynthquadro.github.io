@@ -803,12 +803,12 @@ function nextpage(){
 function ResetKitsNum(){
   ResetPartsNum();
   const rs=document.querySelectorAll('.kits-amount');
-  rs.forEach(
-    function(listObj){
-      listObj.textContent='0';
-      listObj.nextElementSibling.style.filter="opacity(0)";
-    }
-  );
+  for (let i=0;i<rs.length;i++){
+    rs[i].textContent='0';
+    kitsvalue[i]=0;
+    rs[i].nextElementSibling.style.filter="opacity(0)";
+  }
+
     /*reset available design*/
     currentpage=0;
     recommendhtml=[];
@@ -1064,6 +1064,10 @@ function saveParts(){
       return;
     }
   }
+  const kitsAmount=document.getElementsByClassName('kits-amount');
+  for(let i=0;i<kitsAmount.length;i++){
+    setCookie('kA'+i, kitsAmount[i].textContent,1000);
+  }
   const partsAmount=document.getElementsByClassName('amount');
   let amount;
   for(let i=0;i<partsAmount.length;i++){
@@ -1076,8 +1080,14 @@ function saveParts(){
 }
 
 function loadParts(){
-  const partsAmount=document.getElementsByClassName('amount');
   let temp;
+  const kitsAmount=document.getElementsByClassName('kits-amount');
+  for(let i=0;i<kitsAmount.length;i++){
+    temp=getCookie('kA'+i);
+    kitvalue[i]=parseInt(temp);
+    kitsAmount.textContent=temp;
+  }
+  const partsAmount=document.getElementsByClassName('amount');
   for(let i=0;i<partsAmount.length;i++){
     temp=getCookie('pA'+i);
     if (temp==0){
