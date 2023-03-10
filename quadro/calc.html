@@ -1000,6 +1000,43 @@ function showdesign(num){
   document.getElementById('part-info').innerHTML=partinfo;
 }
 
+function setCookie(cname, cvalue) {
+  document.cookie = cname + "=" + cvalue + ";";
+}
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+function saveParts(){
+  const partsAmount=document.getElementsByClassName('amount');
+  for(let i=0;i<partsAmount.length;i++){
+    if(partsAmount[i].textContent==''){continue;}
+    setCookie('pA'+i, partsAmount[i].textContent);
+  }
+}
+
+function loadParts(){
+  const partsAmount=document.getElementsByClassName('amount');
+  let temp;
+  for(let i=0;i<partsAmount.length;i++){
+    temp=getCookie('pA'+i);
+    if (temp==''){continue;}
+    partsAmount[i].textContent=temp;
+  }
+}
 </script>
 </head>
 
@@ -1038,6 +1075,8 @@ Click kit name or enter their amounts below. 请点击套装名字进行添加�
 <div style="clear:left;">
 <hr>
 <button onclick="ResetKitsNum();">Reset（重置）</button>
+<button onclick="saveParts();">save</button>
+<button onclick="loadParts();">load</button>
 <div style="font-size:1.6em;" class="coupon">
 &#127873;<span style="font-weight:700;">Coupon</span> for quadro shop 官网优惠码<br>Europe <span style="font-size:0.9em;">欧洲（不含英国）：</span>Cheryl_EU_10 <br>North America <span style="font-size:0.9em;">北美：</span>cheryl_us_15
 </div>
@@ -1080,6 +1119,7 @@ loading
     <option value="36">curved slide[弧形梯]</option>
     <option value="27">ramp[斜坡]</option>
     <option value="22">multi wheel[多功能轮]</option>
+    <option value="33">play bag</option>
   </select>
   <button onclick="searchmodel();">search</button>
   <div id="search-result"></div>
