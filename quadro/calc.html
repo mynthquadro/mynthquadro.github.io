@@ -1086,6 +1086,11 @@ function loadParts(){
     temp=getCookie('kA'+i);
     kitsvalue[i]=parseInt(temp);
     kitsAmount[i].textContent=temp;
+    if(temp>0){
+      kitsAmount[i].nextElementSibling.style.filter="opacity(1)";
+    }else{
+      kitsAmount[i].nextElementSibling.style.filter="opacity(0)";
+    }
   }
   const partsAmount=document.getElementsByClassName('amount');
   for(let i=0;i<partsAmount.length;i++){
