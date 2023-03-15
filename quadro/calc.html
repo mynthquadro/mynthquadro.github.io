@@ -875,10 +875,10 @@ function Calc(){
 let searchresult='';
 let resultCount=0;
 function searchmodel(){
-    let imgwidth=9;
-    if(window.innerWidth<window.innerHeight+100){
-        imgwidth=18;
-    }
+  let imgwidth=9;
+  if(window.innerWidth<window.innerHeight+100){
+    imgwidth=18;
+  }
   const resultdom = document.getElementById("search-result");
   resultdom.innerHTML='';
   document.getElementsByClassName("se-footer")[0].style.display='none';
@@ -900,57 +900,35 @@ function searchmodel(){
   let keyword=[];
   let searchtrue=false;
   for(let i =0;i<design.length;i++){
+    searchtrue=false;
     keyword=design[i][1].toUpperCase().replaceAll('Ä','A').replaceAll('Ö','O').replaceAll('Ü','U').split('$');/*keyword[0]:number,[1]:german name,[2]:english name*/
     /*search model nummer or keyword*/
-    if(searchNum || searchName){
+    if(searchNum != ''){
       if(keyword.length>1){
-        if(searchName=='TOWER'){/*tower not include LEARNING TOWER*/
-          searchtrue=keyword[2].indexOf(searchName)>=0 && keyword[2].indexOf('LEARNING TOWER')<0;
-        }else{
-          searchtrue=keyword[1].indexOf(searchNum)>=0 || keyword[2].indexOf(searchNum)>=0 || keyword[2].indexOf(searchName)>=0;
-        }
+          searchtrue=keyword[1].indexOf(searchNum)>=0 || keyword[2].indexOf(searchNum)>=0;
       }
-      if(keyword[0].indexOf(searchNum)>=0 || searchtrue){
-        resultCount++;
-        if (resultCount>perpagedefault ){
-          resultDisplay='none';
-        }
-        if(design[i][0].substring(0,1)=='M'){
-            searchresult+='<div class="se-re" style="display:'+resultDisplay+';"><img  onclick="showdesign('
-		+i+')" style="height:7em;width:'+imgwidth+'vw;cursor:pointer;object-fit:contain;" src="../quadro/diy/'
-                                   +design[i][0]+'.JPG"></div>';
-        }else{
-            searchresult+='<div class="se-re"  style="display:'+resultDisplay+';"><img  onclick="showdesign('
-		+i+')" style="height:7em;width:'+imgwidth+'vw;cursor:pointer;object-fit:contain;" src="../quadro/webimg/'
-                                   +design[i][0].toUpperCase()+'-brand.webp"></div>';
-        }
+      searchtrue=keyword[0].indexOf(searchNum)>=0 || searchtrue;
+    }
+    if(searchName !='' && keyword.length>1){
+      if(searchName=='TOWER'){/*tower not include LEARNING TOWER*/
+          searchtrue=(keyword[2].indexOf('TOWER')>=0 && keyword[2].indexOf('LEARNING TOWER')<0) || searchtrue;
+      }else{
+          searchtrue=keyword[2].indexOf(searchName)>=0 || searchtrue;
       }
     }
 
     /*search part*/
-    if(searchPart){
-      if(design[i][searchPart] > 0){
-        resultCount++;
-        if (resultCount>perpagedefault ){
-          resultDisplay='none';
-        }
-        if(design[i][0].substring(0,1)=='M'){
-            searchresult+='<div class="se-re" style="display:'+resultDisplay+';"><img  onclick="showdesign('
-		+i+')" style="height:7em;width:'
-		+imgwidth+'vw;cursor:pointer;object-fit:contain;" src="../quadro/diy/'
-                                   +design[i][0]+'.JPG"></div>';
-        }else{
-            searchresult+='<div class="se-re" style="display:'+resultDisplay+';"><img  onclick="showdesign('
-		+i+')" style="height:7em;width:'
-		+imgwidth+'vw;cursor:pointer;object-fit:contain;" src="../quadro/webimg/'
-                                   +design[i][0].toUpperCase()+'-brand.webp"></div>';
-        }
-      }
+    if(searchPart > 0){
+      searchtrue = design[i][searchPart] > 0 || searchtrue;
     }
 
     /*search age*/
     if(searchAge!='-1' && keyword.length>4){
-      if(keyword[4].indexOf(searchAge)>=0){
+      searchtrue = (keyword[4] == searchAge) || searchtrue;
+    }
+
+    /*add result*/
+    if(searchtrue==true){
         resultCount++;
         if (resultCount>perpagedefault ){
           resultDisplay='none';
@@ -966,7 +944,6 @@ function searchmodel(){
 		+imgwidth+'vw;cursor:pointer;object-fit:contain;" src="../quadro/webimg/'
                                    +design[i][0].toUpperCase()+'-brand.webp"></div>';
         }
-      }
     }
   }
   if (searchresult){
