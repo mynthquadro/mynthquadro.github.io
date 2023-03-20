@@ -52,7 +52,8 @@ const kits=[["My First QUADRO",0,4,7,0,9,4,1,4,0,0,0,4,30,0,0,0,1,0,0,0,0,0,0,0,
 ["YOUNGSTER",0,6,6,0,8,8,4,4,0,2,0,0,40,0,0,0,3,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 ["GENIUS",3,17,11,1,13,5,4,4,0,2,0,0,86,0,0,0,10,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 ['DS-030',6,30,14,6,36,12,15,8,10,17,26,0,129,0,0,0,21,6,7,0,0,0,0,0,0,2,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,2],
-['DS-041',18,37,19,26,47,10,14,0,40,19,10,0,221,0,0,0,28,8,19,0,0,0,0,0,0,2,0,0,0,0,0,0,1,0,0,0,0,0,0,0,2,0,0,0,2]
+['DS-041',18,37,19,26,47,10,14,0,40,19,10,0,221,0,0,0,28,8,19,0,0,0,0,0,0,2,0,0,0,0,0,0,1,0,0,0,0,0,0,0,2,0,0,0,2],
+['DS-029',16,8,20,0,8,0,0,0,0,0,0,0,134,0,0,0,14,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,12]
 ];
 
 /* number $ ger name $ eng name $ qdf url $ age $ dimension $ time $ kits $*/
@@ -1069,9 +1070,9 @@ function setCookie(cname, cvalue, exdays) {
   if(exdays != 0){
     const d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    expires = "expires="+ d.toUTCString()+";";
+    expires = ";expires="+ d.toUTCString();
   }
-  document.cookie = cname + "=" + cvalue + ";" + expires + "path=/;";
+  document.cookie = cname + "=" + cvalue+ expires + ";path=/;";
 }
 
 function getCookie(cname) {
@@ -1184,6 +1185,7 @@ function loadParts(){
 <div class="kits-row"><button class="addkit" >GENIUS</button></div>
 <div class="kits-row lang-ch"><button class="addkit" >韩DS-030</button></div>
 <div class="kits-row lang-ch"><button class="addkit" >韩DS-041</button></div>
+<div class="kits-row lang-ch"><button class="addkit" >韩DS-029</button></div>
 
 <div style="clear:left;">
 <hr>
