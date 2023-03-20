@@ -919,7 +919,7 @@ function searchmodel(){
     }
     if(searchName !='' && keyword.length>1){
       hasSearch=true;
-      if(searchName=='TOWER'){/*tower not include LEARNING TOWER*/
+      if(searchName=='TOWER'){/*if search TOWER, then exclude LEARNING TOWER*/
           searchtrue=(keyword[2].indexOf('TOWER')>=0 && keyword[2].indexOf('LEARNING TOWER')<0) && searchtrue;
       }else{
           searchtrue=keyword[2].indexOf(searchName)>=0 && searchtrue;
@@ -1126,6 +1126,9 @@ function loadParts(){
   const kitsAmount=document.getElementsByClassName('kits-amount');
   for(let i=0;i<kitsAmount.length;i++){
     temp=getCookie('kA'+i);
+    if (temp==''){
+      temp=0;
+    }
     kitsvalue[i]=parseInt(temp);
     kitsAmount[i].textContent=temp;
     if(temp>0){
