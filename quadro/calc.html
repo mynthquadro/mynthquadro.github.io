@@ -2,7 +2,16 @@
 <html>
 <head>
 <style>
-button{font-size:2em;height:64px;}
+body{background-color:#eef;}
+button{
+  font-size:2em;
+  height:64px;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  background-color:#c8fbc888;
+  color:#115;
+}
 .kits-input{display:block;margin-top:0.5em;}
 .reducekit{filter:opacity(0);display:inline-block;height:45px;width:45px;}
 .kits-amount{display:inline-block;font-size:2em;height:64px;border:none;min-width:2em;}
@@ -14,9 +23,42 @@ button{font-size:2em;height:64px;}
 .part-num{color:red;}
 .part-link{color:#3333}
 .part-img{display:none;}
+.tablinks{
+  line-height:40px;
+  text-align:center;
+  font-weight:700;
+  width:100px;
+  vertical-align: bottom;
+  font-size:16px;
+  display:inline-block;
+  height:40px;
+  background-color:blue;
+  color:white;
+  z-index:1;
+  border-radius:5px 5px 0 0;
+}
+.tablinks:nth-child(1){background-color:#0b486b;}
+.tablinks:nth-child(2){background-color:#3b8686;}
+.tablinks:nth-child(3){background-color:#79bd9a;}
+.tablinks.active{
+  border-bottom:3px solid white;
+  background-color:white;
+  background-size:90% 100%;
+  color:#115;
+  z-index:1;
+}
+.tablinks:nth-child(1).active{border-left:3px solid #0b486b;}
+.tablinks:nth-child(2).active{border-left:3px solid #3b8686;}
+.tablinks:nth-child(3).active{border-left:3px solid #79bd9a;}
+.tabcontent{
+  background-color:white;
+  display:none;
+  margin-top:-1px;
+  z-index:0;
+}
 </style>
 <style id="la-en">.lang-en{display:none;}</style>
-<style id="la-ch">.lang-ch{display:inline;}</style>
+<style id="la-ch">.lang-ch{display:inline-block;}</style>
 
 <script>
 const parts=['Raumkupplung 5-armig','Raumkupplung 4-armig','Raumkupplung 3-armig','Flaechenkupplung 4-armig','Flaechenkupplung 3-armig','Flaechenkupplung 2-armig (90Grad)','Flaechenkupplung 2-armig (180Grad)','Winkelkupplung (45Grad)','Rohr 10 cm','Rohr 15 cm','Rohr 20 cm','Rohr 25 cm','Rohr 35 cm','Rohr 35 cm 135Grad (3 Loecher)','Rohr 75 cm','Bogenrohr','Platte 40 × 40 cm','Platte 40 × 20 cm','Lochplatte 40 × 40 cm','Rundtextile','Multirad','Multirad Radlager','Multirad Arretierung','Laufreifen','Dachtextil','Doppelrohrverbinder','Aluminiumprofil','Aluminiumprofil-Verbinder','Dachtextil (Baby Ballcage)','Laufrolle','Laufrolle Adapter','Spielsack','Rutsche','Rutschenauslauf','Bogenrutsche','Poolfolie S','Poolfolie L','Poolfolie XXL','All-Terrain Rad','All-Terrain Rad Arretierung','Raumkupplung 6-armig','Plexiglass','Lagerkupplung','Lochzapfenkupplung 1-armig','Rohr 11 cm','Rohr 17cm'];
@@ -126,6 +168,9 @@ const design=[['M1','M1$0$0$0$N/A',5,25,11,2,26,12,9,8,0,14,0,0,129,0,0,0,13,0,0
 ["M64","M64$0$0$0$N/A",7,12,12,1,11,12,3,2,0,26,0,2,64,0,0,2,8,0,0,0,2,2,2,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
 ["M65","M65$0$0$0$N/A",6,12,12,1,11,12,4,4,0,26,0,0,63,0,0,2,8,0,0,0,2,2,2,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 ["M66","M66$0$0$0$N/A",6,13,11,10,14,5,2,0,0,23,0,2,64,0,0,2,8,0,0,0,1,1,1,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["M67","M67$0$0$0$N/A",10,16,25,6,25,9,4,4,0,18,0,0,144,0,0,5,9,2,0,1,1,1,1,0,1,4],
+["M68","M68$0$0$0$N/A",4,14,18,1,16,9,3,4,0,20,0,4,79,0,0,0,6,3,0,0,2,2,2,0,0,2],
+["M69","M69$0$0$0$N/A",2,14,16,1,16,14,4,4,0,24,0,4,73,0,0,0,8,8,0,0,2,2,2,0,0,2],
 ['a0001','a0001$Baby Bauernhof$Baby Barnyard$A0001/A0001-public.qdf$1$105×59×56 cm$1 h$kits/beg$',0,2,6,0,4,4,1,4,0,8,0,0,16,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 ['a0002','a0002$Baby Ausguck für Krabbler$Baby Look-out for Crawlers$A0002/A0002-public.qdf$1$85×45×65 cm$1 h$kits/beg$',0,2,6,0,4,4,0,0,0,7,0,0,16,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 ['a0003','a0003$Baby Activity Center$Baby Activity Center$A0003/A0003-public.qdf$0.5$85×65×45 cm$1 h$kits/beg$',0,2,6,0,4,4,0,0,0,8,0,0,15,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -647,6 +692,31 @@ const design=[['M1','M1$0$0$0$N/A',5,25,11,2,26,12,9,8,0,14,0,0,129,0,0,0,13,0,0
 ['c0169','c0169$Playcenter mit Bogenrutsche, Kletterrampe und vielen Klettermöglichkeiten$Playcenter with Curved Slide, Climbing Ramp and many Climbing Possibilities$https://yougenmdb.com/sites/default/files/mdb/C0169/C0169-public.qdf$2$252×225×197 cm$4 h$https://yougenmdb.com/en/kits/you$https://yougenmdb.com/en/kits/gen$/en/extensions/csl$',3,23,17,1,24,17,12,8,1,11,1,3,129,1,0,0,13,0,0,0,1,1,1,0,0,2,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0],
 ['c0170','c0170$Riesiges Wasserrutschenmodell, bestehend aus GENIUS, BOGENRUTSCHE und POOL L$Huge water slide model, consisting of GENIUS, CURVED SLIDE and POOL L$https://yougenmdb.com/sites/default/files/mdb/C0170/C0170-public.qdf$3$352×212×224 cm$6 h$https://yougenmdb.com/en/kits/gen$/en/extensions/csl$/en/extensions/pol$',3,21,27,1,20,13,12,4,1,8,1,3,129,1,4,0,12,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,0,1,0,0,0,0,0]];
 
+const partReplacement=['铝管及连接件','圆盘秋千','软布秋千','荡桥固定绳','Q定制感官垫','万向轮','亚克力板和扎带','蹦床','魔术贴扎带','大罗盘','沙包'];
+const partReUse=['加固无支撑的多个连续管件或受力较大的部位（高或长的样式需要）以免连接件或管变形。提高安全性',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '用弹力绳绑的款式弹力大一些，适合2*2根35管大小。大娃使用建议受力的四边使用铝管加固。',
+    '',
+    '',
+    ''];
+const partReMontage=['','','','','','','','','','',''];
+const partRePic=['','','','','','','','','','',''];
+const partReLink=['https://m.tb.cn/h.UIcfrp9?tk=tyjVd9iVsn6',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    ''];
 if (window.addEventListener) {
     document.addEventListener('DOMContentLoaded', FillHtml);
 }else if (window.attachEvent) {
@@ -692,6 +762,13 @@ function FillHtml(){
       Calc();
     });
   }
+
+  /*fill part replacement list*/
+  addHtml='';
+  for (let i =0;i<partReplacement.length;i++){
+    addHtml+='<button onclick="showPRC('+i+')" style="margin:5px;">'+partReplacement[i]+'</button>';
+  }
+  document.getElementById("part-replace").innerHTML=addHtml;
 }
 
 /*get available designs and save in array*/
@@ -1057,10 +1134,10 @@ let lang=0;
 function changeLang(la){
   if (la == 1){
     document.getElementById('la-ch').innerHTML='.lang-ch{display:none;}';
-    document.getElementById('la-en').innerHTML='.lang-en{display:inline;}';
+    document.getElementById('la-en').innerHTML='.lang-en{display:inline-block;}';
     lang=1;
   }else{
-    document.getElementById('la-ch').innerHTML='.lang-ch{display:inline;}';
+    document.getElementById('la-ch').innerHTML='.lang-ch{display:inline-block;}';
     document.getElementById('la-en').innerHTML='.lang-en{display:none;}';
     lang=0;
   }
@@ -1150,6 +1227,30 @@ function loadParts(){
   }
 }
 
+/*change tab*/
+function openTab(evt, tabName) {
+  let i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+/*show part replacement detail*/
+function showPRC(n){
+  document.getElementById('part-re-container').style.display = "block";
+  document.getElementById('prc-info').textContent=partReplacement[n];
+  document.getElementById('prc-usefor').textContent=partReUse[n];
+  document.getElementById('prc-montage').innerHTML='<img src="'+partReMontage[n]+'">';
+  document.getElementById('prc-pic').innerHTML='<img src="'+partRePic[n]+'">';
+  document.getElementById('prc-link').innerHTML='<a href="'+partReLink[n]+'">'+partReLink[n]+'</a>';
+}
 </script>
 </head>
 
@@ -1158,164 +1259,201 @@ function loadParts(){
     <a href="javascript:changeLang(0)">中文</a>
     <a href="javascript:changeLang(1)" style="margin-left:2em;">English</a>
   </div>
-<div style="display:block;" class="info">
-<span class="lang-en">Click kit name or enter their amounts below. </span><span class="lang-ch">请点击套装名字进行添加或在其下方手动输入数量。</span>
-</div>
-
-<div class="kits-row"><button class="addkit" >My First</button></div>
-<div class="kits-row"><button class="addkit" >STARTER</button></div>
-<div class="kits-row"><button class="addkit" >BASIC</button></div>
-<div class="kits-row"><button class="addkit" >JUNIOR</button></div>
-<div class="kits-row"><button class="addkit" >UNIVERSAL</button></div>
-<div class="kits-row"><button class="addkit" >ULTIMATE</button></div>
-<div class="kits-row"><button class="addkit" >BEGIN</button></div>
-<div class="kits-row"><button class="addkit" >ADV</button></div>
-<div class="kits-row"><button class="addkit" >ADV+</button></div>
-<div class="kits-row"><button class="addkit" >KL(CL)</button></div>
-<div class="kits-row"><button class="addkit" >EVO</button></div>
-<div class="kits-row"><button class="addkit" >OFFROAD</button></div>
-<div class="kits-row"><button class="addkit" style="font-size:1.4em;">MOeBEL S<br>FURNITURE S</button></div>
-<div class="kits-row"><button class="addkit" style="font-size:1.4em;">MOeBEL L<br>FURNITURE L</button></div>
-<div class="kits-row"><button class="addkit" style="font-size:1.4em;">MOD-RUTSCH<br>(模块滑梯)</button></div>
-<div class="kits-row"><button class="addkit" style="font-size:1.4em;">BOG-RUTSCH<br>(弧形滑梯)</button></div>
-<div class="kits-row"><button class="addkit" style="font-size:1.4em;">INT-RUTSCH<br>(整合滑梯)</button></div>
-<div class="kits-row"><button class="addkit" >POOL S</button></div>
-<div class="kits-row"><button class="addkit" >POOL L</button></div>
-<div class="kits-row"><button class="addkit" >POOL XXL</button></div>
-<div class="kits-row"><button class="addkit" >MOBIL</button></div>
-<div class="kits-row"><button class="addkit" >SPECIAL</button></div>
-<div class="kits-row"><button class="addkit" >HOME</button></div>
-<div class="kits-row"><button class="addkit" >UPGRADE</button></div>
-<div class="kits-row"><button class="addkit" >YOUNGSTER</button></div>
-<div class="kits-row"><button class="addkit" >GENIUS</button></div>
-<div class="kits-row lang-ch"><button class="addkit" >韩DS-030</button></div>
-<div class="kits-row lang-ch"><button class="addkit" >韩DS-041</button></div>
-<div class="kits-row lang-ch"><button class="addkit" >韩DS-029</button></div>
-<div class="kits-row lang-ch"><button class="addkit" >韩DS-036</button></div>
-<div class="kits-row lang-ch"><button class="addkit" >韩DS-040</button></div>
-<div class="kits-row lang-ch"><button class="addkit" >韩DS-017</button></div>
-
-<div style="clear:left;">
-<hr>
-<button onclick="ResetKitsNum();"><span class="lang-en">Reset</span><span class="lang-ch">重置</span></button>
-<button onclick="saveParts();"><span class="lang-en">Save</span><span class="lang-ch">保存</span></button>
-<button onclick="loadParts();"><span class="lang-en">Load</span><span class="lang-ch">读取</span></button>
-
-<div style="font-size:1.6em;" class="coupon">
-&#127873;<span class="lang-en"><span style="font-weight:700;">Coupon</span> for quadro shop</span><span class="lang-ch">官网优惠码</span>
-<br>
-<a href="https://quadroshop.com"><span class="lang-en">Europe: </span><span class="lang-ch">欧洲（不含英国）：</span></a>Cheryl_EU_10
-<br>
-<a href="https://quadrotoys.com"><span class="lang-en">North America: </span><span class="lang-ch">北美：</span></a>cheryl_us_15
-</div>
-</div>
-
-<div class="parts-info"><span class="lang-en">Click the number or blank under the images to input amounts of parts manually.</span><span class="lang-ch">点击零件图片下方的数字或空白可手动输入零件数。</span></div>
-
-<div id="partslistdech" style="margin-top:1.5em;">
-loading
-</div>
-
-<div class='recommend' style="clear:left;">
-  <button onclick="getdesign();"><span class="lang-en">Available models/Refresh</span><span class="lang-ch">可用模型/刷新</span></button>
-  <br><span class="lang-en">Texile,double tube connector,alu-profile and pools are not considered. Holey panel and plexiglass could be replaced. </span><span class="lang-ch">布品、8字件、铝管及泳池布不考虑在计算结果内，洞洞板及亚克力板可被普通板代替。</span>
-  <div> </div>
-  <div class='recommendinfo'>
+  
+  <div style="font-size:1.6em;" class="coupon">
+    &#127873;<span class="lang-en"><span style="font-weight:700;">Coupon</span> for quadro shop</span><span class="lang-ch">官网优惠码</span>
+    <br>
+    <a href="https://quadroshop.com"><span class="lang-en">Europe: </span><span class="lang-ch">欧洲（不含英国）：</span></a>Cheryl_EU_10
+    <br>
+    <a href="https://quadrotoys.com"><span class="lang-en">North America: </span><span class="lang-ch">北美：</span></a>cheryl_us_15
   </div>
-  <div class='re-container'>
+
+  <div class="tab-body">
+    <!-- 标签页部分 -->
+    <div class="tablinks active" onclick="openTab(event, 'Tab1')" style="line-height:20px;"><span class="lang-ch">配件统计 &<br>可用模型</span><span class="lang-en">calc &<br>model</span></div>
+    <div class="tablinks" onclick="openTab(event, 'Tab2')"><span class="lang-ch">模型搜索</span><span class="lang-en">search</span></div>
+    <div class="tablinks lang-ch" onclick="openTab(event, 'Tab3')">平替及周边</div>
+
+    <!-- 标签页内容部分 -->
+    <div id="Tab1" class="tabcontent" style="display:block;">
+      <br>
+      <div style="display:block;" class="calc-info">
+        <span class="lang-en">Click kit name or enter their amounts below. </span><span class="lang-ch">请点击套装名字进行添加或在其下方手动输入数量。</span>
+      </div>
+
+      <div class="kits-row"><button class="addkit" >My First</button></div>
+      <div class="kits-row"><button class="addkit" >STARTER</button></div>
+      <div class="kits-row"><button class="addkit" >BASIC</button></div>
+      <div class="kits-row"><button class="addkit" >JUNIOR</button></div>
+      <div class="kits-row"><button class="addkit" >UNIVERSAL</button></div>
+      <div class="kits-row"><button class="addkit" >ULTIMATE</button></div>
+      <div class="kits-row"><button class="addkit" >BEGIN</button></div>
+      <div class="kits-row"><button class="addkit" >ADV</button></div>
+      <div class="kits-row"><button class="addkit" >ADV+</button></div>
+      <div class="kits-row"><button class="addkit" >KL(CL)</button></div>
+      <div class="kits-row"><button class="addkit" >EVO</button></div>
+      <div class="kits-row"><button class="addkit" >OFFROAD</button></div>
+      <div class="kits-row"><button class="addkit" style="font-size:1.4em;">MOeBEL S<br>FURNITURE S</button></div>
+      <div class="kits-row"><button class="addkit" style="font-size:1.4em;">MOeBEL L<br>FURNITURE L</button></div>
+      <div class="kits-row"><button class="addkit" style="font-size:1.4em;">MOD-RUTSCH<br>(模块滑梯)</button></div>
+      <div class="kits-row"><button class="addkit" style="font-size:1.4em;">BOG-RUTSCH<br>(弧形滑梯)</button></div>
+      <div class="kits-row"><button class="addkit" style="font-size:1.4em;">INT-RUTSCH<br>(整合滑梯)</button></div>
+      <div class="kits-row"><button class="addkit" >POOL S</button></div>
+      <div class="kits-row"><button class="addkit" >POOL L</button></div>
+      <div class="kits-row"><button class="addkit" >POOL XXL</button></div>
+      <div class="kits-row"><button class="addkit" >MOBIL</button></div>
+      <div class="kits-row"><button class="addkit" >SPECIAL</button></div>
+      <div class="kits-row"><button class="addkit" >HOME</button></div>
+      <div class="kits-row"><button class="addkit" >UPGRADE</button></div>
+      <div class="kits-row"><button class="addkit" >YOUNGSTER</button></div>
+      <div class="kits-row"><button class="addkit" >GENIUS</button></div>
+      <div class="kits-row lang-ch"><button class="addkit" >韩DS-030</button></div>
+      <div class="kits-row lang-ch"><button class="addkit" >韩DS-041</button></div>
+      <div class="kits-row lang-ch"><button class="addkit" >韩DS-029</button></div>
+      <div class="kits-row lang-ch"><button class="addkit" >韩DS-036</button></div>
+      <div class="kits-row lang-ch"><button class="addkit" >韩DS-040</button></div>
+      <div class="kits-row lang-ch"><button class="addkit" >韩DS-017</button></div>
+
+      <div style="clear:left;">
+        <hr>
+        <button onclick="ResetKitsNum();"><span class="lang-en">Reset</span><span class="lang-ch">重置</span></button>
+        <button onclick="saveParts();"><span class="lang-en">Save</span><span class="lang-ch">保存</span></button>
+        <button onclick="loadParts();"><span class="lang-en">Load</span><span class="lang-ch">读取</span></button>
+      </div>
+
+      <div class="parts-info">
+        <span class="lang-en">Click the number or blank under the images to input amounts of parts manually.</span>
+        <span class="lang-ch">点击零件图片下方的数字或空白可手动输入零件数。</span>
+      </div>
+
+      <div id="partslistdech" style="margin-top:1.5em;">
+        loading
+      </div>
+
+      <div class='recommend' style="clear:left;">
+        <button onclick="getdesign();"><span class="lang-en">Available models/Refresh</span><span class="lang-ch">可用模型/刷新</span></button>
+        <br><span class="lang-en">Texile,double tube connector,alu-profile and pools are not considered. Holey panel and plexiglass could be replaced. </span><span class="lang-ch">布品、8字件、铝管及泳池布不考虑在计算结果内，洞洞板及亚克力板可被普通板代替。</span>
+        <div> </div>
+        <div class='recommendinfo'>
+        </div>
+        <div class='re-container'>
+        </div>
+        <div class='re-footer' style="display:none;">
+          <span style="font-size:2em;"><span class="lang-en">models per page</span><span class="lang-ch">每页显示</span>: </span>
+          <select style="font-size:2em;" id="re-page" onchange="forpage(0,this.value);">
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="50">50</option>
+          </select>
+          <button id="re-prev" onclick="prevpage();" style="margin-left:1em;"><span class="lang-en">prev</span><span class="lang-ch">上一页</span></button>
+          <div id="re-current" style="display:inline-block;font-size:2em;color:#0008;min-width:1.5em;text-align: center;"></div>
+          <button id="re-next" onclick="nextpage();"><span class="lang-en">next</span><span class="lang-ch">下一页</span></button>
+        </div>
+      </div>
+    </div>
+
+    <div id="Tab2" class="tabcontent">
+      <br>
+      <span class="lang-ch">编号指quadro官网造型编号(Axxxx或Bxxxx或Cxxxx)DIY造型编号(以M开头)，关键词可输入英语或德语</span>
+      <span class="lang-en"></span>
+      <div class='search-model'>
+        <input style="font-size:2em;" placeholder="编号或关键词" class="search-num lang-ch">
+        <input style="font-size:2em;" placeholder="model number or keyword" class="search-num lang-en">
+        <br>
+        <span style="font-size:2em;"><span class="lang-en">includes</span><span class="lang-ch">包含</span></span>
+
+        <select style="font-size:2em;" class="search-part lang-ch">
+          <option value="0">请选择</option>
+          <option value="34">直梯</option>
+          <option value="36">弧形梯</option>
+          <option value="27">斜坡</option>
+          <option value="22">多轮</option>
+          <option value="33">游戏袋</option>
+          <option value="pool">泳池</option>
+          <option value="house">房子</option>
+          <option value="parallel">双杠</option>
+          <option value="cube">立方体</option>
+          <option value="learning tower">学习塔</option>
+          <option value="tower">塔</option>
+          <option value="ladder">斜梯</option>
+          <option value="goal">球门</option>
+          <option value="platform">平台</option>
+          <option value="bridge">廊桥</option>
+        </select>
+
+        <select style="font-size:2em;" class="search-part lang-en">
+          <option value="0">none</option>
+          <option value="34">straight slide</option>
+          <option value="36">curved slide</option>
+          <option value="27">ramp</option>
+          <option value="22">multi wheel</option>
+          <option value="33">play bag</option>
+          <option value="pool">pool</option>
+          <option value="house">house</option>
+          <option value="parallel">parallel</option>
+          <option value="cube">cube</option>
+          <option value="learning tower">learning tower</option>
+          <option value="tower">tower</option>
+          <option value="ladder">ladder</option>
+          <option value="goal">goal</option>
+          <option value="platform">platform</option>
+          <option value="bridge">bridge</option>
+        </select>
+        <br>
+        <span style="font-size:2em;"><span class="lang-en">age</span><span class="lang-ch">年龄</span></span>
+
+        <select style="font-size:2em;" id="search-age">
+          <option value="-1">--</option>
+          <option value="0.5">0.5</option>
+          <option value="1">1</option>
+          <option value="1.5">1.5</option>
+          <option value="2">2</option>
+          <option value="2.5">2.5</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="N/A">N/A</option>
+        </select>
+
+        <button onclick="searchmodel();"><span class="lang-en">search</span><span class="lang-ch">搜索</span></button>
+        <div id="search-result"></div>
+        <div class='se-footer' style="display:none;">
+          <button id="se-prev" onclick="prevsepage();" style="margin-left:1em;"><span class="lang-en">prev</span><span class="lang-ch">上一页</span></button>
+          <div id="se-current" style="display:inline-block;font-size:2em;color:#0008;min-width:1.5em;text-align: center;">1</div>
+          <button id="se-next" onclick="nextsepage();"><span class="lang-en">next</span><span class="lang-ch">下一页</span></button>
+        </div>
+      </div>
+
+      <div class='se-container' style="display:none;border:1px solid grey;position:fixed;left:10vw;top:10vh;width:80vw;height:80vh;background:white;">
+        <div class="container-head">
+          <span style="font-size:2em;width:1.6em;cursor:pointer;display:inline-block;float: right;text-align:center;" onclick="document.getElementsByClassName('se-container')[0].style.display='none';">☒</span>
+          <span id="design-info"></span>
+        </div>
+        <div id="part-info" style="margin:3px;overflow-y: scroll;"></div>
+      </div>
+    </div>
+
+    <div id="Tab3" class="tabcontent">
+      <br>
+      <div id="part-replace"></div>
+      <div id="part-re-container" style="display:none;border:1px solid grey;position:fixed;left:10vw;top:10vh;width:80vw;height:80vh;background:white;">
+        <div>
+          <span style="font-size:2em;width:1.6em;cursor:pointer;display:inline-block;float: right;text-align:center;" onclick="document.getElementById('part-re-container').style.display='none';">☒</span>
+          <span id="prc-info"></span>
+        </div>
+        <div>用途：<span id="prc-usefor"></span></div>
+        <div>用法：<span id="prc-montage"></span></div>
+        <div>团购暗号：（将此图发给卖家）<span id="prc-pic"></span></div>
+        <div>商品链接：<span id="prc-link"></span></div>
+      </div>
+      <hr>
+      特别鸣谢：
+    </div>
   </div>
-  <div class='re-footer' style="display:none;">
-    <span style="font-size:2em;"><span class="lang-en">models per page</span><span class="lang-ch">每页显示</span>: </span>
-    <select style="font-size:2em;" id="re-page" onchange="forpage(0,this.value);">
-      <option value="10">10</option>
-      <option value="20">20</option>
-      <option value="50">50</option>
-    </select>
-    <button id="re-prev" onclick="prevpage();" style="margin-left:1em;"><span class="lang-en">prev</span><span class="lang-ch">上一页</span></button>
-    <div id="re-current" style="display:inline-block;font-size:2em;color:#0008;min-width:1.5em;text-align: center;"></div>
-    <button id="re-next" onclick="nextpage();"><span class="lang-en">next</span><span class="lang-ch">下一页</span></button>
-  </div>
-</div>
 
-<hr>
-<div class='search-model'>
-  <input style="font-size:2em;" placeholder="编号或关键词" class="search-num lang-ch">
-  <input style="font-size:2em;" placeholder="model number or keyword" class="search-num lang-en">
-  <br>
-  <span style="font-size:2em;"><span class="lang-en">includes</span><span class="lang-ch">包含</span></span>
 
-  <select style="font-size:2em;" class="search-part lang-ch">
-    <option value="0">请选择</option>
-    <option value="34">直梯</option>
-    <option value="36">弧形梯</option>
-    <option value="27">斜坡</option>
-    <option value="22">多轮</option>
-    <option value="33">游戏袋</option>
-    <option value="pool">泳池</option>
-    <option value="house">房子</option>
-    <option value="parallel">双杠</option>
-    <option value="cube">立方体</option>
-    <option value="learning tower">学习塔</option>
-    <option value="tower">塔</option>
-    <option value="ladder">斜梯</option>
-    <option value="goal">球门</option>
-    <option value="platform">平台</option>
-    <option value="bridge">廊桥</option>
-  </select>
-
-  <select style="font-size:2em;" class="search-part lang-en">
-    <option value="0">none</option>
-    <option value="34">straight slide</option>
-    <option value="36">curved slide</option>
-    <option value="27">ramp</option>
-    <option value="22">multi wheel</option>
-    <option value="33">play bag</option>
-    <option value="pool">pool</option>
-    <option value="house">house</option>
-    <option value="parallel">parallel</option>
-    <option value="cube">cube</option>
-    <option value="learning tower">learning tower</option>
-    <option value="tower">tower</option>
-    <option value="ladder">ladder</option>
-    <option value="goal">goal</option>
-    <option value="platform">platform</option>
-    <option value="bridge">bridge</option>
-  </select>
-  <br>
-  <span style="font-size:2em;"><span class="lang-en">age</span><span class="lang-ch">年龄</span></span>
-
-  <select style="font-size:2em;" id="search-age">
-    <option value="-1">--</option>
-    <option value="0.5">0.5</option>
-    <option value="1">1</option>
-    <option value="1.5">1.5</option>
-    <option value="2">2</option>
-    <option value="2.5">2.5</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="N/A">N/A</option>
-  </select>
-
-  <button onclick="searchmodel();"><span class="lang-en">search</span><span class="lang-ch">搜索</span></button>
-  <div id="search-result"></div>
-  <div class='se-footer' style="display:none;">
-    <button id="se-prev" onclick="prevsepage();" style="margin-left:1em;"><span class="lang-en">prev</span><span class="lang-ch">上一页</span></button>
-    <div id="se-current" style="display:inline-block;font-size:2em;color:#0008;min-width:1.5em;text-align: center;">1</div>
-    <button id="se-next" onclick="nextsepage();"><span class="lang-en">next</span><span class="lang-ch">下一页</span></button>
-  </div>
-</div>
-
-<div class='se-container' style="display:none;border:1px solid grey;position:fixed;left:10vw;top:10vh;width:80vw;height:80vh;background:white;">
-  <div class="container-head">
-    <span style="font-size:2em;width:1.6em;cursor:pointer;display:inline-block;float: right;text-align:center;" onclick="document.getElementsByClassName('se-container')[0].style.display='none';">☒</span>
-    <span id="design-info"></span>
-  </div>
-  <div id="part-info" style="margin:3px;overflow-y: scroll;"></div>
-</div>
-
-<div style="margin-top:5em;"> </div>
-<hr>
-<span class="lang-en">Copy right of images from quadromdb.com belongs to QUADRO. Copy right of images from quadro fans belongs to the authors.</span><span class="lang-ch">
-来自quadromdb.com模型缩图版权属于QUADRO，爱好者设计的模型及照片版权属于作者。</span>
+  <div style="margin-top:5em;"> </div>
+  <hr>
+  <span class="lang-en">Copy right of images from quadromdb.com belongs to QUADRO. Copy right of images from quadro fans belongs to the authors.</span>
+  <span class="lang-ch">来自quadromdb.com模型缩图版权属于QUADRO，爱好者设计的模型及照片版权属于作者。</span>
 </body>
 </html>
