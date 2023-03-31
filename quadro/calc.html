@@ -1262,12 +1262,14 @@ function showPRC(n){
   document.getElementById('prc-usefor').innerHTML=partReUse[n];
   document.getElementById('prc-size').innerHTML=partReSize[n];
   let temp=partReMontage[n].split('$');
+  document.getElementById('prc-montage').innerHTML='';
   for(let i =0;i<temp.length;i++){
     document.getElementById('prc-montage').innerHTML+='<img style="width:calc(50% - 10px);" src="../quadro/replace/'+temp[i]+'">';
   }
   temp=partRePic[n].split('$');
   let temp2=partReLink[n].split('$');
   let temp3=partReLinkName[n].split('$');
+  document.getElementById('prc-pic').innerHTML='';
   for(let i =0;i<temp.length;i++){
     document.getElementById('prc-pic').innerHTML+='<a style="font-size:1.6em;" href="'+temp2[i]+'">'+temp3[i]+
     '</a><br><img style="width:40vw;" src="../quadro/replace/'+temp[i]+'"><br><br>';
@@ -1278,7 +1280,7 @@ function showPRC(n){
 
 <body>
   <div>
-    <button onclick="changeLang();"><span class="lang-ch">English</span><span class="lang-en">中文</span></button>
+    <button onclick="changeLang();" style="background-color:#79bd9a;color:white;"><span class="lang-ch">English</span><span class="lang-en">中文</span></button>
   </div>
   
   <div style="font-size:1.8em;" class="coupon">
@@ -1375,7 +1377,7 @@ function showPRC(n){
 
     <div id="Tab2" class="tabcontent">
       <br>
-      <span class="lang-ch">编号指quadro官网造型编号(Axxxx或Bxxxx或Cxxxx)DIY造型编号(以M开头)，关键词可输入英语或德语</span>
+      <span class="lang-ch">编号指quadro官网造型编号(Axxxx或Bxxxx或Cxxxx)，DIY造型编号(以M开头)，关键词可输入英语或德语</span>
       <span class="lang-en">Model number refers to model number on QUADRO website(Axxxx or Bxxxx or Cxxxx) or DIY model number (starting with M), keyword can be entered in English or German.</span>
       <div class='search-model'>
         <input style="font-size:2em;border-radius:5px;border-color:#0b486b;" placeholder="编号或关键词" class="search-num lang-ch">
@@ -1435,7 +1437,7 @@ function showPRC(n){
           <option value="N/A">N/A</option>
         </select>
 
-        <button onclick="searchmodel();"><span class="lang-en">search</span><span class="lang-ch">搜索</span></button>
+        <button onclick="searchmodel();" style="background-color:#3b8686;color:white;"><span class="lang-en">search</span><span class="lang-ch">搜索</span></button>
         <div id="search-result"></div>
         <div class='se-footer' style="display:none;">
           <button id="se-prev" onclick="prevsepage();" style="margin-left:1em;"><span class="lang-en">prev</span><span class="lang-ch">上一页</span></button>
@@ -1465,11 +1467,11 @@ function showPRC(n){
         <div style="height:calc(80vh - 3em);margin:3px;overflow-y: scroll;">
           <div><span style="font-size:2em;font-weight:700;">用途：</span><div id="prc-usefor"></div></div>
           <div><span style="font-size:2em;font-weight:700;">尺寸及用法：</span><div id="prc-size"></div><div id="prc-montage"></div></div>
-          <div><span style="font-size:2em;font-weight:700;">团购暗号：（将此图发给卖家）</span><div id="prc-pic"></div></div>
+          <div><span style="font-size:2em;font-weight:700;">参考购买途径（商家/链接/暗号）：</span><br><div id="prc-pic"></div></div>
         </div>
       </div>
       <hr>
-      特别鸣谢：@周小曼 @文辞 @花花 及众多quadro爱好者的开发试错
+      特别鸣谢：@周小曼 @文辞妈妈雯词宝宝 @小花儿 及众多quadro爱好者的开发试错、辛苦搜罗
     </div>
   </div>
 
