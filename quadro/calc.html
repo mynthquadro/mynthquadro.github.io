@@ -716,7 +716,7 @@ const partReUse=['加固无支撑的多个连接管道或者受力较大的部�
     '',
     ''];
 const partReSize=['铝合金（木棍）管长75或80厘米，外径27毫米，铝管壁厚2毫米，铝管连接器外直径23毫米','','','','','','','','','',''];
-const partReMontage=['lv1.jpg','','','','','','','','','',''];
+const partReMontage=['lv1.jpg$lv1-2.png','','','','','','','','','',''];
 const partRePic=['lv2-1.jpg$lv2-2.jpg','','','','','','','','','',''];
 const partReLinkName=['日精金属材料有限公司（淘宝）$成达通（拼多多）','','','','','','','','','',''];
 const partReLink=['https://m.tb.cn/h.UIcfrp9?tk=tyjVd9iVsn6$https://mobile.yangkeduo.com/login.html?from=https%3A%2F%2Fmobile.yangkeduo.com%2Fgoods1.html%3Frefer_share_id%3D3TOubzwDgNG1XkXCzoM4dbGI2Arot71l%26refer_share_channel%3Dmessage%26_oak_share_detail_id%3D0%26_wvx%3D10%26pxq_secret_key%3DGZUSGGOERC3LCYT5FZJJRKKNZF4JKIUD4CPH7AACYDANYBIUQPCA%26_oak_share_time%3D1680189843%26_wv%3D41729%26share_uin%3DVGOEXMGY6AMZXWIFFCW4A3OFU4_GEXDA%26page_from%3D101%26refer_share_uin%3DVGOEXMGY6AMZXWIFFCW4A3OFU4_GEXDA%26goods_id%3D177980512169%26_oak_share_snapshot_num%3D895%23pushState&_x_share_id=3TOubzwDgNG1XkXCzoM4dbGI2Arot71l&refer_page_name=goods_detail&refer_page_id=10014_1680282191801_fki5lj0b15&refer_page_sn=10014',
@@ -1263,7 +1263,7 @@ function showPRC(n){
   document.getElementById('prc-size').innerHTML=partReSize[n];
   let temp=partReMontage[n].split('$');
   for(let i =0;i<temp.length;i++){
-    document.getElementById('prc-montage').innerHTML+='<img style="width:40vw;" src="../quadro/replace/'+temp[i]+'">';
+    document.getElementById('prc-montage').innerHTML+='<img style="width:calc(50% - 10px);" src="../quadro/replace/'+temp[i]+'">';
   }
   temp=partRePic[n].split('$');
   let temp2=partReLink[n].split('$');
