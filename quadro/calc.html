@@ -2,7 +2,19 @@
 <html>
 <head>
 <style>
-body{background-color:#eef;}
+body{
+  background-color:#eee;
+  color:#115;
+  --seihaiga:#d8ffd8;
+  background-image:
+radial-gradient(circle at 100% 150%, white 24%, var(--seihaiga) 24%, var(--seihaiga) 28%, white 28%, white 36%, var(--seihaiga) 36%, var(--seihaiga) 40%, transparent 40%, transparent),
+radial-gradient(circle at 0    150%, white 24%, var(--seihaiga) 24%, var(--seihaiga) 28%, white 28%, white 36%, var(--seihaiga) 36%, var(--seihaiga) 40%, transparent 40%, transparent),
+radial-gradient(circle at 50%  100%, var(--seihaiga) 10%, white 10%, white 23%, var(--seihaiga) 23%, var(--seihaiga) 30%, white 30%, white 43%, var(--seihaiga) 43%, var(--seihaiga) 50%, white 50%, white 63%, var(--seihaiga) 63%, var(--seihaiga) 71%, transparent 71%, transparent),
+radial-gradient(circle at 100% 50%, var(--seihaiga) 5%, white 5%, white 15%, var(--seihaiga) 15%, var(--seihaiga) 20%, white 20%, white 29%, var(--seihaiga) 29%, var(--seihaiga) 34%, white 34%, white 44%, var(--seihaiga) 44%, var(--seihaiga) 49%, transparent 49%, transparent),
+radial-gradient(circle at 0    50%, var(--seihaiga) 5%, white 5%, white 15%, var(--seihaiga) 15%, var(--seihaiga) 20%, white 20%, white 29%, var(--seihaiga) 29%, var(--seihaiga) 34%, white 34%, white 44%, var(--seihaiga) 44%, var(--seihaiga) 49%, transparent 49%, transparent)!important;
+  background-size: 150px 75px!important;
+  background-repeat: repeat!important;
+}
 button{
   font-size:2em;
   height:64px;
@@ -24,14 +36,14 @@ button{
 .part-link{color:#3333}
 .part-img{display:none;}
 .tablinks{
-  line-height:40px;
+  line-height:50px;
   text-align:center;
   font-weight:700;
-  width:100px;
+  width:200px;
+  height:50px;
   vertical-align: bottom;
-  font-size:16px;
+  font-size:20px;
   display:inline-block;
-  height:40px;
   background-color:blue;
   color:white;
   z-index:1;
@@ -44,12 +56,11 @@ button{
   border-bottom:3px solid white;
   background-color:white;
   background-size:90% 100%;
-  color:#115;
   z-index:1;
 }
-.tablinks:nth-child(1).active{border-left:3px solid #0b486b;}
-.tablinks:nth-child(2).active{border-left:3px solid #3b8686;}
-.tablinks:nth-child(3).active{border-left:3px solid #79bd9a;}
+.tablinks:nth-child(1).active{border-left:3px solid #0b486b;color:#0b486b;}
+.tablinks:nth-child(2).active{border-left:3px solid #3b8686;color:#3b8686;}
+.tablinks:nth-child(3).active{border-left:3px solid #79bd9a;color:#79bd9a;}
 .tabcontent{
   background-color:white;
   display:none;
@@ -692,8 +703,8 @@ const design=[['M1','M1$0$0$0$N/A',5,25,11,2,26,12,9,8,0,14,0,0,129,0,0,0,13,0,0
 ['c0169','c0169$Playcenter mit Bogenrutsche, Kletterrampe und vielen Klettermöglichkeiten$Playcenter with Curved Slide, Climbing Ramp and many Climbing Possibilities$https://yougenmdb.com/sites/default/files/mdb/C0169/C0169-public.qdf$2$252×225×197 cm$4 h$https://yougenmdb.com/en/kits/you$https://yougenmdb.com/en/kits/gen$/en/extensions/csl$',3,23,17,1,24,17,12,8,1,11,1,3,129,1,0,0,13,0,0,0,1,1,1,0,0,2,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0],
 ['c0170','c0170$Riesiges Wasserrutschenmodell, bestehend aus GENIUS, BOGENRUTSCHE und POOL L$Huge water slide model, consisting of GENIUS, CURVED SLIDE and POOL L$https://yougenmdb.com/sites/default/files/mdb/C0170/C0170-public.qdf$3$352×212×224 cm$6 h$https://yougenmdb.com/en/kits/gen$/en/extensions/csl$/en/extensions/pol$',3,21,27,1,20,13,12,4,1,8,1,3,129,1,4,0,12,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,0,1,0,0,0,0,0]];
 
-const partReplacement=['铝管及连接件','圆盘秋千','软布秋千','荡桥固定绳','Q定制感官垫','万向轮','亚克力板和扎带','蹦床','魔术贴扎带','大罗盘','沙包'];
-const partReUse=['加固无支撑的多个连续管件或受力较大的部位（高或长的样式需要）以免连接件或管变形。提高安全性',
+const partReplacement=['铝管及连接器（木棍）','圆盘秋千','软布秋千','荡桥固定绳','Q定制感官垫','万向轮','亚克力板和扎带','蹦床','魔术贴扎带','大罗盘','沙包'];
+const partReUse=['加固无支撑的多个连接管道或者受力较大的部位。较高和较长的样式可能会需要，以免连接件或者管件变形，提高稳定性和安全性。',
     '',
     '',
     '',
@@ -704,9 +715,11 @@ const partReUse=['加固无支撑的多个连续管件或受力较大的部位�
     '',
     '',
     ''];
-const partReMontage=['','','','','','','','','','',''];
-const partRePic=['','','','','','','','','','',''];
-const partReLink=['https://m.tb.cn/h.UIcfrp9?tk=tyjVd9iVsn6',
+const partReSize=['铝合金（木棍）管长75或80厘米，外径27毫米，铝管壁厚2毫米，铝管连接器外直径23毫米','','','','','','','','','',''];
+const partReMontage=['lv1.jpg','','','','','','','','','',''];
+const partRePic=['lv2-1.jpg$lv2-2.jpg','','','','','','','','','',''];
+const partReLinkName=['日精金属材料有限公司（淘宝）$成达通（拼多多）','','','','','','','','','',''];
+const partReLink=['https://m.tb.cn/h.UIcfrp9?tk=tyjVd9iVsn6$https://mobile.yangkeduo.com/login.html?from=https%3A%2F%2Fmobile.yangkeduo.com%2Fgoods1.html%3Frefer_share_id%3D3TOubzwDgNG1XkXCzoM4dbGI2Arot71l%26refer_share_channel%3Dmessage%26_oak_share_detail_id%3D0%26_wvx%3D10%26pxq_secret_key%3DGZUSGGOERC3LCYT5FZJJRKKNZF4JKIUD4CPH7AACYDANYBIUQPCA%26_oak_share_time%3D1680189843%26_wv%3D41729%26share_uin%3DVGOEXMGY6AMZXWIFFCW4A3OFU4_GEXDA%26page_from%3D101%26refer_share_uin%3DVGOEXMGY6AMZXWIFFCW4A3OFU4_GEXDA%26goods_id%3D177980512169%26_oak_share_snapshot_num%3D895%23pushState&_x_share_id=3TOubzwDgNG1XkXCzoM4dbGI2Arot71l&refer_page_name=goods_detail&refer_page_id=10014_1680282191801_fki5lj0b15&refer_page_sn=10014',
     '',
     '',
     '',
@@ -1131,8 +1144,8 @@ function showdesign(num){
 
 /*lang:0->chinese,1->english*/
 let lang=0;
-function changeLang(la){
-  if (la == 1){
+function changeLang(){
+  if (lang == 0){
     document.getElementById('la-ch').innerHTML='.lang-ch{display:none;}';
     document.getElementById('la-en').innerHTML='.lang-en{display:inline-block;}';
     lang=1;
@@ -1245,32 +1258,40 @@ function openTab(evt, tabName) {
 /*show part replacement detail*/
 function showPRC(n){
   document.getElementById('part-re-container').style.display = "block";
-  document.getElementById('prc-info').textContent=partReplacement[n];
-  document.getElementById('prc-usefor').textContent=partReUse[n];
-  document.getElementById('prc-montage').innerHTML='<img src="'+partReMontage[n]+'">';
-  document.getElementById('prc-pic').innerHTML='<img src="'+partRePic[n]+'">';
-  document.getElementById('prc-link').innerHTML='<a href="'+partReLink[n]+'">'+partReLink[n]+'</a>';
+  document.getElementById('prc-info').innerHTML=partReplacement[n];
+  document.getElementById('prc-usefor').innerHTML=partReUse[n];
+  document.getElementById('prc-size').innerHTML=partReSize[n];
+  let temp=partReMontage[n].split('$');
+  for(let i =0;i<temp.length;i++){
+    document.getElementById('prc-montage').innerHTML+='<img style="width:40vw;" src="../quadro/replace/'+temp[i]+'">';
+  }
+  temp=partRePic[n].split('$');
+  let temp2=partReLink[n].split('$');
+  let temp3=partReLinkName[n].split('$');
+  for(let i =0;i<temp.length;i++){
+    document.getElementById('prc-pic').innerHTML+='<a style="font-size:1.6em;" href="'+temp2[i]+'">'+temp3[i]+
+    '</a><br><img style="width:40vw;" src="../quadro/replace/'+temp[i]+'"><br><br>';
+  }
 }
 </script>
 </head>
 
 <body>
-  <div style="font-size:2em;">
-    <a href="javascript:changeLang(0)">中文</a>
-    <a href="javascript:changeLang(1)" style="margin-left:2em;">English</a>
+  <div>
+    <button onclick="changeLang();"><span class="lang-ch">English</span><span class="lang-en">中文</span></button>
   </div>
   
-  <div style="font-size:1.6em;" class="coupon">
+  <div style="font-size:1.8em;" class="coupon">
     &#127873;<span class="lang-en"><span style="font-weight:700;">Coupon</span> for quadro shop</span><span class="lang-ch">官网优惠码</span>
     <br>
-    <a href="https://quadroshop.com"><span class="lang-en">Europe: </span><span class="lang-ch">欧洲（不含英国）：</span></a>Cheryl_EU_10
-    <br>
-    <a href="https://quadrotoys.com"><span class="lang-en">North America: </span><span class="lang-ch">北美：</span></a>cheryl_us_15
+    <a href="https://quadroshop.com"><span class="lang-en" style="text-decoration:underline;">Europe: </span><span class="lang-ch" style="text-decoration:underline;">欧洲（不含英国）：</span></a>Cheryl_EU_10
+    <span> </span>
+    <a href="https://quadrotoys.com"><span class="lang-en" style="text-decoration:underline;">North America: </span><span class="lang-ch" style="text-decoration:underline;">北美：</span></a>cheryl_us_15
   </div>
 
   <div class="tab-body">
     <!-- 标签页部分 -->
-    <div class="tablinks active" onclick="openTab(event, 'Tab1')" style="line-height:20px;"><span class="lang-ch">配件统计 &<br>可用模型</span><span class="lang-en">calc &<br>model</span></div>
+    <div class="tablinks active" onclick="openTab(event, 'Tab1')" style="width:300px;"><span class="lang-ch">配件统计 & 可用模型</span><span class="lang-en">kits & model</span></div>
     <div class="tablinks" onclick="openTab(event, 'Tab2')"><span class="lang-ch">模型搜索</span><span class="lang-en">search</span></div>
     <div class="tablinks lang-ch" onclick="openTab(event, 'Tab3')">平替及周边</div>
 
@@ -1293,11 +1314,11 @@ function showPRC(n){
       <div class="kits-row"><button class="addkit" >KL(CL)</button></div>
       <div class="kits-row"><button class="addkit" >EVO</button></div>
       <div class="kits-row"><button class="addkit" >OFFROAD</button></div>
-      <div class="kits-row"><button class="addkit" style="font-size:1.4em;">MOeBEL S<br>FURNITURE S</button></div>
-      <div class="kits-row"><button class="addkit" style="font-size:1.4em;">MOeBEL L<br>FURNITURE L</button></div>
-      <div class="kits-row"><button class="addkit" style="font-size:1.4em;">MOD-RUTSCH<br>(模块滑梯)</button></div>
-      <div class="kits-row"><button class="addkit" style="font-size:1.4em;">BOG-RUTSCH<br>(弧形滑梯)</button></div>
-      <div class="kits-row"><button class="addkit" style="font-size:1.4em;">INT-RUTSCH<br>(整合滑梯)</button></div>
+      <div class="kits-row"><button class="addkit" style="font-size:1.4em;">MOeBEL S<br><span class="lang-ch">(家具 S)</span><span class="lang-en">FURNITURE S</span></button></div>
+      <div class="kits-row"><button class="addkit" style="font-size:1.4em;">MOeBEL L<br><span class="lang-ch">(家具 L)</span><span class="lang-en">FURNITURE L</span></button></div>
+      <div class="kits-row"><button class="addkit" style="font-size:1.4em;">MOD-RUTSCH<br><span class="lang-ch">(模块滑梯)</span><span class="lang-en">modular slide</span></button></div>
+      <div class="kits-row"><button class="addkit" style="font-size:1.4em;">BOG-RUTSCH<br><span class="lang-ch">(弧形滑梯)</span><span class="lang-en">curved slide</span></button></div>
+      <div class="kits-row"><button class="addkit" style="font-size:1.4em;">INT-RUTSCH<br><span class="lang-ch">(整合滑梯)</span><span class="lang-en">slide</span></button></div>
       <div class="kits-row"><button class="addkit" >POOL S</button></div>
       <div class="kits-row"><button class="addkit" >POOL L</button></div>
       <div class="kits-row"><button class="addkit" >POOL XXL</button></div>
@@ -1316,9 +1337,9 @@ function showPRC(n){
 
       <div style="clear:left;">
         <hr>
-        <button onclick="ResetKitsNum();"><span class="lang-en">Reset</span><span class="lang-ch">重置</span></button>
-        <button onclick="saveParts();"><span class="lang-en">Save</span><span class="lang-ch">保存</span></button>
-        <button onclick="loadParts();"><span class="lang-en">Load</span><span class="lang-ch">读取</span></button>
+        <button onclick="ResetKitsNum();" style="background-color:#0b486b;color:white;"><span class="lang-en">Reset</span><span class="lang-ch">重置</span></button>
+        <button onclick="saveParts();" style="background-color:#3b8686;color:white;"><span class="lang-en">Save</span><span class="lang-ch">保存</span></button>
+        <button onclick="loadParts();" style="background-color:#79bd9a;color:white;"><span class="lang-en">Load</span><span class="lang-ch">读取</span></button>
       </div>
 
       <div class="parts-info">
@@ -1331,7 +1352,7 @@ function showPRC(n){
       </div>
 
       <div class='recommend' style="clear:left;">
-        <button onclick="getdesign();"><span class="lang-en">Available models/Refresh</span><span class="lang-ch">可用模型/刷新</span></button>
+        <button onclick="getdesign();" style="background-color:#3b8686;color:white;"><span class="lang-en">Available models/Refresh</span><span class="lang-ch">可用模型/刷新</span></button>
         <br><span class="lang-en">Texile,double tube connector,alu-profile and pools are not considered. Holey panel and plexiglass could be replaced. </span><span class="lang-ch">布品、8字件、铝管及泳池布不考虑在计算结果内，洞洞板及亚克力板可被普通板代替。</span>
         <div> </div>
         <div class='recommendinfo'>
@@ -1355,14 +1376,14 @@ function showPRC(n){
     <div id="Tab2" class="tabcontent">
       <br>
       <span class="lang-ch">编号指quadro官网造型编号(Axxxx或Bxxxx或Cxxxx)DIY造型编号(以M开头)，关键词可输入英语或德语</span>
-      <span class="lang-en"></span>
+      <span class="lang-en">Model number refers to model number on QUADRO website(Axxxx or Bxxxx or Cxxxx) or DIY model number (starting with M), keyword can be entered in English or German.</span>
       <div class='search-model'>
-        <input style="font-size:2em;" placeholder="编号或关键词" class="search-num lang-ch">
-        <input style="font-size:2em;" placeholder="model number or keyword" class="search-num lang-en">
+        <input style="font-size:2em;border-radius:5px;border-color:#0b486b;" placeholder="编号或关键词" class="search-num lang-ch">
+        <input style="font-size:2em;border-radius:5px;border-color:#0b486b;" placeholder="model number or keyword" class="search-num lang-en">
         <br>
         <span style="font-size:2em;"><span class="lang-en">includes</span><span class="lang-ch">包含</span></span>
 
-        <select style="font-size:2em;" class="search-part lang-ch">
+        <select style="font-size:2em;border-radius:5px;border-color:#0b486b;" class="search-part lang-ch">
           <option value="0">请选择</option>
           <option value="34">直梯</option>
           <option value="36">弧形梯</option>
@@ -1381,7 +1402,7 @@ function showPRC(n){
           <option value="bridge">廊桥</option>
         </select>
 
-        <select style="font-size:2em;" class="search-part lang-en">
+        <select style="font-size:2em;border-radius:5px;border-color:#0b486b;" class="search-part lang-en">
           <option value="0">none</option>
           <option value="34">straight slide</option>
           <option value="36">curved slide</option>
@@ -1402,7 +1423,7 @@ function showPRC(n){
         <br>
         <span style="font-size:2em;"><span class="lang-en">age</span><span class="lang-ch">年龄</span></span>
 
-        <select style="font-size:2em;" id="search-age">
+        <select style="font-size:2em;border-radius:5px;border-color:#0b486b;" id="search-age">
           <option value="-1">--</option>
           <option value="0.5">0.5</option>
           <option value="1">1</option>
@@ -1434,19 +1455,21 @@ function showPRC(n){
 
     <div id="Tab3" class="tabcontent">
       <br>
-      <div id="part-replace"></div>
+      <div id="part-replace">loading</div>
+
       <div id="part-re-container" style="display:none;border:1px solid grey;position:fixed;left:10vw;top:10vh;width:80vw;height:80vh;background:white;">
         <div>
           <span style="font-size:2em;width:1.6em;cursor:pointer;display:inline-block;float: right;text-align:center;" onclick="document.getElementById('part-re-container').style.display='none';">☒</span>
-          <span id="prc-info"></span>
+          <span id="prc-info" style="font-size:2em;font-weight:700;"></span>
         </div>
-        <div>用途：<span id="prc-usefor"></span></div>
-        <div>用法：<span id="prc-montage"></span></div>
-        <div>团购暗号：（将此图发给卖家）<span id="prc-pic"></span></div>
-        <div>商品链接：<span id="prc-link"></span></div>
+        <div style="height:calc(80vh - 3em);margin:3px;overflow-y: scroll;">
+          <div><span style="font-size:2em;font-weight:700;">用途：</span><div id="prc-usefor"></div></div>
+          <div><span style="font-size:2em;font-weight:700;">尺寸及用法：</span><div id="prc-size"></div><div id="prc-montage"></div></div>
+          <div><span style="font-size:2em;font-weight:700;">团购暗号：（将此图发给卖家）</span><div id="prc-pic"></div></div>
+        </div>
       </div>
       <hr>
-      特别鸣谢：
+      特别鸣谢：@周小曼 @文辞 @花花 及众多quadro爱好者的开发试错
     </div>
   </div>
 
