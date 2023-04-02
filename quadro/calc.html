@@ -843,13 +843,13 @@ function FillHtml(){
 }
 
 /*get available designs and save in array*/
-let recommendhtml=[];
-let perpagedefault=10;
-let currentpage=0;
+let recommendhtml=[[],[]];
+let perpagedefault=[10,10];
+let currentpage=[0,0];
 function getdesign(){
-    currentpage=0;
-    recommendhtml=[];
-    document.getElementById('re-current').textContent='';
+    currentpage[0]=0;
+    recommendhtml[0]=[];
+    document.getElementsByClassName('re-current')[0].textContent='';
     document.getElementsByClassName('re-container')[0].innerHTML='';
     document.getElementsByClassName('re-footer')[0].style.display='none';
     document.getElementsByClassName('recommendinfo')[0].textContent='';
@@ -896,14 +896,14 @@ function getdesign(){
         }
         if(pass){
             if(design[i][0].substring(0,1)=='M'){
-                recommendhtml.push('<div class="possible" style="display:inline-block;"><a target="_blank" href="../quadro/diy/'
+                recommendhtml[0].push('<div class="possible" style="display:inline-block;"><a target="_blank" href="../quadro/diy/'
                                    +design[i][0]+
                                    '.pdf"><img style="height:8em;width:'+imgwidth+'vw;cursor:pointer;object-fit:contain;" src="../quadro/diy/'
                                    +design[i][0]+
                                    '.JPG"></a><div style="display:none;">'
                                    +info+'</div></div>');
             }else{
-                recommendhtml.push('<div class="possible" style="display:inline-block;"><a target="_blank" href="https://quadromdb.com/de/designs/'
+                recommendhtml[0].push('<div class="possible" style="display:inline-block;"><a target="_blank" href="https://quadromdb.com/de/designs/'
                                    +design[i][0]+
                                    '"><img style="height:8em;width:'+imgwidth+'vw;cursor:pointer;object-fit:contain;" src="../quadro/webimg/'
                                    +design[i][0].toUpperCase()+'-brand.webp"></a><div style="display:none;">'
@@ -913,48 +913,48 @@ function getdesign(){
         }
     }
 
-    if(recommendhtml.length==0){
+    if(recommendhtml[0].length==0){
       document.getElementsByClassName('recommendinfo')[0].textContent='No available design.';
       document.getElementsByClassName('re-footer')[0].style.display='none';
     }else{
-      document.getElementsByClassName('recommendinfo')[0].innerHTML='<span class="lang-en">Available design</span><span class="lang-ch">可用模型</span>: '+recommendhtml.length;
+      document.getElementsByClassName('recommendinfo')[0].innerHTML='<span class="lang-en">Available design</span><span class="lang-ch">可用模型</span>: '+recommendhtml[0].length;
       document.getElementsByClassName('re-footer')[0].style.display='block';
-      forpage(0,perpagedefault);
+      forpage(0,perpagedefault[0],0);
     }
 }
 
 /*forpage for available designs*/
-function forpage(page,perpage){
-    currentpage=page;
-    perpagedefault=perpage;
-    let maxindex = perpagedefault;
+function forpage(page,perpage,which){
+    currentpage[which]=page;
+    perpagedefault[which]=perpage;
+    let maxindex = perpage;
     let pagehtml='';
     if(page==0){
-      document.getElementById('re-prev').disabled = true;
+      document.getElementsByClassName('re-prev')[which].disabled = true;
     }else{
-      document.getElementById('re-prev').disabled = false;
+      document.getElementsByClassName('re-prev')[which].disabled = false;
     }
-    if((page+1)*perpage >= recommendhtml.length){
-      document.getElementById('re-next').disabled = true;
-      maxindex=recommendhtml.length-page*perpage;
+    if((page+1)*perpage >= recommendhtml[which].length){
+      document.getElementsByClassName('re-next')[which].disabled = true;
+      maxindex=recommendhtml[which].length-page*perpage;
     }else{
-      document.getElementById('re-next').disabled = false;
+      document.getElementsByClassName('re-next')[which].disabled = false;
     }
     for (let i =0;i<maxindex;i++){
-        pagehtml+=recommendhtml[page*perpagedefault+i];
+        pagehtml+=recommendhtml[which][page*perpage+i];
     }
-    document.getElementsByClassName('re-container')[0].innerHTML=pagehtml;
-    document.getElementById('re-current').textContent=currentpage+1;
+    document.getElementsByClassName('re-container')[which].innerHTML=pagehtml;
+    document.getElementsByClassName('re-current')[which].textContent=page+1;
 }
 
 /*paginator for available designs*/
-function prevpage(){
-  currentpage--;
-  forpage(currentpage,perpagedefault);
+function prevpage(which){
+  currentpage[which]--;
+  forpage(currentpage[which],perpagedefault[which],which);
 }
-function nextpage(){
-  currentpage++;
-  forpage(currentpage,perpagedefault);
+function nextpage(which){
+  currentpage[which]++;
+  forpage(currentpage[which],perpagedefault[which],which);
 }
 
 function ResetKitsNum(){
@@ -969,7 +969,7 @@ function ResetKitsNum(){
     /*reset available design*/
     currentpage=0;
     recommendhtml=[];
-    document.getElementById('re-current').textContent='';
+    document.getElementsByClassName('re-current')[0].textContent='';
     document.getElementsByClassName('re-container')[0].innerHTML='';
     document.getElementsByClassName('re-footer')[0].style.display='none';
     document.getElementsByClassName('recommendinfo')[0].textContent='';
@@ -1026,20 +1026,15 @@ function Calc(){
   }
 }
 
-let searchresult='';
-let resultCount=0;
 function searchmodel(){
   let imgwidth=9;
   if(window.innerWidth<window.innerHeight+100){
     imgwidth=18;
   }
-  const resultdom = document.getElementById("search-result");
-  resultdom.innerHTML='';
   document.getElementsByClassName("se-footer")[0].style.display='none';
-  searchresult='';
-  resultCount=0;
-  currentSearchPage=1;
-  document.getElementById('se-current').textContent=currentSearchPage;
+  recommendhtml[1]=[];
+  currentpage[1]=0;
+  document.getElementsByClassName('re-current')[1].textContent=1;
   /*get search model nummer and part by language*/
   let searchNum=document.getElementsByClassName("search-num")[lang].value.toUpperCase().replaceAll('Ä','A').replaceAll('Ö','O').replaceAll('Ü','U');/*ß.uppercase=SS*/
   let searchPart=document.getElementsByClassName("search-part")[lang].value;
@@ -1050,7 +1045,6 @@ function searchmodel(){
   }
   let searchAge=document.getElementById("search-age").value;
 
-  let resultDisplay='inline-block';
   let keyword=[];
   let searchtrue=true;
   let hasSearch=false;
@@ -1095,80 +1089,25 @@ function searchmodel(){
 
     /*add result*/
     if(searchtrue==true && hasSearch==true){
-        resultCount++;
-        if (resultCount>perpagedefault ){
-          resultDisplay='none';
-        }
         if(design[i][0].substring(0,1)=='M'){
-            searchresult+='<div class="se-re" style="display:'+resultDisplay+';"><img  onclick="showdesign('
+            recommendhtml[1].push('<div class="se-re" style="display:inline-block;"><img  onclick="showdesign('
 		+i+')" style="height:7em;width:'
 		+imgwidth+'vw;cursor:pointer;object-fit:contain;" src="../quadro/diy/'
-                                   +design[i][0]+'.JPG"></div>';
+                                   +design[i][0]+'.JPG"></div>');
         }else{
-            searchresult+='<div class="se-re" style="display:'+resultDisplay+';"><img  onclick="showdesign('
+            recommendhtml[1].push('<div class="se-re" style="display:inline-block;"><img  onclick="showdesign('
 		+i+')" style="height:7em;width:'
 		+imgwidth+'vw;cursor:pointer;object-fit:contain;" src="../quadro/webimg/'
-                                   +design[i][0].toUpperCase()+'-brand.webp"></div>';
+                                   +design[i][0].toUpperCase()+'-brand.webp"></div>');
         }
     }
   }
-  if (searchresult){
-    resultdom.innerHTML=searchresult;
-    if (resultCount>perpagedefault){
-      document.getElementsByClassName("se-footer")[0].style.display='block';
-      document.getElementById('se-prev').disabled = true;
-      document.getElementById('se-next').disabled = false;
-    }
+  if (recommendhtml[1].length>0){
+    document.getElementsByClassName("se-footer")[0].style.display='block';
+    forpage(0,perpagedefault[1],1);
   } else {
-    resultdom.innerHTML='<span class="lang-en">no result</span><span class="lang-ch">没有结果</span>';
-  }
-}
-
-/*paginator for search by modelnummer or part*/
-let currentSearchPage=1;
-function prevsepage(){
-  currentSearchPage--;
-  if(currentSearchPage<=1){
-    document.getElementById('se-prev').disabled = true;
-  }
-  document.getElementById('se-next').disabled = false;
-
-  document.getElementById('se-current').textContent=currentSearchPage;
-  const searchResult=document.getElementsByClassName("se-re");
-  let maxindex;
-  if((currentSearchPage+1)*perpagedefault>resultCount){
-    maxindex=resultCount;
-  }else{
-    maxindex=(currentSearchPage+1)*perpagedefault;
-  }
-  for(let i=currentSearchPage*perpagedefault; i<maxindex; i++){
-    searchResult[i].style.display='none';
-  }
-  for(let i=(currentSearchPage-1)*perpagedefault; i<currentSearchPage*perpagedefault; i++){
-    searchResult[i].style.display='inline-block';
-  }
-}
-
-function nextsepage(){
-  currentSearchPage++;
-  document.getElementById('se-prev').disabled = false;
-  if(currentSearchPage>= resultCount/perpagedefault){
-    document.getElementById('se-next').disabled = true;
-  }
-  
-  document.getElementById('se-current').textContent=currentSearchPage;
-  const searchResult=document.getElementsByClassName("se-re");
-  let maxindex;
-  if(currentSearchPage*perpagedefault>resultCount){
-    maxindex=resultCount;
-  }else{
-    maxindex=currentSearchPage*perpagedefault;
-  }
-  for(let i=(currentSearchPage-2)*perpagedefault; i<(currentSearchPage-1)*perpagedefault; i++){
-    searchResult[i].style.display='none';
-  }
-  for(let i=(currentSearchPage-1)*perpagedefault; i<maxindex; i++){
-    searchResult[i].style.display='inline-block';
+    document.getElementsByClassName("se-footer")[0].style.display='none';
+    document.getElementsByClassName("re-container")[1].innerHTML='<span class="lang-en">no result</span><span class="lang-ch">没有结果</span>';
   }
 }
 
@@ -1427,14 +1366,14 @@ function showPRC(n){
         </div>
         <div class='re-footer' style="display:none;">
           <span style="font-size:2em;"><span class="lang-en">models per page</span><span class="lang-ch">每页显示</span>: </span>
-          <select style="font-size:2em;" id="re-page" onchange="forpage(0,this.value);">
+          <select style="font-size:2em;" id="re-page" onchange="forpage(0,this.value,0);">
             <option value="10">10</option>
             <option value="20">20</option>
             <option value="50">50</option>
           </select>
-          <button id="re-prev" onclick="prevpage();" style="margin-left:1em;"><span class="lang-en">prev</span><span class="lang-ch">上一页</span></button>
-          <div id="re-current" style="display:inline-block;font-size:2em;color:#0008;min-width:1.5em;text-align: center;"></div>
-          <button id="re-next" onclick="nextpage();"><span class="lang-en">next</span><span class="lang-ch">下一页</span></button>
+          <button class="re-prev" onclick="prevpage(0);" style="margin-left:1em;"><span class="lang-en">prev</span><span class="lang-ch">上一页</span></button>
+          <div class="re-current" style="display:inline-block;font-size:2em;color:#0008;min-width:1.5em;text-align: center;"></div>
+          <button class="re-next" onclick="nextpage(0);"><span class="lang-en">next</span><span class="lang-ch">下一页</span></button>
         </div>
       </div>
     </div>
@@ -1502,11 +1441,17 @@ function showPRC(n){
         </select>
 
         <button onclick="searchmodel();" style="background-color:#3b8686;color:white;"><span class="lang-en">search</span><span class="lang-ch">搜索</span></button>
-        <div id="search-result"></div>
+        <div class="re-container"></div>
         <div class='se-footer' style="display:none;">
-          <button id="se-prev" onclick="prevsepage();" style="margin-left:1em;"><span class="lang-en">prev</span><span class="lang-ch">上一页</span></button>
-          <div id="se-current" style="display:inline-block;font-size:2em;color:#0008;min-width:1.5em;text-align: center;">1</div>
-          <button id="se-next" onclick="nextsepage();"><span class="lang-en">next</span><span class="lang-ch">下一页</span></button>
+          <span style="font-size:2em;"><span class="lang-en">models per page</span><span class="lang-ch">每页显示</span>: </span>
+          <select style="font-size:2em;" id="re-page" onchange="forpage(0,this.value,1);">
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="50">50</option>
+          </select>
+          <button class="re-prev" onclick="prevpage(1);" style="margin-left:1em;"><span class="lang-en">prev</span><span class="lang-ch">上一页</span></button>
+          <div class="re-current" style="display:inline-block;font-size:2em;color:#0008;min-width:1.5em;text-align: center;"></div>
+          <button class="re-next" onclick="nextpage(1);"><span class="lang-en">next</span><span class="lang-ch">下一页</span></button>
         </div>
       </div>
 
