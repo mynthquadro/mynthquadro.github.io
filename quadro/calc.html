@@ -905,10 +905,9 @@ function getdesign(){
                                    '.JPG"></a><div style="display:none;">'
                                    +info+'</div></div>');
             }else{
-                recommendhtml[0].push('<div class="possible" style="display:inline-block;"><a target="_blank" href="https://quadromdb.com/de/designs/'
-                                   +design[i][0]+
-                                   '"><img style="height:8em;width:'+imgwidth+'vw;cursor:pointer;object-fit:contain;" src="../quadro/webimg/'
-                                   +design[i][0].toUpperCase()+'-brand.webp"></a><div style="display:none;">'
+                recommendhtml[0].push('<div class="possible" style="display:inline-block;"><img onclick="showdesign('+i+')" style="height:8em;width:'
+                                   +imgwidth+'vw;cursor:pointer;object-fit:contain;" src="../quadro/webimg/'
+                                   +design[i][0].toUpperCase()+'-brand.webp"><div style="display:none;">'
                                    +info+'</div></div>');
             }
 
@@ -1290,9 +1289,9 @@ function showPRC(n){
   <div style="font-size:1.8em;" class="coupon">
     &#127873;<span class="lang-en"><span style="font-weight:700;">Coupon</span> for quadro shop</span><span class="lang-ch">官网优惠码</span>
     <br>
-    <a href="https://quadroshop.com"><span class="lang-en" style="text-decoration:underline;">Europe: </span><span class="lang-ch" style="text-decoration:underline;">欧洲（不含英国）：</span></a>Cheryl_EU_10
+    <a href="https://quadroshop.com/?ref=cheryl"><span class="lang-en" style="text-decoration:underline;">Europe: </span><span class="lang-ch" style="text-decoration:underline;">欧洲（不含英国）：</span></a>Cheryl_EU_10
     <span> </span>
-    <a href="https://quadrotoys.com"><span class="lang-en" style="text-decoration:underline;">North America: </span><span class="lang-ch" style="text-decoration:underline;">北美：</span></a>cheryl_usa_15
+    <a href="https://quadrotoys.com/?ref=cheryl"><span class="lang-en" style="text-decoration:underline;">North America: </span><span class="lang-ch" style="text-decoration:underline;">北美：</span></a>cheryl_usa_15
   </div>
 
   <div class="tab-body">
@@ -1456,14 +1455,6 @@ function showPRC(n){
           <button class="re-next" onclick="nextpage(1);"><span class="lang-en">next</span><span class="lang-ch">下一页</span></button>
         </div>
       </div>
-
-      <div class='se-container' style="display:none;border:1px solid grey;position:fixed;left:10vw;top:10vh;width:80vw;height:80vh;background:white;">
-        <div class="container-head">
-          <span style="font-size:2em;width:1.6em;cursor:pointer;display:inline-block;float: right;text-align:center;" onclick="document.getElementsByClassName('se-container')[0].style.display='none';">☒</span>
-          <span id="design-info"></span>
-        </div>
-        <div id="part-info" style="margin:3px;overflow-y: scroll;"></div>
-      </div>
     </div>
 
     <div id="Tab3" class="tabcontent" style="display:none;">
@@ -1487,6 +1478,14 @@ function showPRC(n){
       <hr>
       特别鸣谢：@周小曼 @文辞妈妈雯词宝宝 @小花儿 及众多quadro爱好者的开发试错、辛苦搜罗
     </div>
+  </div>
+  <!-- design详情页 -->
+  <div class='se-container' style="display:none;border:1px solid grey;position:fixed;left:10vw;top:10vh;width:80vw;height:80vh;background:white;">
+    <div class="container-head">
+       <span style="font-size:2em;width:1.6em;cursor:pointer;display:inline-block;float: right;text-align:center;" onclick="document.getElementsByClassName('se-container')[0].style.display='none';">☒</span>
+       <span id="design-info"></span>
+    </div>
+    <div id="part-info" style="margin:3px;overflow-y: scroll;"></div>
   </div>
 
 
