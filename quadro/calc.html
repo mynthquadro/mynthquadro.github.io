@@ -74,11 +74,11 @@ button{
 <style id="la-ch">.lang-ch{display:inline-block;}</style>
 
 <script>
-const parts=['Raumkupplung 5-armig','Raumkupplung 4-armig','Raumkupplung 3-armig','Flaechenkupplung 4-armig','Flaechenkupplung 3-armig','Flaechenkupplung 2-armig (90Grad)','Flaechenkupplung 2-armig (180Grad)','Winkelkupplung (45Grad)','Rohr 10 cm','Rohr 15 cm','Rohr 20 cm','Rohr 25 cm','Rohr 35 cm','Rohr 35 cm 135Grad (3 Loecher)','Rohr 75 cm','Bogenrohr','Platte 40 × 40 cm','Platte 40 × 20 cm','Lochplatte 40 × 40 cm','Rundtextile','Multirad','Multirad Radlager','Multirad Arretierung','Laufreifen','Dachtextil','Doppelrohrverbinder','Aluminiumprofil','Aluminiumprofil-Verbinder','Dachtextil (Baby Ballcage)','Laufrolle','Laufrolle Adapter','Spielsack','Rutsche','Rutschenauslauf','Bogenrutsche','Poolfolie S','Poolfolie L','Poolfolie XXL','All-Terrain Rad','All-Terrain Rad Arretierung','Raumkupplung 6-armig','Plexiglass','Lagerkupplung','Lochzapfenkupplung 1-armig','Rohr 11 cm','Rohr 17cm'];
+const parts=['Raumkupplung 5-armig','Raumkupplung 4-armig','Raumkupplung 3-armig','Flaechenkupplung 4-armig','Flaechenkupplung 3-armig','Flaechenkupplung 2-armig (90Grad)','Flaechenkupplung 2-armig (180Grad)','Winkelkupplung (45Grad)','Rohr 10 cm','Rohr 15 cm','Rohr 20 cm','Rohr 25 cm','Rohr 35 cm','Rohr 35 cm 135Grad (3 Loecher)','Rohr 75 cm','Bogenrohr','Platte 40 × 40 cm','Platte 40 × 20 cm','Lochplatte 40 × 40 cm','Rundtextile','Multirad','Multirad Radlager','Multirad Arretierung','Laufreifen','Dachtextil','Doppelrohrverbinder','Aluminiumprofil','Aluminiumprofil-Verbinder','Dachtextil (Baby Ballcage)','Laufrolle','Laufrolle Adapter','Spielsack','Rutsche','Rutschenauslauf','Bogenrutsche','Poolfolie S','Poolfolie L','Poolfolie XXL','All-Terrain Rad','All-Terrain Rad Arretierung','Raumkupplung 6-armig','Plexiglass','Lagerkupplung','Lochzapfenkupplung 1-armig','Rohr 11 cm','Rohr 17cm','Flexikupplung Scharnier'];
 
-const partsCh=['5向连接件','4向连接件','3向连接件','十字连接件','T形连接件','L形连接件','1形连接件','斜角件','10厘米管','15厘米管','20厘米管','25厘米管','35厘米管','135度3洞35厘米管','75厘米管','弧形管','大板','半板','洞洞板','方形布','多用轮','多用轮垫圈','多用轮固定件','轮胎带','顶棚','双管8字连接件','铝管','铝管连接件','宝宝球池顶棚','脚轮','脚轮适配器','游戏袋','滑梯','模块式滑梯下板','弧形滑梯','小号泳池','大号泳池','加大号泳池','越野轮','越野轮连接件','6向连接件','亚克力板','轴承连接件（母头）','轴承连接件（公头）','11厘米管','17厘米管'];
+const partsCh=['5向连接件','4向连接件','3向连接件','十字连接件','T形连接件','L形连接件','1形连接件','斜角件','10厘米管','15厘米管','20厘米管','25厘米管','35厘米管','135度3洞35厘米管','75厘米管','弧形管','大板','半板','洞洞板','方形布','多用轮','多用轮垫圈','多用轮固定件','轮胎带','顶棚','双管8字连接件','铝管','铝管连接件','宝宝球池顶棚','脚轮','脚轮适配器','游戏袋','滑梯','模块式滑梯下板','弧形滑梯','小号泳池','大号泳池','加大号泳池','越野轮','越野轮连接件','6向连接件','亚克力板','轴承连接件（母头）','轴承连接件（公头）','11厘米管','17厘米管','软连接件'];
 
-const partsImgSrc=['cs5-scaled.svg','cs4-scaled.svg','cs3-scaled_0.svg','cf4-scaled.svg','cf3-scaled.svg','cs2-scaled.svg','cf2-scaled.svg','c45-scaled.svg','t10-scaled.svg','t15.svg','t20-scaled.svg','t25-scaled.svg','t35.svg','ts5-scaled_1.svg','t75-scaled.svg','tc1-scaled.svg','pa4-scaled_0.svg','pa2-scaled_0.svg','po4-scaled_0.svg','xrd-scaled.svg','wmu-scaled.svg','wmb-scaled.svg','wml-scaled.svg','wtr-scaled.svg','xrf-scaled.svg','cdt-scaled_0.svg','alu-scaled.svg','alc-scaled.svg','xbb-scaled.svg','mcr-scaled.svg','wra-scaled.svg','xpb-scaled.svg','msb-scaled.svg','sro-scaled.svg','csb-scaled.svg','pls-scaled.svg','pll-scaled.svg','plx-scaled.svg','mat-scaled.svg','mal-scaled.svg','cs6-scaled.svg','pxg-scaled.svg','cbr-scaled.svg','ch1-scaled.svg','t10-scaled.svg','t15.svg'];
+const partsImgSrc=['cs5-scaled.svg','cs4-scaled.svg','cs3-scaled_0.svg','cf4-scaled.svg','cf3-scaled.svg','cs2-scaled.svg','cf2-scaled.svg','c45-scaled.svg','t10-scaled.svg','t15.svg','t20-scaled.svg','t25-scaled.svg','t35.svg','ts5-scaled_1.svg','t75-scaled.svg','tc1-scaled.svg','pa4-scaled_0.svg','pa2-scaled_0.svg','po4-scaled_0.svg','xrd-scaled.svg','wmu-scaled.svg','wmb-scaled.svg','wml-scaled.svg','wtr-scaled.svg','xrf-scaled.svg','cdt-scaled_0.svg','alu-scaled.svg','alc-scaled.svg','xbb-scaled.svg','mcr-scaled.svg','wra-scaled.svg','xpb-scaled.svg','msb-scaled.svg','sro-scaled.svg','csb-scaled.svg','pls-scaled.svg','pll-scaled.svg','plx-scaled.svg','mat-scaled.svg','mal-scaled.svg','cs6-scaled.svg','pxg-scaled.svg','cbr-scaled.svg','ch1-scaled.svg','t10-scaled.svg','t15.svg','cxb-scaled.svg'];
 
 const kits=[["My First QUADRO",0,4,7,0,9,4,1,4,0,0,0,4,30,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 ["STARTER",2,7,6,0,8,8,3,0,0,0,0,0,48,0,0,0,3,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -91,6 +91,7 @@ const kits=[["My First QUADRO",0,4,7,0,9,4,1,4,0,0,0,4,30,0,0,0,1,0,0,0,0,0,0,0,
 ["ADVENTURE PLUS",2,8,4,1,4,14,2,4,0,10,0,0,34,0,0,0,8,0,4,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 ["KLETTERPYRAMIDE",3,8,15,2,6,5,0,0,0,0,0,0,64,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 ["EVOLUTION",4,10,12,1,11,12,4,4,0,18,0,4,60,0,0,0,8,9,0,0,2,2,2,2,0,2,0,0,0,2,2,0,0,0,0,0,0,0,0,0,0,0],
+["国产evo",4,10,13,1,12,12,4,4,0,18,0,4,60,0,0,0,8,9],
 ["OFFROAD",2,10,6,2,8,8,5,4,0,12,0,0,46,0,0,0,4,2,0,1,0,0,0,4,0,0,2,0,0,0,0,0,0,0,0,0,0,0,4,4,0,0],
 ["MOeBEL KIT S",1,6,9,0,2,9,1,0,0,6,0,0,35,0,0,0,3,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0],
 ["MOeBEL KIT L",4,13,14,0,11,13,3,0,0,23,0,0,57,0,0,0,4,4,0,0,1,1,1,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0],
@@ -185,6 +186,14 @@ const design=[['M1','M1$0$0$0$N/A',5,25,11,2,26,12,9,8,0,14,0,0,129,0,0,0,13,0,0
 ["M67","M67$0$0$0$N/A",10,16,25,6,25,9,4,4,0,18,0,0,144,0,0,5,9,2,0,1,1,1,1,0,1,4],
 ["M68","M68$0$0$0$N/A",4,14,18,1,16,9,3,4,0,20,0,4,79,0,0,0,6,3,0,0,2,2,2,0,0,2],
 ["M69","M69$0$0$0$N/A",2,14,16,1,16,14,4,4,0,24,0,4,73,0,0,0,8,8,0,0,2,2,2,0,0,2],
+["M70","M70$0$0$0$N/A",31,62,34,10,37,16,14,6,0,41,0,0,339,0,5,0,37,7,0,0,0,0,0,0,0,4,0,0,0,0,0,0,1,1,0,0,0,0,0,0,9,0,0,0],
+["M71","M71$0$0$0$N/A",0,6,6,0,8,2,2,0,0,12,0,0,26,0,0,0,2,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,4,0,0,4,2],
+["M72","M72$0$0$0$N/A",0,4,4,1,8,2,6,0,0,0,0,0,36,0,0,0,4,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,4,0,0,4,2],
+["M73","M73$0$0$0$N/A",4,6,8,0,4,2,2,0,0,0,0,0,45,0,0,0,11,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,4,0,0,4,2],
+["M74","M74$0$0$0$N/A",4,8,10,0,6,2,2,0,0,12,0,0,43,0,0,0,10,3,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,4,0,0,4,2],
+["M75","M75$0$0$0$N/A",2,10,8,0,3,4,2,0,0,17,0,0,32,0,0,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,4,0,0,4,0],
+["M76","M76$0$0$0$N/A",0,6,4,2,4,2,0,4,0,12,0,0,20,0,0,0,6,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,4,0,0,0,0],
+["M77","M77$0$0$0$N/A",2,10,12,0,4,2,0,0,0,16,0,0,37,0,0,0,10,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,4,0,0,0,0],
 ["a0001",'a0001$Baby Bauernhof$Baby Barnyard$宝贝农场$1$105×59×56 cm$1 h$',0,2,6,0,4,4,1,4,0,8,0,0,16,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 ["a0002",'a0002$Baby Ausguck für Krabbler$Baby Look-out for Crawlers$婴儿瞭望台爬行$1$85×45×65 cm$1 h$',0,2,6,0,4,4,0,0,0,7,0,0,16,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 ["a0003",'a0003$Baby Activity Center$Baby Activity Center$婴儿活动中心$0.5$85×65×45 cm$1 h$',0,2,6,0,4,4,0,0,0,8,0,0,15,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -798,6 +807,11 @@ if (window.addEventListener) {
 
 let kitsvalue=[];/*save current kits amounts for calc*/
 function FillHtml(){
+  const timezone=Intl.DateTimeFormat().resolvedOptions().timeZone.split('/')[1];
+  const china=['Shanghai','Urumqi'];
+  if (timezone=='Shanghai' || timezone=='Urumqi'){
+    window.location.href='https://mynthquadro.gitee.io/quadro/calc.html';
+  }
     if(parts.length != partsCh.length || parts.length != partsImgSrc.length){
       console.log("Error:parts data length");
     }
@@ -1318,6 +1332,7 @@ function showPRC(n){
       <div class="kits-row"><button class="addkit" >ADV+</button></div>
       <div class="kits-row"><button class="addkit" >KL(CL)</button></div>
       <div class="kits-row"><button class="addkit" >EVO</button></div>
+      <div class="kits-row lang-ch"><button class="addkit" >国产EVO</button></div>
       <div class="kits-row"><button class="addkit" >OFFROAD</button></div>
       <div class="kits-row"><button class="addkit" style="font-size:1.4em;">MOeBEL S<br><span class="lang-ch">(家具 S)</span><span class="lang-en">FURNITURE S</span></button></div>
       <div class="kits-row"><button class="addkit" style="font-size:1.4em;">MOeBEL L<br><span class="lang-ch">(家具 L)</span><span class="lang-en">FURNITURE L</span></button></div>
