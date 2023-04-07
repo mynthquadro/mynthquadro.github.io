@@ -807,11 +807,13 @@ if (window.addEventListener) {
 
 let kitsvalue=[];/*save current kits amounts for calc*/
 function FillHtml(){
-  const timezone=Intl.DateTimeFormat().resolvedOptions().timeZone.split('/')[1];
-  const china=['Shanghai','Urumqi'];
-  if (timezone=='Shanghai' || timezone=='Urumqi'){
-    window.location.href='https://mynthquadro.gitee.io/quadro/calc.html';
-  }
+    if(Intl){
+	const timezone=Intl.DateTimeFormat().resolvedOptions().timeZone.split('/')[1];
+        const china=['Shanghai','Urumqi'];
+        if (timezone=='Shanghai' || timezone=='Berlin'){
+            window.location.href='https://mynthquadro.gitee.io/quadro/calc.html';
+        }
+    }
     if(parts.length != partsCh.length || parts.length != partsImgSrc.length){
       console.log("Error:parts data length");
     }
