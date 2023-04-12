@@ -74,6 +74,16 @@ button{
 <style id="la-ch">.lang-ch{display:inline-block;}</style>
 
 <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?47ca844c9f8336373dd26747473782ef";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<script>
 const parts=['Raumkupplung 5-armig','Raumkupplung 4-armig','Raumkupplung 3-armig','Flaechenkupplung 4-armig','Flaechenkupplung 3-armig','Flaechenkupplung 2-armig (90Grad)','Flaechenkupplung 2-armig (180Grad)','Winkelkupplung (45Grad)','Rohr 10 cm','Rohr 15 cm','Rohr 20 cm','Rohr 25 cm','Rohr 35 cm','Rohr 35 cm 135Grad (3 Loecher)','Rohr 75 cm','Bogenrohr','Platte 40 × 40 cm','Platte 40 × 20 cm','Lochplatte 40 × 40 cm','Rundtextile','Multirad','Multirad Radlager','Multirad Arretierung','Laufreifen','Dachtextil','Doppelrohrverbinder','Aluminiumprofil','Aluminiumprofil-Verbinder','Dachtextil (Baby Ballcage)','Laufrolle','Laufrolle Adapter','Spielsack','Rutsche','Rutschenauslauf','Bogenrutsche','Poolfolie S','Poolfolie L','Poolfolie XXL','All-Terrain Rad','All-Terrain Rad Arretierung','Raumkupplung 6-armig','Plexiglass','Lagerkupplung','Lochzapfenkupplung 1-armig','Rohr 11 cm','Rohr 17cm','Flexikupplung Scharnier'];
 
 const partsCh=['5向连接件','4向连接件','3向连接件','十字连接件','T形连接件','L形连接件','1形连接件','斜角件','10厘米管','15厘米管','20厘米管','25厘米管','35厘米管','135度3洞35厘米管','75厘米管','弧形管','大板','半板','洞洞板','方形布','多用轮','多用轮垫圈','多用轮固定件','轮胎带','顶棚','双管8字连接件','铝管','铝管连接件','宝宝球池顶棚','脚轮','脚轮适配器','游戏袋','滑梯','模块式滑梯下板','弧形滑梯','小号泳池','大号泳池','加大号泳池','越野轮','越野轮连接件','6向连接件','亚克力板','轴承连接件（母头）','轴承连接件（公头）','11厘米管','17厘米管','软连接件'];
@@ -730,6 +740,7 @@ function FillHtml(){
   if (china.indexOf(timezone)>=0 && document.URL.indexOf('github')>0){
     document.getElementById('mirror-link').innerHTML='<a href="https://mynthquadro.gitee.io/quadro/calc.html" style="font-size:2em;">前往镜像站</a>';
   }
+
     if(parts.length != partsCh.length || parts.length != partsImgSrc.length){
       console.log("Error:parts data length");
     }
