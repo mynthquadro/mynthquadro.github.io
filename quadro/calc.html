@@ -73,12 +73,16 @@ button{
 <style id="la-en">.lang-en{display:none;}</style>
 <style id="la-ch">.lang-ch{display:inline-block;}</style>
 
-<script>
+<script>/*website statistic*/
 var _hmt = _hmt || [];
 (function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?47ca844c9f8336373dd26747473782ef";
-  var s = document.getElementsByTagName("script")[0]; 
+  const hm = document.createElement("script");
+  if (document.URL.indexOf('github')>0){
+    hm.src = "https://hm.baidu.com/hm.js?47ca844c9f8336373dd26747473782ef";
+  } else{/*gitee*/
+    hm.src = "https://hm.baidu.com/hm.js?09347eeb425c22061c2bd6a512f18fe6";
+  }
+  const s = document.getElementsByTagName("script")[0]; 
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
@@ -124,7 +128,8 @@ const kits=[["My First QUADRO",0,4,7,0,9,4,1,4,0,0,0,4,30,0,0,0,1,0,0,0,0,0,0,0,
 ["DS-040",16,21,8,4,16,6,0,0,6,6,6,0,121,0,0,0,5,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5],
 ["DS-017",5,20,9,6,16,13,8,4,9,23,6,0,77,0,0,0,9,6,4,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0],
 ["DS-020",12,27,15,10,29,13,17,8,1,17,25,0,150,0,0,0,22,6,8,0,0,0,0,0,0,2,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,2],
-["DS-024",3,24,9,6,16,8,9,8,12,14,2,0,87,0,0,0,13,4,5,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,2]];
+["DS-024",3,24,9,6,16,8,9,8,12,14,2,0,87,0,0,0,13,4,5,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,2],
+["DS-0125",24,47,18,7,32,11,16,8,11,21,15,0,228,0,0,0,22,4,6,0,0,0,0,0,0,2,0,0,0,0,0,0,1,0,0,0,0,0,0,0,5,0,0,0,2]];
 
 /* number $ ger name $ eng name $ ch name $ age $ dimension $ time $*/
 const design=[['M1','M1$0$0$0$N/A',5,25,11,2,26,12,9,8,0,14,0,0,129,0,0,0,13,0,0,2,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -737,8 +742,8 @@ let kitsvalue=[];/*save current kits amounts for calc*/
 function FillHtml(){
   const timezone=Intl.DateTimeFormat().resolvedOptions().timeZone.split('/')[1];
   const china=['Shanghai','Urumqi'];
-  if (china.indexOf(timezone)>=0 && document.URL.indexOf('github')>0){
-    document.getElementById('mirror-link').innerHTML='<a href="https://mynthquadro.gitee.io/quadro/calc.html" style="font-size:2em;">前往镜像站</a>';
+  if (china.indexOf(timezone)>=0 && document.URL.indexOf('github')>=0){
+    document.getElementById('mirror-link').innerHTML='<a href="https://mynthquadro.gitee.io/quadro/calc.html" style="font-size:1.5em;">如遇卡顿请点此链接前往国内镜像站</a>';
   }
 
     if(parts.length != partsCh.length || parts.length != partsImgSrc.length){
@@ -1256,6 +1261,7 @@ function openTab(evt, tabName) {
       <div class="kits-row lang-ch"><button class="addkit" >韩DS-017</button></div>
       <div class="kits-row lang-ch"><button class="addkit" >韩DS-020</button></div>
       <div class="kits-row lang-ch"><button class="addkit" >韩DS-024</button></div>
+      <div class="kits-row lang-ch"><button class="addkit" >韩DS-0125</button></div>
 
       <div style="clear:left;">
         <hr>
