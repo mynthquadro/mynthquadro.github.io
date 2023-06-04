@@ -94,6 +94,8 @@ const partsCh=['5向连接件','4向连接件','3向连接件','十字连接件'
 
 const partsImgSrc=['cs5-scaled.svg','cs4-scaled.svg','cs3-scaled_0.svg','cf4-scaled.svg','cf3-scaled.svg','cs2-scaled.svg','cf2-scaled.svg','c45-scaled.svg','t10-scaled.svg','t15.svg','t20-scaled.svg','t25-scaled.svg','t35.svg','ts5-scaled_1.svg','t75-scaled.svg','tc1-scaled.svg','pa4-scaled_0.svg','pa2-scaled_0.svg','po4-scaled_0.svg','xrd-scaled.svg','wmu-scaled.svg','wmb-scaled.svg','wml-scaled.svg','wtr-scaled.svg','xrf-scaled.svg','cdt-scaled_0.svg','alu-scaled.svg','alc-scaled.svg','xbb-scaled.svg','mcr-scaled.svg','wra-scaled.svg','xpb-scaled.svg','msb-scaled.svg','sro-scaled.svg','csb-scaled.svg','pls-scaled.svg','pll-scaled.svg','plx-scaled.svg','mat-scaled.svg','mal-scaled.svg','cs6-scaled.svg','pxg-scaled.svg','cbr-scaled.svg','ch1-scaled.svg','t10-scaled.svg','t15.svg','cxb-scaled.svg','ccl-scaled.svg'];
 
+const partsEn=['5way connector, black;','4way connector, black;','3way connector, black;','cross connector, black;','T connector, black;','elbow, black;','2way connector, black;','diagonal connector, black;','tube, 10 cm, red;','tube, 15 cm, red;','tube, 20 cm, red;','tube, 25 cm, red;','tube, 35 cm, red;','TBD','tube, 75 cm, red;','tube bend, red;','panel, for 35 cm x 35 cm, red;','panel, for 15 cm x 35 cm, red;','TBD','textil, red;','multi wheel, red;','bearing for multi wheel, black;','steering lock, red;','TBD','roof cover;','double tube connector, red;','alu-profile, 60 cm, alu;','connector for alu-profiles, 40 cm, alu;','roof cover, large;','casters, black;','TBD','bag, blue;','straight slide without run-out, red;','run-out for slide, yellow;','curved slide without run-out, green;','pool small, blue;','pool large, blue;','TBD','floating wheel, black;','hub cap, red;','6way connector, black;','TBD','bearing joint, black;','1way hole coupling, black;','tube, 11 cm, red;','tube, 17 cm, red;','flexible connector, 1 arm without bolt, black;','tube clamp (pool/lodge), red;'];/*暂无对应英文：35cm3洞管，洞洞板，多轮履带，万向轮转接头，超大泳池布，亚克力板*/
+
 const kits=[["My First QUADRO",0,4,7,0,9,4,1,4,0,0,0,4,30,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 ["STARTER",2,7,6,0,8,8,3,0,0,0,0,0,48,0,0,0,3,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 ["BASIC",2,10,6,2,8,8,5,4,0,8,0,0,46,0,0,0,4,0,0,1,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -306,7 +308,7 @@ const design=[['M1','M1$0$0$0$N/A',5,25,11,2,26,12,9,8,0,14,0,0,129,0,0,0,13,0,0
 ["a0085",'a0085$Mega Tor$Mega Goal$超级目标$1.5$165×85×165 cm$3 h$',2,6,6,1,10,8,7,0,0,0,0,0,58,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 ["a0086",'a0086$Rutschberg$Mountain Slide$滑坡$2$230×85×118 cm$3 h$',2,10,6,1,10,6,5,0,0,2,0,0,60,0,0,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 ["a0087",'a0087$Aussichsts- und Kletterturm$Observation and Climbing Tower$观察和攀登塔$2$165×165×125 cm$3 h$',2,10,6,1,10,10,7,0,0,2,0,0,66,0,0,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-["a0088",'a0088$Spielhäuschen$Play Cottage$玩山寨$1.5$132×125×144 cm$3 h$',2,10,6,1,10,9,6,4,0,2,0,0,64,0,0,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["a0088",'a0088$Spielhäuschen$Play Cottage$玩山寨$1.5$132×125×144 cm$3 h$',2,10,6,1,10,9,6,4,0,2,0,0,64,0,0,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 ["a0089",'a0089$Spielgerüst$Play Den$玩书房$1.5$165×85×125 cm$3 h$',2,10,6,1,10,8,3,0,0,0,0,0,62,0,0,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 ["a0090",'a0090$Spielpyramide$Play Pyramide$玩金字塔$2$230×85×117 cm$3 h$',2,10,6,1,10,8,2,0,0,2,0,0,59,0,0,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 ["a0091",'a0091$Quadball-Tor$Quadball Goal$四人球门$1.5$187×132×125 cm$3 h$',2,10,6,1,10,10,3,4,0,0,0,0,64,0,0,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -749,6 +751,7 @@ if (window.addEventListener) {
 
 let kitsvalue=[];/*save current kits amounts for calc*/
 function FillHtml(){
+  /*display gitee link for some timezone*/
   const timezone=Intl.DateTimeFormat().resolvedOptions().timeZone.split('/')[1];
   const china=['Shanghai','Urumqi'];
   if (china.indexOf(timezone)>=0 && document.URL.indexOf('github')>=0){
@@ -757,7 +760,14 @@ function FillHtml(){
 
     if(parts.length != partsCh.length || parts.length != partsImgSrc.length){
       console.log("Error:parts data length");
+      return false;
     }
+
+  /*display qrcode*/
+  const qrcode=getCookie('qrmini');
+  if(qrcode==''){
+    document.getElementById('qrcodewx').style.display='block';
+  }
 
   /*fill kitslist*/
   const kitsRows=document.getElementsByClassName("kits-row");
@@ -1205,6 +1215,23 @@ function loadParts(){
   }
 }
 
+function exportParts(){
+  const link = document.createElement("a");
+  const partsA = document.getElementsByClassName("amount");
+  let content='',num=0;
+  for (let index = 0; index < partsA.length; index++) {
+    if(partsA[index].textContent!='' && partsEn[index]!='TBD'){
+      content+=partsEn[index]+partsA[index].textContent+'\r\n';
+    }
+  }
+  link.setAttribute('href', 'data:text/plain;charset=utf-8,' + content);
+  link.setAttribute('download', 'myparts.qbl');
+  link.style.display = 'none';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
 /*change tab*/
 function openTab(evt, tabName) {
   let i, tabcontent, tablinks;
@@ -1220,23 +1247,59 @@ function openTab(evt, tabName) {
   evt.currentTarget.className += " active";
 }
 
+/*minimal & display qrcode*/
+function minimal(){
+  const temp=getCookie('qrmini');
+  if(temp == ''){
+    setCookie('qrmini',1,1000);
+  }
+  document.getElementById('qrcodewx').style.top='-38vh';
+  document.getElementById('qrcodewx').style.right='-38vw';
+  document.getElementById('qrcodewx').style.transform='scale(0.05)';
+  document.getElementById('qrcodewx').style.background='transparent';
+  setTimeout(() => {
+    document.getElementById('qrcode-head').style.display='none';
+    document.getElementById('qrcode-body').style.display='none';
+    document.getElementById('qrcode-mini').style.display='block';
+  }, "500");
+}
+function maximal(){
+  document.getElementById('qrcode-mini').style.display='none';
+  document.getElementById('qrcode-head').style.display='block';
+  document.getElementById('qrcode-body').style.display='block';
+  document.getElementById('qrcodewx').style.background='white';
+  document.getElementById('qrcodewx').style.top='10vh';
+  document.getElementById('qrcodewx').style.right='10vw';
+  document.getElementById('qrcodewx').style.transform='scale(1)';
+}
 </script>
 </head>
 
 <body>
   <div id='mirror-link'></div>
+
+  <div id='qrcodewx' style="transition:0.5s;display:none;border:1px solid grey;position:fixed;right:10vw;top:10vh;width:80vw;height:80vh;background:white;">
+    <div id="qrcode-mini" style='display:none;right:100%;height:100%;z-index:2;font-size:3em;' onclick='maximal();'><img style="height:100%;" src='gift.PNG'></div>
+    <div id="qrcode-head" style="transition:0.5s;">
+       <span style="border:1px solid grey;font-size:2em;width:1.6em;cursor:pointer;display:inline-block;float: right;text-align:center;" onclick="minimal();">&#8599;</span>
+    </div>
+    <div id='qrcode-body' style="transition:0.5s;height:80vh;overflow-y: scroll;">
+    <div style="font-size:1.8em;" class="coupon">
+      &#127873;<span class="lang-en"><span style="font-weight:700;">Coupon</span> for quadro shop</span><span class="lang-ch">官网优惠码</span>
+      <br>
+      <a href="https://quadroshop.com/?ref=cheryl"><span class="lang-en" style="text-decoration:underline;">Europe: </span><span class="lang-ch" style="text-decoration:underline;">欧洲（不含英国）：</span></a>Cheryl_EU_5
+      <br>
+      <a href="https://quadrotoys.com/?ref=cheryl"><span class="lang-en" style="text-decoration:underline;">North America: </span><span class="lang-ch" style="text-decoration:underline;">北美：</span></a>cheryl_usa_15
+    </div>
+    <br><span style="font-size:1.8em;">微信扫码入群 解锁更多玩法</span><br>
+    <img alt='qrcode' style='height:50%;' src='qrcodewx.jpg'>
+    </div>
+  </div>
+
   <div>
     <button onclick="changeLang();" style="background-color:#79bd9a;color:white;"><span class="lang-ch">English</span><span class="lang-en">中文</span></button>
   </div>
-  
-  <div style="font-size:1.8em;" class="coupon">
-    &#127873;<span class="lang-en"><span style="font-weight:700;">Coupon</span> for quadro shop</span><span class="lang-ch">官网优惠码</span>
-    <br>
-    <a href="https://quadroshop.com/?ref=cheryl"><span class="lang-en" style="text-decoration:underline;">Europe: </span><span class="lang-ch" style="text-decoration:underline;">欧洲（不含英国）：</span></a>Cheryl_EU_5
-    <span> </span>
-    <a href="https://quadrotoys.com/?ref=cheryl"><span class="lang-en" style="text-decoration:underline;">North America: </span><span class="lang-ch" style="text-decoration:underline;">北美：</span></a>cheryl_usa_15
-  </div>
-
+  <br>
   <div class="tab-body">
     <!-- 标签页部分 -->
     <div class="tablinks active" onclick="openTab(event, 'Tab1')" style="width:300px;"><span class="lang-ch">配件统计 & 可用模型</span><span class="lang-en">kits & model</span></div>
@@ -1293,6 +1356,7 @@ function openTab(evt, tabName) {
         <button onclick="ResetKitsNum();" style="background-color:#0b486b;color:white;"><span class="lang-en">Reset</span><span class="lang-ch">重置</span></button>
         <button onclick="saveParts();" style="background-color:#3b8686;color:white;"><span class="lang-en">Save</span><span class="lang-ch">保存</span></button>
         <button onclick="loadParts();" style="background-color:#79bd9a;color:white;"><span class="lang-en">Load</span><span class="lang-ch">读取</span></button>
+        <button onclick="exportParts();" style="background-color:#628ea7;color:white;"><span class="lang-en">Export</span><span class="lang-ch">导出</span></button>
       </div>
 
       <div class="parts-info">
