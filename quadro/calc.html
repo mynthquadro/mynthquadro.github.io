@@ -767,6 +767,8 @@ function FillHtml(){
   const qrcode=getCookie('qrmini');
   if(qrcode==''){
     document.getElementById('qrcodewx').style.display='block';
+  }else{
+    minimal();
   }
 
   /*fill kitslist*/
@@ -1261,6 +1263,7 @@ function minimal(){
     document.getElementById('qrcode-head').style.display='none';
     document.getElementById('qrcode-body').style.display='none';
     document.getElementById('qrcode-mini').style.display='block';
+    document.getElementById('qrcodewx').style.display='block';
   }, "500");
 }
 function maximal(){
