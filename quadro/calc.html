@@ -1219,15 +1219,15 @@ function loadParts(){
   }
 }
 
-function exportParts(){
+function exportParts(language){
   const link = document.createElement("a");
   const partsA = document.getElementsByClassName("amount");
   let content='',num=0;
   for (let index = 0; index < partsA.length; index++) {
     if(partsA[index].textContent!='' && partsEn[index]!='TBD'){
-      if(lang==0){/*chinese*/
+      if(language==0){/*chinese*/
         content+=partsForExport[index]+partsA[index].textContent+'\r\n';
-      }else if(lang==1){/*english*/
+      }else if(language==1){/*english*/
         content+=partsEn[index]+partsA[index].textContent+'\r\n';
       }
     }
@@ -1367,7 +1367,8 @@ function maximal(){
         <button onclick="ResetKitsNum();" style="background-color:#0b486b;color:white;"><span class="lang-en">Reset</span><span class="lang-ch">重置</span></button>
         <button onclick="saveParts();" style="background-color:#3b8686;color:white;"><span class="lang-en">Save</span><span class="lang-ch">保存</span></button>
         <button onclick="loadParts();" style="background-color:#79bd9a;color:white;"><span class="lang-en">Load</span><span class="lang-ch">读取</span></button>
-        <button onclick="exportParts();" style="background-color:#628ea7;color:white;"><span class="lang-en">Export</span><span class="lang-ch">导出中文版</span></button>
+        <button onclick="exportParts(1);" style="background-color:#628ea7;color:white;"><span class="lang-en">Export(EN)</span><span class="lang-ch">导出英文版</span></button>
+        <button onclick="exportParts(0);" style="background-color:#628ea7;color:white;"><span class="lang-en">Export(CH)</span><span class="lang-ch">导出中文版</span></button>
       </div>
 
       <div class="parts-info">
