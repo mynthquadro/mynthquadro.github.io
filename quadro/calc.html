@@ -97,7 +97,7 @@ const partsImgSrc=['cs5-scaled.svg','cs4-scaled.svg','cs3-scaled_0.svg','cf4-sca
 
 const partsEn=['5way connector, black;','4way connector, black;','3way connector, black;','cross connector, black;','T connector, black;','elbow, black;','2way connector, black;','diagonal connector, black;','tube, 10 cm, red;','tube, 15 cm, red;','tube, 20 cm, red;','tube, 25 cm, red;','tube, 35 cm, red;','TBD','tube, 75 cm, red;','tube bend, red;','panel, for 35 cm x 35 cm, red;','panel, for 15 cm x 35 cm, red;','TBD','textil, red;','multi wheel, red;','bearing for multi wheel, black;','steering lock, red;','TBD','roof cover;','double tube connector, red;','alu-profile, 60 cm, alu;','connector for alu-profiles, 40 cm, alu;','roof cover, large;','casters, black;','TBD','bag, blue;','straight slide without run-out, red;','run-out for slide, yellow;','curved slide without run-out, green;','pool small, blue;','pool large, blue;','TBD','floating wheel, black;','hub cap, red;','6way connector, black;','TBD','bearing joint, black;','1way hole coupling, black;','tube, 11 cm, red;','tube, 17 cm, red;','flexible connector, 1 arm without bolt, black;','tube clamp (pool/lodge), red;'];/*暂无对应英文：35cm3洞管，洞洞板，多轮履带，万向轮转接头，超大泳池布，亚克力板*/
 
-const partsForExport=['5通连接器, black;','4通连接器, black;','3通连接器, black;','十字连接器, black;','T型连接器, black;','L型连接器, black;','一字连接器, black;','45度连接器, black;','管, 10 cm, red;','管, 15 cm, red;','管, 20 cm, red;','管, 25 cm, red;','管, 35 cm, red;','TBD','管, 75 cm, red;','弧形管, red;','面板, for 35 cm x 35 cm, red;','面板, for 15 cm x 35 cm, red;','TBD','布片, red;','多轮, red;','多轮轴承, black;','多轮锁, red;','TBD','房顶;','双管连接器, red;','铝管, 60 cm, alu;','铝管连接器, 40 cm, alu;','大房顶, large;','脚轮, black;','TBD','布兜, blue;','直滑梯（无尾部）, red;','滑梯尾部, yellow;','弧形滑梯（无尾部）, green;','小游泳池, blue;','大游泳池, blue;','TBD','越野轮, black;','越野轮锁, red;','6通连接器, black;','TBD','轴承连接器, black;','孔连接器, black;','管, 11 cm, red;','管, 17 cm, red;','柔性连接器铰链, black;','管夹（游泳池/小屋）, red;'];/*暂无对应英文：35cm3洞管，洞洞板，多轮履带，万向轮转接头，超大泳池布，亚克力板*/
+const partsForExport=['5通连接器, black;','4通连接器, black;','3通连接器, black;','十字连接器, black;','T型连接器, black;','L型连接器, black;','一字连接器, black;','45度连接器, black;','管, 10 cm, red;','管, 15 cm, red;','管, 20 cm, red;','管, 25 cm, red;','管, 35 cm, red;','TBD','管, 75 cm, red;','弧形管, red;','面板, 35 cm x 35 cm, red;','面板, 15 cm x 35 cm, red;','TBD','布片, red;','多轮, red;','多轮轴承, black;','多轮锁, red;','TBD','房顶;','双管连接器, red;','铝管, 60 cm, alu;','铝管连接器, 40 cm, alu;','大房顶, large;','脚轮, black;','TBD','布兜, blue;','直滑梯（无尾部）, red;','滑梯尾部, yellow;','弧形滑梯（无尾部）, green;','小游泳池, blue;','大游泳池, blue;','TBD','越野轮, black;','越野轮锁, red;','6通连接器, black;','TBD','轴承连接器, black;','孔连接器, black;','管, 11 cm, red;','管, 17 cm, red;','柔性连接器铰链, black;','管夹（游泳池/小屋）, red;'];/*暂无对应英文：35cm3洞管，洞洞板，多轮履带，万向轮转接头，超大泳池布，亚克力板*/
 
 const kits=[["My First QUADRO",0,4,7,0,9,4,1,4,0,0,0,4,30,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 ["STARTER",2,7,6,0,8,8,3,0,0,0,0,0,48,0,0,0,3,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -1233,7 +1233,7 @@ function exportParts(language){
       }
     }
   }
-  link.setAttribute('href', 'data:text/plain;charset=utf-8,' + content);
+  link.setAttribute('href', 'data:text/plain;charset=ANSI,' + content);
   link.setAttribute('download', 'myparts.qbl');
   link.style.display = 'none';
   document.body.appendChild(link);
@@ -1263,9 +1263,9 @@ function minimal(){
     setCookie('qrmini',1,1000);
   }
   document.getElementById('qrcodewx').style.position='absolute';
-  document.getElementById('qrcodewx').style.top='-38vh';
+  document.getElementById('qrcodewx').style.top='-35vh';
   document.getElementById('qrcodewx').style.left='40%';
-  document.getElementById('qrcodewx').style.transform='scale(0.05)';
+  document.getElementById('qrcodewx').style.transform='scale(0.07)';
   document.getElementById('qrcodewx').style.background='transparent';
   setTimeout(() => {
     document.getElementById('qrcode-head').style.display='none';
@@ -1291,7 +1291,7 @@ function maximal(){
   <div id='mirror-link'></div>
 
   <div id='qrcodewx' style="transition:0.5s;display:none;border:1px solid grey;position:fixed;left:10vw;top:10vh;width:80vw;height:80vh;background:white;overflow-y: scroll;">
-    <div id="qrcode-mini" style='display:none;right:100%;height:100%;z-index:2;font-size:3em;' onclick='maximal();'><img style="height:100%;" src='gift.PNG'></div>
+    <div id="qrcode-mini" style='display:none;right:100%;height:100%;z-index:2;font-size:3em;cursor:pointer;' onclick='maximal();'><img style="height:80%;" src='gift.PNG'></div>
     <div id="qrcode-head" style="transition:0.5s;">
        <span style="border:1px solid grey;font-size:2em;width:1.6em;cursor:pointer;display:inline-block;float: right;text-align:center;" onclick="minimal();">&#8599;</span>
     </div>
