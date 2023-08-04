@@ -4,6 +4,18 @@
 <meta charset="utf-8">
 <title>攀爬架</title>
 <style>
+.color-set{
+  display:inline-block;
+  font-size:2em;
+  margin:10px;
+  border:1px grey solid;
+  background:white;
+  cursor:pointer;
+}
+.selected{
+  border:2px black solid;
+  background:grey;
+}
 body{
   background-color:#eee;
   color:#115;
@@ -767,7 +779,13 @@ if (window.addEventListener) {
 }else if (window.attachEvent) {
     document.attachEvent('onDOMContentLoaded', FillHtml);
 }
-
+const colorset=[
+	['1.,0.,0.','0.,0.5,0.1','0.,0.,1.','1.,1.,0.','classic'],
+	['0.92,0.92,0.88','0.46,0.45,0.43','0.96,0.80,0.80','0.47,0.35,0.43','home pink'],
+	['0.92,0.92,0.88','0.46,0.45,0.43','0.82,0.90,0.71','0.31,0.45,0.37','home green'],
+	['0.92,0.92,0.88','0.46,0.45,0.43','0.75,0.86,0.94','0.31,0.43,0.53','home blue'],
+	['0.92,0.92,0.88','0.46,0.45,0.43','1.,1.,0.','1.,1.,0.','home yellow']
+];
 let kitsvalue=[];/*save current kits amounts for calc*/
 function FillHtml(){
   /*display gitee link for some timezone*/
@@ -823,9 +841,140 @@ function FillHtml(){
       Calc();
     });
   }
+	/*fill color select*/
+    for(let i =0;i<colorset.length;i++){
+        const text='<div class="color-set" data-id="'+i+'" onclick="changeColor(this)">'+colorset[i][4]+'</div>'
+        document.getElementById("color-select").insertAdjacentHTML('beforeend', text);
+    }
+	/*intial file input*/
+    const fileInput = document.getElementById("fileInput");
+    fileInput.addEventListener('change', handleFileSelect);
 
+    const dropArea = document.getElementById('dropArea');
+    dropArea.addEventListener(
+        "click",
+        (e) => {
+            if (fileInput) {
+                fileInput.click();
+            }
+        },
+        false,
+    );
+    dropArea.addEventListener('dragover', (event) => {
+        event.preventDefault();
+        dropArea.classList.add('active');
+    });
+    dropArea.addEventListener('dragleave', (event) => {
+        event.preventDefault();
+        dropArea.classList.remove('active');
+    });
+    dropArea.addEventListener('drop', handleFileDrop);
 }
 
+var files;
+/*change color of qdf file*/
+function changeColor(element){
+    if(element.classList.contains('selected')){
+        element.classList.remove('selected');
+    }else{
+        element.classList.add('selected');
+    }
+}
+
+function handleFileDrop(event) {
+    event.preventDefault();
+    const dropArea = document.getElementById('dropArea');
+    dropArea.classList.remove('active');
+    files = event.dataTransfer.files;
+    document.getElementById('dropArea').innerHTML='已选择 '+files.length+' 个文件';
+}
+
+function handleFileSelect(event) {
+    files = event.target.files;
+    document.getElementById('dropArea').innerHTML='已选择 '+files.length+' 个文件';
+}
+
+function getRandomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function multicolor(){
+    let material='';
+    let materialid=99;
+    const color_ids=document.getElementsByClassName('selected');
+    if(color_ids.length<=0){
+        document.getElementById('info').innerHTML+='请选择颜色<br>';
+        return false;
+    }
+    for(let i=0;i<color_ids.length;i++){
+        const color_id=color_ids[i].getAttribute('data-id');
+        material+='material3{'+materialid+',"'+colorset[color_id][4]+'0", 1, '+colorset[color_id][0]+', 0.5,1.,1.,7.5, 0.3,0.,0.,7.5, "", 0}\n';
+        materialid--;
+        material+='material3{'+materialid+',"'+colorset[color_id][4]+'1", 1, '+colorset[color_id][1]+', 0.5,1.,1.,7.5, 0.3,0.,0.,7.5, "", 0}\n';
+        materialid--;
+        material+='material3{'+materialid+',"'+colorset[color_id][4]+'2", 1, '+colorset[color_id][2]+', 0.5,1.,1.,7.5, 0.3,0.,0.,7.5, "", 0}\n';
+        materialid--;
+        material+='material3{'+materialid+',"'+colorset[color_id][4]+'3", 1, '+colorset[color_id][3]+', 0.5,1.,1.,7.5, 0.3,0.,0.,7.5, "", 0}\n';
+        materialid--;
+    }
+    for(let i=0;i<files.length;i++){
+        const reader = new FileReader();
+        const name='color'+files[i].name;
+        reader.onload = (event) => {
+            let fileContent = event.target.result.split('\n');
+            fileContent[0]=fileContent[0]+'\n'+material;//第二行开始添加材质
+            //染色
+            let fileResult='';
+            for(let j=0;j<fileContent.length;j++){
+                if(fileContent[j].includes('tube') || fileContent[j].includes('panel')){
+                    const start_index=fileContent[j].indexOf('{');
+                    const end_index=fileContent[j].indexOf(',');
+                    fileContent[j]=fileContent[j].substring(0,start_index+1)+getRandomNumber(materialid+1, 99)+fileContent[j].substring(end_index);
+                }
+                fileResult+=fileContent[j]+'\n';
+            }
+            
+            downloadColorQDF(name,fileResult);
+        };
+        reader.readAsText(files[i]);
+    }
+}
+
+function downloadColorQDF(title,result){
+    if(result==''){
+        document.getElementById('info').innerHTML+='没有可以下载的内容<br>';
+        return;
+    }
+    const textToWrite = result;
+    const textFileAsBlob = new Blob([textToWrite], {type:'text/plain'});
+    const downloadLink = document.createElement("a");
+    downloadLink.download =title;
+    downloadLink.innerHTML = "Download File";
+    if (window.webkitURL != null)
+    {
+        // Chrome allows the link to be clicked
+        // without actually adding it to the DOM.
+        downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
+    }
+    else
+    {
+        // Firefox requires the link to be added to the DOM
+        // before it can be clicked.
+        downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+        downloadLink.style.display = "none";
+        document.body.appendChild(downloadLink);
+    }
+
+    downloadLink.click();
+}
+
+function colorcode(){
+    let hex=document.getElementById('col6').value.replace('#','');
+    const r = parseInt(hex.substring(0, 2), 16)/255;
+    const g = parseInt(hex.substring(2, 4), 16)/255;
+    const b = parseInt(hex.substring(4, 6), 16)/255;
+    document.getElementById('col6').value=r.toFixed(2)+','+g.toFixed(2)+','+b.toFixed(2);
+}
 /*get available designs and save in array*/
 let recommendhtml=[[],[]];
 let perpagedefault=[10,10];
@@ -1440,6 +1589,13 @@ function maximal(){
           <button class="re-next" onclick="nextpage(0);"><span class="lang-en">next</span><span class="lang-ch">下一页</span></button>
         </div>
       </div>
+      <div style="width:49%;min-height:70px;cursor:pointer;border:2px solid #ccc;background:white;" id="dropArea">
+      <span id="dropInfo">拖动qdf文件到此处或点此选择文件，然后选择颜色系列</span>
+      </div>
+      <input type="file" id="fileInput" style="display:none;" multiple><br>
+      颜色系列（可多选）：<div id='color-select'></div>
+      <button onclick='multicolor();'>染色并下载(测试中)</button>
+      <div id='info'></div>
     </div>
 
     <div id="Tab2" class="tabcontent">
