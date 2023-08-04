@@ -909,12 +909,14 @@ function multicolor(){
     let hasHome=true;
     for(let i=0;i<color_ids.length;i++){
         const color_id=color_ids[i].getAttribute('data-id');
-        if(color_id>0 && hasHome){/*只添加一次白色、灰色材质*/
+        if(hasHome){/*只添加一次白色、灰色材质*/
             material+='material3{'+materialid+',"'+colorset[color_id][4]+'0", 1, '+colorset[color_id][0]+', 0.5,1.,1.,7.5, 0.3,0.,0.,7.5, "", 0}\n';
             materialid--;
             material+='material3{'+materialid+',"'+colorset[color_id][4]+'1", 1, '+colorset[color_id][1]+', 0.5,1.,1.,7.5, 0.3,0.,0.,7.5, "", 0}\n';
             materialid--;
-            hasHome=false;
+            if(color_id>0){
+                hasHome=false;
+            }
         }
         material+='material3{'+materialid+',"'+colorset[color_id][4]+'2", 1, '+colorset[color_id][2]+', 0.5,1.,1.,7.5, 0.3,0.,0.,7.5, "", 0}\n';
         materialid--;
