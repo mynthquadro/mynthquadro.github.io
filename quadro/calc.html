@@ -906,12 +906,16 @@ function multicolor(){
         document.getElementById('info').innerHTML+='请选择颜色<br>';
         return false;
     }
+    let hasHome=true;
     for(let i=0;i<color_ids.length;i++){
         const color_id=color_ids[i].getAttribute('data-id');
-        material+='material3{'+materialid+',"'+colorset[color_id][4]+'0", 1, '+colorset[color_id][0]+', 0.5,1.,1.,7.5, 0.3,0.,0.,7.5, "", 0}\n';
-        materialid--;
-        material+='material3{'+materialid+',"'+colorset[color_id][4]+'1", 1, '+colorset[color_id][1]+', 0.5,1.,1.,7.5, 0.3,0.,0.,7.5, "", 0}\n';
-        materialid--;
+        if(color_id>0 && hasHome){/*只添加一次白色、灰色材质*/
+            material+='material3{'+materialid+',"'+colorset[color_id][4]+'0", 1, '+colorset[color_id][0]+', 0.5,1.,1.,7.5, 0.3,0.,0.,7.5, "", 0}\n';
+            materialid--;
+            material+='material3{'+materialid+',"'+colorset[color_id][4]+'1", 1, '+colorset[color_id][1]+', 0.5,1.,1.,7.5, 0.3,0.,0.,7.5, "", 0}\n';
+            materialid--;
+            hasHome=false;
+        }
         material+='material3{'+materialid+',"'+colorset[color_id][4]+'2", 1, '+colorset[color_id][2]+', 0.5,1.,1.,7.5, 0.3,0.,0.,7.5, "", 0}\n';
         materialid--;
         material+='material3{'+materialid+',"'+colorset[color_id][4]+'3", 1, '+colorset[color_id][3]+', 0.5,1.,1.,7.5, 0.3,0.,0.,7.5, "", 0}\n';
@@ -919,7 +923,10 @@ function multicolor(){
     }
     for(let i=0;i<files.length;i++){
         const reader = new FileReader();
-        const name='color'+files[i].name;
+        const name='color_'+files[i].name;
+        if(name.substring(name.lastIndexOf('.')) != '.qdf'){
+            continue;
+        }
         reader.onload = (event) => {
             let fileContent = event.target.result.split('\n');
             fileContent[0]=fileContent[0]+'\n'+material;//第二行开始添加材质
@@ -968,13 +975,6 @@ function downloadColorQDF(title,result){
     downloadLink.click();
 }
 
-function colorcode(){
-    let hex=document.getElementById('col6').value.replace('#','');
-    const r = parseInt(hex.substring(0, 2), 16)/255;
-    const g = parseInt(hex.substring(2, 4), 16)/255;
-    const b = parseInt(hex.substring(4, 6), 16)/255;
-    document.getElementById('col6').value=r.toFixed(2)+','+g.toFixed(2)+','+b.toFixed(2);
-}
 /*get available designs and save in array*/
 let recommendhtml=[[],[]];
 let perpagedefault=[10,10];
@@ -1492,6 +1492,7 @@ function maximal(){
     <!-- 标签页部分 -->
     <div class="tablinks active" onclick="openTab(event, 'Tab1')" style="width:300px;"><span class="lang-ch">配件统计 & 可用模型</span><span class="lang-en">kits & model</span></div>
     <div class="tablinks" onclick="openTab(event, 'Tab2')"><span class="lang-ch">模型搜索</span><span class="lang-en">search</span></div>
+    <div class="tablinks" onclick="openTab(event, 'Tab3')"><span class="lang-ch">qdf染色</span><span class="lang-en">color qdf</span></div>
 
     <!-- 标签页内容部分 -->
     <div id="Tab1" class="tabcontent" style="display:block;">
@@ -1589,13 +1590,6 @@ function maximal(){
           <button class="re-next" onclick="nextpage(0);"><span class="lang-en">next</span><span class="lang-ch">下一页</span></button>
         </div>
       </div>
-      <div style="width:49%;min-height:70px;cursor:pointer;border:2px solid #ccc;background:white;" id="dropArea">
-      <span id="dropInfo">拖动qdf文件到此处或点此选择文件，然后选择颜色系列</span>
-      </div>
-      <input type="file" id="fileInput" style="display:none;" multiple><br>
-      颜色系列（可多选）：<div id='color-select'></div>
-      <button onclick='multicolor();'>染色并下载(测试中)</button>
-      <div id='info'></div>
     </div>
 
     <div id="Tab2" class="tabcontent">
@@ -1700,6 +1694,15 @@ function maximal(){
       </div>
     </div>
 
+    <div id="Tab3" class="tabcontent">
+      <div style="width:49%;min-height:70px;cursor:pointer;border:2px solid #ccc;background:white;" id="dropArea">
+      <span id="dropInfo">拖动qdf文件到此处或点此选择文件，然后选择颜色系列</span>
+      </div>
+      <input type="file" id="fileInput" style="display:none;" multiple><br>
+      颜色系列（可多选）：<div id='color-select'></div>
+      <button onclick='multicolor();'>染色并下载(测试中)</button>
+      <div id='info'></div>
+    </div>
   </div>
   <!-- design详情页 -->
   <div class='se-container' style="display:none;border:1px solid grey;position:fixed;left:10vw;top:10vh;width:80vw;height:80vh;background:white;">
