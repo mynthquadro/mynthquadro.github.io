@@ -910,6 +910,7 @@ function multicolor(){
         return false;
     }
     let hasHome=true;
+    let homeGrey=0;
     for(let i=0;i<color_ids.length;i++){
         const color_id=color_ids[i].getAttribute('data-id');
         if(hasHome){/*只添加一次白色、灰色材质*/
@@ -919,6 +920,7 @@ function multicolor(){
             materialid--;
             if(color_id>0){
                 hasHome=false;
+                homeGrey=materialid+2;
             }
         }
         material+='material3{'+materialid+',"'+colorset[color_id][4]+'2", 1, '+colorset[color_id][2]+', 0.5,1.,1.,7.5, 0.3,0.,0.,7.5, "", 0}\n';
@@ -938,10 +940,14 @@ function multicolor(){
             //染色
             let fileResult='';
             for(let j=0;j<fileContent.length;j++){
-                if(fileContent[j].includes('tube') || fileContent[j].includes('panel')){
+                if(fileContent[j].includes('tube') || fileContent[j].includes('panel') || fileContent[j].includes('multi-wheel2')){
                     const start_index=fileContent[j].indexOf('{');
                     const end_index=fileContent[j].indexOf(',');
                     fileContent[j]=fileContent[j].substring(0,start_index+1)+getRandomNumber(materialid+1, 99)+fileContent[j].substring(end_index);
+                }else if(hasHome==false && (fileContent[j].includes('clamp2') || fileContent[j].includes('steering-lock2'))){
+                    const start_index=fileContent[j].indexOf('{');
+                    const end_index=fileContent[j].indexOf(',');
+                    fileContent[j]=fileContent[j].substring(0,start_index+1)+homeGrey+fileContent[j].substring(end_index);
                 }
                 fileResult+=fileContent[j]+'\n';
             }
