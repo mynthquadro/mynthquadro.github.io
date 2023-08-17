@@ -67,6 +67,8 @@ button{
 .tablinks:nth-child(1){background-color:#0b486b;}
 .tablinks:nth-child(2){background-color:#3b8686;}
 .tablinks:nth-child(3){background-color:#79bd9a;}
+.tablinks:nth-child(4){background-color:#5bbbd8;}
+.tablinks:nth-child(5){background-color:#74a0d3;}
 .tablinks.active{
   border-bottom:3px solid white;
   background-color:white;
@@ -76,6 +78,8 @@ button{
 .tablinks:nth-child(1).active{border-left:3px solid #0b486b;color:#0b486b;}
 .tablinks:nth-child(2).active{border-left:3px solid #3b8686;color:#3b8686;}
 .tablinks:nth-child(3).active{border-left:3px solid #79bd9a;color:#79bd9a;}
+.tablinks:nth-child(4).active{border-left:3px solid #5bbbd8;color:#5bbbd8;}
+.tablinks:nth-child(5).active{border-left:3px solid #74a0d3;color:#74a0d3;}
 .tabcontent{
   background-color:white;
   display:none;
@@ -790,13 +794,7 @@ if (window.addEventListener) {
 }else if (window.attachEvent) {
     document.attachEvent('onDOMContentLoaded', FillHtml);
 }
-const colorset=[
-	['1.,0.,0.','0.,0.5,0.1','0.,0.,1.','1.,1.,0.','经典色'],
-	['0.92,0.92,0.88','0.46,0.45,0.43','1.,0.7255,0.8471','0.6118,0.4471,0.6039','Home粉'],
-	['0.92,0.92,0.88','0.46,0.45,0.43','0.7176,0.8353,0.7098','0.251,0.5686,0.4314','Home绿'],
-	['0.92,0.92,0.88','0.46,0.45,0.43',' 0.5529,0.7765,1.','0.2314,0.3647,0.5294','Home蓝'],
-	['0.9373,0.9608,0.8627','0.9373,0.9608,0.8627','1.,1.,0.5725','1.,1.,0.5725','Dio黄']
-];
+
 let kitsvalue=[];/*save current kits amounts for calc*/
 function FillHtml(){
   /*display gitee link for some timezone*/
@@ -853,8 +851,9 @@ function FillHtml(){
     });
   }
 	/*fill color select*/
-    for(let i =0;i<colorset.length;i++){
-        const text='<div class="color-set" data-id="'+i+'" onclick="changeColor(this)">'+colorset[i][4]+'</div>'
+    const color_set_name=['经典色','Home粉','Home绿','Home蓝','Dio黄'];
+    for(let i =0;i<color_set_name.length;i++){
+        const text='<div class="color-set" data-id="'+i+'" onclick="changeColor(this)">'+color_set_name[i]+'</div>'
         document.getElementById("color-select").insertAdjacentHTML('beforeend', text);
     }
 	/*intial file input*/
@@ -910,6 +909,14 @@ function getRandomNumber(min, max) {
 }
 
 function multicolor(){
+    const colorset=[
+    '1.,0.,0.','0.,0.5,0.1','0.,0.,1.','1.,1.,0.',//红，绿，蓝，黄99,97,95,93
+	  '0.92,0.92,0.88','0.46,0.45,0.43',//白，灰91,89
+    '1.,0.7255,0.8471','0.6118,0.4471,0.6039',//Home粉87,85
+	  '0.7176,0.8353,0.7098','0.251,0.5686,0.4314',//Home绿83,81
+	  '0.5529,0.7765,1.','0.2314,0.3647,0.5294',//Home蓝79,77
+	  '1.,1.,0.5725'//Dio黄75
+    ];
     let material='';
     let materialid=99;
     const color_ids=document.getElementsByClassName('selected');
@@ -917,45 +924,53 @@ function multicolor(){
         document.getElementById('info').innerHTML+='请选择颜色<br>';
         return false;
     }
-    let hasHome=true;
-    let homeGrey=0;
+    let tubeColors=[];
+    let panelColors=[];
     for(let i=0;i<color_ids.length;i++){
-        const color_id=color_ids[i].getAttribute('data-id');
-        if(hasHome){/*只添加一次白色、灰色材质*/
-            material+='material3{'+materialid+',"'+colorset[color_id][4]+'0", 1, '+colorset[color_id][0]+', 0.5,1.,1.,7.5, 0.3,0.,0.,7.5, "", 0}\n';
-            materialid--;
-            material+='material3{'+materialid+',"'+colorset[color_id][4]+'1", 1, '+colorset[color_id][1]+', 0.5,1.,1.,7.5, 0.3,0.,0.,7.5, "", 0}\n';
-            materialid--;
-            if(color_id>0){
-                hasHome=false;
-                homeGrey=materialid+2;
-            }
+      const color_id=color_ids[i].getAttribute('data-id');
+      if (color_id==0){//经典色
+        tubeColors.push(99,97,95,93);
+        panelColors.push(98,96,94,92);
+      }else{//home色 白，灰
+        tubeColors.push(91,89);
+        panelColors.push(90,88);
+        if (color_id==4){//dio黄
+          tubeColors.push(75);
+          panelColors.push(74);
+        }else{//其他home色
+          tubeColors.push(91-color_id*4, 89-color_id*4);
+          panelColors.push(90-color_id*4, 88-color_id*4);
         }
-        material+='material3{'+materialid+',"'+colorset[color_id][4]+'2", 1, '+colorset[color_id][2]+', 0.5,1.,1.,7.5, 0.3,0.,0.,7.5, "", 0}\n';
+      }
+    }
+    for(let i=0;i<colorset.length;i++){
+        material+='material3{'+materialid+',"TJStube'+materialid+'", 1, '+colorset[i]+', 0.5,1.,1.,7.5, 0.3,0.,0.,7.5, "", 0}\n';//add tube color material
         materialid--;
-        material+='material3{'+materialid+',"'+colorset[color_id][4]+'3", 1, '+colorset[color_id][3]+', 0.5,1.,1.,7.5, 0.3,0.,0.,7.5, "", 0}\n';
+        material+='material3{'+materialid+',"TJSpanel'+materialid+'", 1, '+colorset[i]+', 0.6,0.5,0.5,7.5, 0.6,0.5,0.5,7.5, "", 0}\n';//add panel color material
         materialid--;
     }
     for(let i=0;i<files.length;i++){
         const reader = new FileReader();
         const name='color_'+files[i].name;
         if(name.substring(name.lastIndexOf('.')) != '.qdf'){
-            continue;
+          document.getElementById('info').innerHTML+=name+'不是qdf文件<br>';
+          continue;
         }
         reader.onload = (event) => {
             let fileContent = event.target.result.split('\n');
+            console.log(material);
             fileContent[0]=fileContent[0]+'\n'+material;//第二行开始添加材质
             //染色
-            let fileResult='';
-            for(let j=0;j<fileContent.length;j++){
-                if(fileContent[j].includes('tube') || fileContent[j].includes('panel') || fileContent[j].includes('multi-wheel2')){
-                    const start_index=fileContent[j].indexOf('{');
-                    const end_index=fileContent[j].indexOf(',');
-                    fileContent[j]=fileContent[j].substring(0,start_index+1)+getRandomNumber(materialid+1, 99)+fileContent[j].substring(end_index);
-                }else if(hasHome==false && (fileContent[j].includes('clamp2') || fileContent[j].includes('steering-lock2'))){
-                    const start_index=fileContent[j].indexOf('{');
-                    const end_index=fileContent[j].indexOf(',');
-                    fileContent[j]=fileContent[j].substring(0,start_index+1)+homeGrey+fileContent[j].substring(end_index);
+            let fileResult=fileContent[0];
+            for(let j=1;j<fileContent.length;j++){
+                const start_index=fileContent[j].indexOf('{');
+                const end_index=fileContent[j].indexOf(',');
+                if(fileContent[j].includes('tube') || fileContent[j].includes('multi-wheel2')){
+                    fileContent[j]=fileContent[j].substring(0,start_index+1)+tubeColors[Math.floor(Math.random() * tubeColors.length)]+fileContent[j].substring(end_index);
+                }else if(fileContent[j].includes('panel')){
+                    fileContent[j]=fileContent[j].substring(0,start_index+1)+panelColors[Math.floor(Math.random() * panelColors.length)]+fileContent[j].substring(end_index);
+                }else if(fileContent[j].includes('clamp2') || fileContent[j].includes('steering-lock2')){//8字连接件和多轮固定件只有红灰两种颜色
+                    fileContent[j]=fileContent[j].substring(0,start_index+1)+[99,89][Math.floor(Math.random() * 2)]+fileContent[j].substring(end_index);
                 }
                 fileResult+=fileContent[j]+'\n';
             }
@@ -971,26 +986,22 @@ function downloadColorQDF(title,result){
         document.getElementById('info').innerHTML+='没有可以下载的内容<br>';
         return;
     }
-    const textToWrite = result;
-    const textFileAsBlob = new Blob([textToWrite], {type:'text/plain'});
     const downloadLink = document.createElement("a");
     downloadLink.download =title;
-    downloadLink.innerHTML = "Download File";
     if (window.webkitURL != null)
     {
         // Chrome allows the link to be clicked
         // without actually adding it to the DOM.
-        downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
+        downloadLink.href = 'data:text/plain;charset=utf-8,' + result;
     }
     else
     {
         // Firefox requires the link to be added to the DOM
         // before it can be clicked.
-        downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+        downloadLink.href = 'data:text/plain;charset=utf-8,' + result;
         downloadLink.style.display = "none";
         document.body.appendChild(downloadLink);
     }
-
     downloadLink.click();
 }
 
