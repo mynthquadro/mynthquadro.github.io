@@ -924,77 +924,156 @@ function getRandomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function multicolor(){
-    const colorset=[
-    '1.,0.,0.','0.,0.5,0.1','0.,0.,1.','1.,1.,0.',//红，绿，蓝，黄99,97,95,93
-	  '0.92,0.92,0.88','0.46,0.45,0.43',//白，灰91,89
-    '1.,0.7255,0.8471','0.6118,0.4471,0.6039',//Home粉87,85
-	  '0.7176,0.8353,0.7098','0.251,0.5686,0.4314',//Home绿83,81
-	  '0.5529,0.7765,1.','0.2314,0.3647,0.5294',//Home蓝79,77
-	  '1.,1.,0.5725'//Dio黄75
-    ];
-    let material='';
-    let materialid=99;
-    const color_ids=document.getElementsByClassName('selected');
-    if(color_ids.length<=0){
-        document.getElementById('info').innerHTML+='请选择颜色<br>';
+function multicolor() {
+      const colorset = [
+        '1.,0.,0.', '0.,0.5,0.1', '0.,0.,1.', '1.,1.,0.',//红，绿，蓝，黄99,97,95,93
+        '0.92,0.92,0.88', '0.46,0.45,0.43',//白，灰91,89
+        '1.,0.7255,0.8471', '0.6118,0.4471,0.6039',//Home粉87,85
+        '0.7176,0.8353,0.7098', '0.251,0.5686,0.4314',//Home绿83,81
+        '0.5529,0.7765,1.', '0.2314,0.3647,0.5294',//Home蓝79,77
+        '1.,1.,0.5725'//Dio黄75
+      ];
+      let material = '';
+      let materialid = 99;
+      const color_ids = document.getElementsByClassName('selected');
+      if (color_ids.length <= 0) {
+        document.getElementById('info').innerHTML += '请选择颜色<br>';
         return false;
-    }
-    let tubeColors=[];
-    let panelColors=[];
-    for(let i=0;i<color_ids.length;i++){
-      const color_id=color_ids[i].getAttribute('data-id');
-      if (color_id==0){//经典色
-        tubeColors.push(99,97,95,93);
-        panelColors.push(98,96,94,92);
-      }else{//home色 白，灰
-        tubeColors.push(91,89);
-        panelColors.push(90,88);
-        if (color_id==4){//dio黄
-          tubeColors.push(75);
-          panelColors.push(74);
-        }else{//其他home色
-          tubeColors.push(91-color_id*4, 89-color_id*4);
-          panelColors.push(90-color_id*4, 88-color_id*4);
+      }
+      if (!files) {
+        document.getElementById('info').innerHTML += '请上传qdf文件<br>';
+        return false;
+      }
+      let tubeColors = [];
+      let panelColors = [];
+      for (let i = 0; i < color_ids.length; i++) {
+        const color_id = color_ids[i].getAttribute('data-id');
+        if (color_id == 0) {//经典色
+          tubeColors.push(99, 97, 95, 93);
+          panelColors.push(98, 96, 94, 92);
+        } else {//home色 白，灰
+          tubeColors.push(91, 89);
+          panelColors.push(90, 88);
+          if (color_id == 4) {//dio黄
+            tubeColors.push(75);
+            panelColors.push(74);
+          } else {//其他home色
+            tubeColors.push(91 - color_id * 4, 89 - color_id * 4);
+            panelColors.push(90 - color_id * 4, 88 - color_id * 4);
+          }
         }
       }
-    }
-    for(let i=0;i<colorset.length;i++){
-        material+='material3{'+materialid+',"TJStube'+materialid+'", 1, '+colorset[i]+', 0.5,1.,1.,7.5, 0.3,0.,0.,7.5, "", 0}\n';//add tube color material
+      for (let i = 0; i < colorset.length; i++) {//批量填充材质文本
+        material += 'material3{' + materialid + ',"TJSt' + materialid + '", 1, ' + colorset[i] + ', 0.5,1.,1.,7.5, 0.3,0.,0.,7.5, "", 0}\n';//add tube color material
         materialid--;
-        material+='material3{'+materialid+',"TJSpanel'+materialid+'", 1, '+colorset[i]+', 0.6,0.5,0.5,7.5, 0.6,0.5,0.5,7.5, "", 0}\n';//add panel color material
+        material += 'material3{' + materialid + ',"TJSp' + materialid + '", 1, ' + colorset[i] + ', 0.6,0.5,0.5,7.5, 0.6,0.5,0.5,7.5, "", 0}\n';//add panel color material
         materialid--;
-    }
-    for(let i=0;i<files.length;i++){
+      }
+      for (let i = 0; i < files.length; i++) {
         const reader = new FileReader();
-        const name='color_'+files[i].name;
-        if(name.substring(name.lastIndexOf('.')) != '.qdf'){
-          document.getElementById('info').innerHTML+=name+'不是qdf文件<br>';
+        const name = 'color_' + files[i].name;
+        if (name.substring(name.lastIndexOf('.')) != '.qdf') {
+          document.getElementById('info').innerHTML += name + '不是qdf文件<br>';
           continue;
         }
         reader.onload = (event) => {
-            let fileContent = event.target.result.split('\n');
-            console.log(material);
-            fileContent[0]=fileContent[0]+'\n'+material;//第二行开始添加材质
-            //染色
-            let fileResult=fileContent[0];
-            for(let j=1;j<fileContent.length;j++){
-                const start_index=fileContent[j].indexOf('{');
-                const end_index=fileContent[j].indexOf(',');
-                if(fileContent[j].includes('tube') || fileContent[j].includes('multi-wheel2')){
-                    fileContent[j]=fileContent[j].substring(0,start_index+1)+tubeColors[Math.floor(Math.random() * tubeColors.length)]+fileContent[j].substring(end_index);
-                }else if(fileContent[j].includes('panel')){
-                    fileContent[j]=fileContent[j].substring(0,start_index+1)+panelColors[Math.floor(Math.random() * panelColors.length)]+fileContent[j].substring(end_index);
-                }else if(fileContent[j].includes('clamp2') || fileContent[j].includes('steering-lock2')){//8字连接件和多轮固定件只有红灰两种颜色
-                    fileContent[j]=fileContent[j].substring(0,start_index+1)+[99,89][Math.floor(Math.random() * 2)]+fileContent[j].substring(end_index);
-                }
-                fileResult+=fileContent[j]+'\n';
+          let fileContent = event.target.result.split('\n');
+          fileContent[0] = fileContent[0] + '\n' + material;//第二行开始写入材质
+          //染色
+          let fileResult = fileContent[0];
+          for (let j = 1; j < fileContent.length; j++) {
+            const start_index = fileContent[j].indexOf('{');
+            const end_index = fileContent[j].indexOf(',');
+            if (fileContent[j].includes('tube') || fileContent[j].includes('multi-wheel2')) {
+              fileContent[j] = fileContent[j].substring(0, start_index + 1) + tubeColors[Math.floor(Math.random() * tubeColors.length)] + fileContent[j].substring(end_index);
+            } else if (fileContent[j].includes('panel')) {
+              fileContent[j] = fileContent[j].substring(0, start_index + 1) + panelColors[Math.floor(Math.random() * panelColors.length)] + fileContent[j].substring(end_index);
+            } else if (fileContent[j].includes('clamp2') || fileContent[j].includes('steering-lock2')) {//8字连接件和多轮固定件只有红灰两种颜色
+              fileContent[j] = fileContent[j].substring(0, start_index + 1) + [99, 89][Math.floor(Math.random() * 2)] + fileContent[j].substring(end_index);
+            } else if (fileContent[j].includes('connector3')) {//普通连接件染回黑色
+              fileContent[j] = fileContent[j].substring(0, start_index + 1) + '1' + fileContent[j].substring(end_index);
             }
-            
-            downloadColorQDF(name,fileResult);
+            fileResult += fileContent[j] + '\n';
+          }
+
+          downloadColorQDF(name, fileResult);
         };
         reader.readAsText(files[i]);
-    }
+      }
+}
+
+function connectorColor() {
+      if (!files) {
+        document.getElementById('info').innerHTML += '请上传qdf文件<br>';
+        return false;
+      }
+      const colorset = [
+        '1.,0.3,0.', '1.,1.,0.', '0.,0.3,0.', '0.,0.,1.',//橙，黄，green,blue 73，72,71,70 4向，3向，T形，L形
+        '0.5,0.,0.5', '0.2,1.,0.2','0.,1.,1.', '1.,0.753,0.796'//purple,lime,cyan,pink 69,68,67,66 十字，一字，5向，6向
+      ];
+      let material = '';
+      let materialid = 73;
+      for (let i = 0; i < colorset.length; i++) {//批量填充材质文本
+        material += 'material3{' + materialid + ',"TJSc' + materialid + '", 1, ' + colorset[i] + ', 0.5,1.,1.,7.5, 0.3,0.,0.,7.5, "", 0}\n';//add connector color material
+        materialid--;
+      }
+      for (let i = 0; i < files.length; i++) {
+        const reader = new FileReader();
+        const name = 'color_' + files[i].name;
+        if (name.substring(name.lastIndexOf('.')) != '.qdf') {
+          document.getElementById('info').innerHTML += name + '不是qdf文件<br>';
+          continue;
+        }
+        reader.onload = (event) => {
+          let fileContent = event.target.result.split('\n');
+          fileContent[0] = fileContent[0] + '\n' + material;//第二行开始添加材质
+          //染色
+          let fileResult = fileContent[0];
+          for (let j = 1; j < fileContent.length; j++) {
+            const start_index = fileContent[j].indexOf('{');
+            const end_index = fileContent[j].indexOf(',');
+            if (fileContent[j].includes('tube2{')) {//管染回红色
+              fileContent[j] = fileContent[j].substring(0, start_index + 1) + '2' + fileContent[j].substring(end_index);
+            } else if(fileContent[j].includes('panel2{')){//板染回红色
+              fileContent[j] = fileContent[j].substring(0, start_index + 1) + '6' + fileContent[j].substring(end_index);
+            } else if(fileContent[j].includes('connector3{')){//连接件区分染色
+              const connectCode=parseInt(fileContent[j].split(',')[10]);//第11个数字表示连接件类型
+              console.log(connectCode);//try
+              switch (connectCode) {
+                case 63://六向件
+                  fileContent[j] = fileContent[j].substring(0, start_index + 1) + '66' + fileContent[j].substring(end_index);
+                  break;
+                case 31: case 47: case 55: case 59: case 61: case 62: //五向件
+                  fileContent[j] = fileContent[j].substring(0, start_index + 1) + '67' + fileContent[j].substring(end_index);
+                  console.log('五向件');//try
+                  break;
+                case 23: case 27: case 29: case 30: case 39: case 43: case 45: case 46: case 53: case 54: case 57: case 58: //四向件
+                  fileContent[j] = fileContent[j].substring(0, start_index + 1) + '73' + fileContent[j].substring(end_index);
+                  break;
+                case 40: case 36: case 34: case 33: case 24: case 20: case 18: case 17: case 10: case 9: case 6: case 5: //L形件
+                  fileContent[j] = fileContent[j].substring(0, start_index + 1) + '70' + fileContent[j].substring(end_index);
+                  break;
+                case 21: case 22: case 25: case 26: case 37: case 38: case 41: case 42: //三向件
+                  fileContent[j] = fileContent[j].substring(0, start_index + 1) + '72' + fileContent[j].substring(end_index);
+                  break;
+                case 7: case 11: case 13: case 14: case 19: case 28: case 35: case 44: case 49: case 50: case 52: case 56: //T形件
+                  fileContent[j] = fileContent[j].substring(0, start_index + 1) + '71' + fileContent[j].substring(end_index);
+                  break;
+                case 60: case 51: case 15: //十字件
+                  fileContent[j] = fileContent[j].substring(0, start_index + 1) + '69' + fileContent[j].substring(end_index);
+                  break;
+                case 3: case 12: case 48: //一字件
+                  fileContent[j] = fileContent[j].substring(0, start_index + 1) + '68' + fileContent[j].substring(end_index);
+                  break;
+              }
+            }
+            fileResult += fileContent[j] + '\n';
+          }
+
+          downloadColorQDF(name, fileResult);
+        };
+        reader.readAsText(files[i]);
+      }
 }
 
 function downloadColorQDF(title,result){
@@ -1746,7 +1825,7 @@ function maximal(){
       </div>
       <input type="file" id="fileInput" style="display:none;" multiple><br>
       颜色系列（可多选）：<div id='color-select'></div>
-      <button onclick='multicolor();'>染色并下载(测试中)</button>
+      <button onclick='multicolor();'>染色并下载</button><button style='margin-left:30px;' onclick='connectorColor();'>连接件染色</button>
 	<br> <span class="lang-ch">如果您对染色功能满意，欢迎小红书关注或@吞金兽驯兽师。</span>
       <div id='info'></div>
     </div>
