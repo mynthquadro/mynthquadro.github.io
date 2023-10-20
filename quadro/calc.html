@@ -1009,7 +1009,7 @@ function connectorColor() {
       }
       const colorset = [
         '1.,0.3,0.', '1.,1.,0.', '0.,0.3,0.', '0.,0.,1.',//橙，黄，green,blue 73，72,71,70 4向，3向，T形，L形
-        '0.5,0.,0.5', '0.2,1.,0.2','0.,1.,1.', '1.,0.753,0.796'//purple,lime,cyan,pink 69,68,67,66 十字，一字，5向，6向
+        '0.5,0.,0.5', '1.,0.,0.','0.,1.,1.', '1.,0.753,0.796'//purple,red,cyan,pink 69,68,67,66 十字，一字，5向，6向
       ];
       let material = '';
       let materialid = 73;
@@ -1032,20 +1032,18 @@ function connectorColor() {
           for (let j = 1; j < fileContent.length; j++) {
             const start_index = fileContent[j].indexOf('{');
             const end_index = fileContent[j].indexOf(',');
-            if (fileContent[j].includes('tube2{')) {//管染回红色
-              fileContent[j] = fileContent[j].substring(0, start_index + 1) + '2' + fileContent[j].substring(end_index);
-            } else if(fileContent[j].includes('panel2{')){//板染回红色
-              fileContent[j] = fileContent[j].substring(0, start_index + 1) + '6' + fileContent[j].substring(end_index);
+            if (fileContent[j].includes('tube2{')) {//管染回黑色
+              fileContent[j] = fileContent[j].substring(0, start_index + 1) + '1' + fileContent[j].substring(end_index);
+            } else if(fileContent[j].includes('panel2{')){//板染回黑色
+              fileContent[j] = fileContent[j].substring(0, start_index + 1) + '1' + fileContent[j].substring(end_index);
             } else if(fileContent[j].includes('connector3{')){//连接件区分染色
               const connectCode=parseInt(fileContent[j].split(',')[10]);//第11个数字表示连接件类型
-              console.log(connectCode);//try
               switch (connectCode) {
                 case 63://六向件
                   fileContent[j] = fileContent[j].substring(0, start_index + 1) + '66' + fileContent[j].substring(end_index);
                   break;
                 case 31: case 47: case 55: case 59: case 61: case 62: //五向件
                   fileContent[j] = fileContent[j].substring(0, start_index + 1) + '67' + fileContent[j].substring(end_index);
-                  console.log('五向件');//try
                   break;
                 case 23: case 27: case 29: case 30: case 39: case 43: case 45: case 46: case 53: case 54: case 57: case 58: //四向件
                   fileContent[j] = fileContent[j].substring(0, start_index + 1) + '73' + fileContent[j].substring(end_index);
@@ -1825,7 +1823,10 @@ function maximal(){
       </div>
       <input type="file" id="fileInput" style="display:none;" multiple><br>
       颜色系列（可多选）：<div id='color-select'></div>
-      <button onclick='multicolor();'>染色并下载</button><button style='margin-left:30px;' onclick='connectorColor();'>连接件染色</button>
+      <button onclick='multicolor();'>染色并下载</button><hr>
+      <img style="width:90%;" src="connectors.JPG"><br>
+      *连接件颜色示例<br>
+      <button onclick='connectorColor();'>连接件染色</button>
 	<br> <span class="lang-ch">如果您对染色功能满意，欢迎小红书关注或@吞金兽驯兽师。</span>
       <div id='info'></div>
     </div>
