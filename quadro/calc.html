@@ -1180,11 +1180,10 @@ function getdesign(){
         }
         if(pass){
             if(design[i][0].substring(0,1)=='M'){
-                recommendhtml[0].push('<div class="possible" style="display:inline-block;"><a target="_blank" href="../quadro/diy/'
+                recommendhtml[0].push('<div class="possible" style="display:inline-block;"><img onclick="showdesign('+i+')" style="height:8em;width:'
+                                    +imgwidth+'vw;cursor:pointer;object-fit:contain;" src="../quadro/diy/'
                                    +design[i][0]+
-                                   '.pdf"><img style="height:8em;width:'+imgwidth+'vw;cursor:pointer;object-fit:contain;" src="../quadro/diy/'
-                                   +design[i][0]+
-                                   '.JPG"></a><div style="display:none;">'
+                                   '.JPG"><div style="display:none;">'
                                    +info+'</div></div>');
             }else{
                 recommendhtml[0].push('<div class="possible" style="display:inline-block;"><img onclick="showdesign('+i+')" style="height:8em;width:'
@@ -1401,6 +1400,17 @@ function showdesign(num){
     designinfo='<a target="_blank"  style="font-size:2em;" href="../quadro/diy/'
                +design[num][0]+
                '.pdf">'+design[num][0]+'</a>';
+    const designNum = parseInt(design[num][0].replace('M',''));
+    const noQdf = [58,59,60,61,62,63,64,65,66,67,68,71,72,73,74,75,76,77,79,80,81,82,83,84,85,86,88,89,90,92,94,101,109,128,129];
+    if (designNum < 55 || designNum == 53001 || noQdf.includes(designNum)){
+      //缺少qdf文件
+    }else{
+      designinfo+=' <a  style="font-size:2em;" href="../quadro/diy/'
+               +design[num][0]+
+               '.qdf" download="'
+               +design[num][0]+
+               '.qdf">下载qdf</a>';
+    }
   }else{
     const designarr=design[num][1].split('$');
     designinfo='<a target="_blank"  style="font-size:2em;" href="https://quadromdb.com/de/designs/'
@@ -1409,6 +1419,7 @@ function showdesign(num){
   }
   document.getElementsByClassName('se-container')[0].style.display='block';
   document.getElementById('design-info').innerHTML=designinfo;
+  
   let partinfo='';
   for(let i =2;i<design[num].length;i++){
     if(design[num][i]>0){
