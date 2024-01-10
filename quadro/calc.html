@@ -19,15 +19,6 @@
 body{
   background-color:#eee;
   color:#115;
-  --seihaiga:rgb(254,230,173);
-  background-image:
-radial-gradient(circle at 100% 150%, white 24%, var(--seihaiga) 24%, var(--seihaiga) 28%, white 28%, white 36%, var(--seihaiga) 36%, var(--seihaiga) 40%, transparent 40%, transparent),
-radial-gradient(circle at 0    150%, white 24%, var(--seihaiga) 24%, var(--seihaiga) 28%, white 28%, white 36%, var(--seihaiga) 36%, var(--seihaiga) 40%, transparent 40%, transparent),
-radial-gradient(circle at 50%  100%, var(--seihaiga) 10%, white 10%, white 23%, var(--seihaiga) 23%, var(--seihaiga) 30%, white 30%, white 43%, var(--seihaiga) 43%, var(--seihaiga) 50%, white 50%, white 63%, var(--seihaiga) 63%, var(--seihaiga) 71%, transparent 71%, transparent),
-radial-gradient(circle at 100% 50%, var(--seihaiga) 5%, white 5%, white 15%, var(--seihaiga) 15%, var(--seihaiga) 20%, white 20%, white 29%, var(--seihaiga) 29%, var(--seihaiga) 34%, white 34%, white 44%, var(--seihaiga) 44%, var(--seihaiga) 49%, transparent 49%, transparent),
-radial-gradient(circle at 0    50%, var(--seihaiga) 5%, white 5%, white 15%, var(--seihaiga) 15%, var(--seihaiga) 20%, white 20%, white 29%, var(--seihaiga) 29%, var(--seihaiga) 34%, white 34%, white 44%, var(--seihaiga) 44%, var(--seihaiga) 49%, transparent 49%, transparent)!important;
-  background-size: 150px 75px!important;
-  background-repeat: repeat!important;
 }
 button{
   font-size:2em;
@@ -1635,7 +1626,9 @@ function maximal(){
     <img alt='qrcode' style='height:50%;' src='qrcodewx.jpg'>
     </div>
   </div>
-
+  <div>
+    <img src="hhdlogo.jpg">
+  </div>
   <div>
     <button onclick="changeLang();" style="background-color:rgb(254,230,173);color:black;"><span class="lang-ch">English</span><span class="lang-en">中文</span></button>
   </div>
@@ -1696,9 +1689,9 @@ function maximal(){
         <hr>
         <button onclick="ResetKitsNum();" style="background-color:rgb(231,143,10);color:white;"><span class="lang-en">Reset</span><span class="lang-ch">重置</span></button>
         <button onclick="saveParts();" style="background-color:rgb(255,172,42);color:white;"><span class="lang-en">Save</span><span class="lang-ch">保存</span></button>
-        <button onclick="loadParts();" style="background-color:rgb(253,198,72);color:white;"><span class="lang-en">Load</span><span class="lang-ch">读取</span></button>
-        <button onclick="exportParts(1);" style="background-color:rgb(254,230,173);color:white;"><span class="lang-en">Export(EN)</span><span class="lang-ch">导出英文版</span></button>
-        <button onclick="exportParts(0);" style="background-color:rgb(254,230,173);color:white;"><span class="lang-en">Export(CH)</span><span class="lang-ch">导出中文版</span></button>
+        <button onclick="loadParts();" style="background-color:rgb(255,172,42);color:white;"><span class="lang-en">Load</span><span class="lang-ch">读取</span></button>
+        <button onclick="exportParts(1);" style="background-color:rgb(253,198,72);color:white;"><span class="lang-en">Export(EN)</span><span class="lang-ch">导出英文版</span></button>
+        <button onclick="exportParts(0);" style="background-color:rgb(253,198,72);color:white;"><span class="lang-en">Export(CH)</span><span class="lang-ch">导出中文版</span></button>
       </div>
 
       <div class="parts-info">
