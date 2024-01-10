@@ -1608,7 +1608,7 @@ function maximal(){
 <body>
   <div id='mirror-link'></div>
 
-  <div id='qrcodewx' style="transition:0.5s;display:none;border:1px solid grey;position:fixed;left:10vw;top:10vh;width:80vw;height:80vh;background:white;overflow-y: scroll;">
+  <div id='qrcodewx' style="transition:0.5s;display:none;position:fixed;left:10vw;top:10vh;width:80vw;height:80vh;background:#ffe;overflow-y: scroll;">
     <div id="qrcode-mini" style='display:none;right:100%;height:100%;z-index:2;font-size:3em;cursor:pointer;' onclick='maximal();'><img style="height:80%;" src='gift.PNG'></div>
     <div id="qrcode-head" style="transition:0.5s;">
        <span style="border:1px solid grey;font-size:2em;width:1.6em;cursor:pointer;display:inline-block;float: right;text-align:center;" onclick="minimal();">&#8599;</span>
@@ -1625,14 +1625,16 @@ function maximal(){
     <img alt='qrcode' style='height:50%;' src='qrcodewx.jpg'>
     </div>
   </div>
+	
   <div>
-    <img style="width:20vw" src="hhdlogo.jpg">
+    <img style="width:20vw;float:right;" src="hhdlogo.jpg">
   </div>
+	
   <div>
     <button onclick="changeLang();" style="background-color:rgb(254,230,173);color:black;"><span class="lang-ch">English</span><span class="lang-en">中文</span></button>
   </div>
   <br>
-  <div class="tab-body">
+  <div class="tab-body" style="margin-top:10px;">
     <!-- 标签页部分 -->
     <div class="tablinks active" onclick="openTab(event, 'Tab1')" style="width:300px;"><span class="lang-ch">配件统计 & 可用模型</span><span class="lang-en">kits & model</span></div>
     <div class="tablinks" onclick="openTab(event, 'Tab2')"><span class="lang-ch">模型搜索</span><span class="lang-en">search</span></div>
