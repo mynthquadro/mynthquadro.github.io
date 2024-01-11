@@ -76,6 +76,17 @@ button{
   margin-top:-1px;
   z-index:0;
 }
+.hhd-logo{
+	z-index:99;
+	min-width:250px;
+	width:20vw;
+	float:right;
+}
+@media screen and (orientation: portrait) {
+	.hhd-logo{
+		width:35vw;
+	}
+}
 </style>
 <style id="la-en">.lang-en{display:none;}</style>
 <style id="la-ch">.lang-ch{display:inline-block;}</style>
@@ -1627,7 +1638,7 @@ function maximal(){
   </div>
 	
   <div>
-    <img style="z-index:99;min-width:200px;width:20vw;float:right;" src="hhdlogo.jpg">
+    <img class="hhd-logo" src="hhdlogo.jpg">
   </div>
 	
   <div>
