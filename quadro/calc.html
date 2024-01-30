@@ -962,11 +962,11 @@ function getRandomNumber(min, max) {
 
 function multicolor() {
       const colorset = [
-        '1.,0.,0.', '0.,0.5,0.1', '0.,0.,1.', '1.,1.,0.',//红，绿，蓝，黄99,97,95,93
-        '0.92,0.92,0.88', '0.46,0.45,0.43',//白，灰91,89
-        '1.,0.7255,0.8471', '0.6118,0.4471,0.6039',//Home粉87,85
-        '0.7176,0.8353,0.7098', '0.251,0.5686,0.4314',//Home绿83,81
-        '0.5529,0.7765,1.', '0.2314,0.3647,0.5294',//Home蓝79,77
+        '1.,0.,0.', '0.,0.5,0.1', '0.,0.,1.', '1.,1.,0.',
+        '0.92,0.92,0.88', '0.46,0.45,0.43',
+        '1.,0.7255,0.8471', '0.6118,0.4471,0.6039',
+        '0.7176,0.8353,0.7098', '0.251,0.5686,0.4314',
+        '0.5529,0.7765,1.', '0.2314,0.3647,0.5294',
         '1.,1.,0.5725'//Dio黄75
       ];
       let material = '';
@@ -984,22 +984,22 @@ function multicolor() {
       let panelColors = [];
       for (let i = 0; i < color_ids.length; i++) {
         const color_id = color_ids[i].getAttribute('data-id');
-        if (color_id == 0) {//经典色
+        if (color_id == 0) {
           tubeColors.push(99, 97, 95, 93);
           panelColors.push(98, 96, 94, 92);
-        } else {//home色 白，灰
+        } else {
           tubeColors.push(91, 89);
           panelColors.push(90, 88);
           if (color_id == 4) {//dio黄
             tubeColors.push(75);
             panelColors.push(74);
-          } else {//其他home色
+          } else {
             tubeColors.push(91 - color_id * 4, 89 - color_id * 4);
             panelColors.push(90 - color_id * 4, 88 - color_id * 4);
           }
         }
       }
-      for (let i = 0; i < colorset.length; i++) {//批量填充材质文本
+      for (let i = 0; i < colorset.length; i++) {
         material += 'material3{' + materialid + ',"TJSt' + materialid + '", 1, ' + colorset[i] + ', 0.5,1.,1.,7.5, 0.3,0.,0.,7.5, "", 0}\n';//add tube color material
         materialid--;
         material += 'material3{' + materialid + ',"TJSp' + materialid + '", 1, ' + colorset[i] + ', 0.6,0.5,0.5,7.5, 0.6,0.5,0.5,7.5, "", 0}\n';//add panel color material
@@ -1014,8 +1014,8 @@ function multicolor() {
         }
         reader.onload = (event) => {
           let fileContent = event.target.result.split('\n');
-          fileContent[0] = fileContent[0] + '\n' + material;//第二行开始写入材质
-          //染色
+          fileContent[0] = fileContent[0] + '\n' + material;
+          
           let fileResult = fileContent[0];
           for (let j = 1; j < fileContent.length; j++) {
             const start_index = fileContent[j].indexOf('{');
@@ -1024,9 +1024,9 @@ function multicolor() {
               fileContent[j] = fileContent[j].substring(0, start_index + 1) + tubeColors[Math.floor(Math.random() * tubeColors.length)] + fileContent[j].substring(end_index);
             } else if (fileContent[j].includes('panel')) {
               fileContent[j] = fileContent[j].substring(0, start_index + 1) + panelColors[Math.floor(Math.random() * panelColors.length)] + fileContent[j].substring(end_index);
-            } else if (fileContent[j].includes('clamp2') || fileContent[j].includes('steering-lock2')) {//8字连接件和多轮固定件只有红灰两种颜色
+            } else if (fileContent[j].includes('clamp2') || fileContent[j].includes('steering-lock2')) {
               fileContent[j] = fileContent[j].substring(0, start_index + 1) + [99, 89][Math.floor(Math.random() * 2)] + fileContent[j].substring(end_index);
-            } else if (fileContent[j].includes('connector3')) {//普通连接件染回黑色
+            } else if (fileContent[j].includes('connector3')) {
               fileContent[j] = fileContent[j].substring(0, start_index + 1) + '1' + fileContent[j].substring(end_index);
             }
             fileResult += fileContent[j] + '\n';
@@ -1044,12 +1044,12 @@ function connectorColor() {
         return false;
       }
       const colorset = [
-        '1.,0.3,0.', '1.,1.,0.', '0.,0.3,0.', '0.,0.,1.',//橙，黄，green,blue 73，72,71,70 4向，3向，T形，L形
-        '0.5,0.,0.5', '1.,0.,0.','0.,1.,1.', '1.,0.753,0.796'//purple,red,cyan,pink 69,68,67,66 十字，一字，5向，6向
+        '1.,0.3,0.', '1.,1.,0.', '0.,0.3,0.', '0.,0.,1.',
+        '0.5,0.,0.5', '1.,0.,0.','0.,1.,1.', '1.,0.753,0.796'
       ];
       let material = '';
       let materialid = 73;
-      for (let i = 0; i < colorset.length; i++) {//批量填充材质文本
+      for (let i = 0; i < colorset.length; i++) {
         material += 'material3{' + materialid + ',"TJSc' + materialid + '", 1, ' + colorset[i] + ', 0.5,1.,1.,7.5, 0.3,0.,0.,7.5, "", 0}\n';//add connector color material
         materialid--;
       }
@@ -1062,41 +1062,41 @@ function connectorColor() {
         }
         reader.onload = (event) => {
           let fileContent = event.target.result.split('\n');
-          fileContent[0] = fileContent[0] + '\n' + material;//第二行开始添加材质
-          //染色
+          fileContent[0] = fileContent[0] + '\n' + material;
+          
           let fileResult = fileContent[0];
           for (let j = 1; j < fileContent.length; j++) {
             const start_index = fileContent[j].indexOf('{');
             const end_index = fileContent[j].indexOf(',');
-            if (fileContent[j].includes('tube2{')) {//管染回黑色
+            if (fileContent[j].includes('tube2{')) {
               fileContent[j] = fileContent[j].substring(0, start_index + 1) + '1' + fileContent[j].substring(end_index);
-            } else if(fileContent[j].includes('panel2{')){//板染回黑色
+            } else if(fileContent[j].includes('panel2{')){
               fileContent[j] = fileContent[j].substring(0, start_index + 1) + '1' + fileContent[j].substring(end_index);
-            } else if(fileContent[j].includes('connector3{')){//连接件区分染色
-              const connectCode=parseInt(fileContent[j].split(',')[10]);//第11个数字表示连接件类型
+            } else if(fileContent[j].includes('connector3{')){
+              const connectCode=parseInt(fileContent[j].split(',')[10]);
               switch (connectCode) {
-                case 63://六向件
+                case 63:
                   fileContent[j] = fileContent[j].substring(0, start_index + 1) + '66' + fileContent[j].substring(end_index);
                   break;
-                case 31: case 47: case 55: case 59: case 61: case 62: //五向件
+                case 31: case 47: case 55: case 59: case 61: case 62: 
                   fileContent[j] = fileContent[j].substring(0, start_index + 1) + '67' + fileContent[j].substring(end_index);
                   break;
-                case 23: case 27: case 29: case 30: case 39: case 43: case 45: case 46: case 53: case 54: case 57: case 58: //四向件
+                case 23: case 27: case 29: case 30: case 39: case 43: case 45: case 46: case 53: case 54: case 57: case 58: 
                   fileContent[j] = fileContent[j].substring(0, start_index + 1) + '73' + fileContent[j].substring(end_index);
                   break;
-                case 40: case 36: case 34: case 33: case 24: case 20: case 18: case 17: case 10: case 9: case 6: case 5: //L形件
+                case 40: case 36: case 34: case 33: case 24: case 20: case 18: case 17: case 10: case 9: case 6: case 5: 
                   fileContent[j] = fileContent[j].substring(0, start_index + 1) + '70' + fileContent[j].substring(end_index);
                   break;
-                case 21: case 22: case 25: case 26: case 37: case 38: case 41: case 42: //三向件
+                case 21: case 22: case 25: case 26: case 37: case 38: case 41: case 42: 
                   fileContent[j] = fileContent[j].substring(0, start_index + 1) + '72' + fileContent[j].substring(end_index);
                   break;
-                case 7: case 11: case 13: case 14: case 19: case 28: case 35: case 44: case 49: case 50: case 52: case 56: //T形件
+                case 7: case 11: case 13: case 14: case 19: case 28: case 35: case 44: case 49: case 50: case 52: case 56: 
                   fileContent[j] = fileContent[j].substring(0, start_index + 1) + '71' + fileContent[j].substring(end_index);
                   break;
-                case 60: case 51: case 15: //十字件
+                case 60: case 51: case 15:
                   fileContent[j] = fileContent[j].substring(0, start_index + 1) + '69' + fileContent[j].substring(end_index);
                   break;
-                case 3: case 12: case 48: //一字件
+                case 3: case 12: case 48: 
                   fileContent[j] = fileContent[j].substring(0, start_index + 1) + '68' + fileContent[j].substring(end_index);
                   break;
               }
@@ -1769,7 +1769,7 @@ function maximal(){
 
     <div id="Tab2" class="tabcontent">
       <br>
-      <span class="lang-ch">编号指quadro官网造型编号(Axxxx或Bxxxx或Cxxxx)，DIY造型编号(以M开头，目前为M1-M153)</span>
+      <span class="lang-ch">编号指quadro官网造型编号(Axxxx或Bxxxx或Cxxxx)，DIY造型编号(以M开头，目前为M1-M156)</span>
       <span class="lang-en">Model number refers to model number on QUADRO website(Axxxx or Bxxxx or Cxxxx) or DIY model number (starting with M)</span>
       <div class='search-model'>
         <input style="font-size:2em;border-radius:5px;border-color:#0b486b;" placeholder="编号或关键词" class="search-num lang-ch">
