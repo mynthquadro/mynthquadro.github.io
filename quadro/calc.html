@@ -1432,7 +1432,7 @@ function showdesign(num){
                +design[num][0]+
                '.pdf">'+design[num][0]+'</a>';
     const designNum = parseInt(design[num][0].replace('M',''));
-    const noQdf = [58,59,60,61,62,63,64,65,66,67,68,71,72,73,74,75,76,77,79,80,81,82,83,84,85,86,88,89,90,92,94,101,109,128,129];
+    const noQdf = [58,59,60,61,62,63,64,65,66,67,68,71,72,73,74,75,76,77,79,80,81,82,83,84,85,86,88,89,90,92,94,101,109,128,129,141];
     if (designNum < 55 || designNum == 53001 || noQdf.includes(designNum)){
       //缺少qdf文件
     }else{
@@ -1444,9 +1444,14 @@ function showdesign(num){
     }
   }else{
     const designarr=design[num][1].split('$');
-    designinfo='<a target="_blank"  style="font-size:2em;" href="https://quadromdb.com/de/designs/'
+	  if(isWechat()){
+		  designinfo='请复制链接到浏览器打开:<br>https://quadromdb.com/de/designs/' + design[num][0];
+	  }else{
+		  designinfo='<a target="_blank"  style="font-size:2em;" href="https://quadromdb.com/de/designs/'
                 +design[num][0]+
-                '">'+design[num][0]+'</a><br>'+designarr[2]+'<br>'+designarr[5]+', age:'+designarr[4];/*english name + dimension + age*/
+                '">'+design[num][0]+'</a>';
+	  }
+    designinfo+='<br>'+designarr[2]+'<br>'+designarr[5]+', age:'+designarr[4];/*english name + dimension + age*/
   }
   document.getElementsByClassName('se-container')[0].style.display='block';
   document.getElementById('design-info').innerHTML=designinfo;
@@ -1639,6 +1644,9 @@ function maximal(){
   document.getElementById('qrcodewx').style.left='10vw';
   document.getElementById('qrcodewx').style.transform='scale(1)';
   document.getElementById('qrcodewx').style.position='fixed';
+}
+function isWechat() {
+    return /MicroMessenger/i.test(window.navigator.userAgent);
 }
 </script>
 </head>
