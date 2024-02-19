@@ -132,7 +132,9 @@ const kits=[["My First QUADRO",0,4,7,0,9,4,1,4,0,0,0,4,30,0,0,0,1,0,0,0,0,0,0,0,
 ["ADVENTURE PLUS",2,8,4,1,4,14,2,4,0,10,0,0,34,0,0,0,8,0,4,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 ["KLETTERPYRAMIDE",3,8,15,2,6,5,0,0,0,0,0,0,64,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 ["EVOLUTION",4,10,12,1,11,12,4,4,0,18,0,4,60,0,0,0,8,9,0,0,2,2,2,2,0,2,0,0,0,2,2,0,0,0,0,0,0,0,0,0,0,0],
-["国产evo",4,10,13,1,12,12,4,4,0,18,0,4,60,0,0,0,8,9],
+["世纪evo",4,10,13,1,12,12,4,4,0,18,0,4,60,0,0,0,8,9],
+["YOUNGSTER",0,6,6,0,8,8,4,4,0,2,0,0,40,0,0,0,3,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+["GENIUS",3,17,11,1,13,5,4,4,0,2,0,0,86,0,0,0,10,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 ["OFFROAD",2,10,6,2,8,8,5,4,0,12,0,0,46,0,0,0,4,2,0,1,0,0,0,4,0,0,2,0,0,0,0,0,0,0,0,0,0,0,4,4,0,0],
 ["MOeBEL KIT S",1,6,9,0,2,9,1,0,0,6,0,0,35,0,0,0,3,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0],
 ["MOeBEL KIT L",4,13,14,0,11,13,3,0,0,23,0,0,57,0,0,0,4,4,0,0,1,1,1,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0],
@@ -146,8 +148,6 @@ const kits=[["My First QUADRO",0,4,7,0,9,4,1,4,0,0,0,4,30,0,0,0,1,0,0,0,0,0,0,0,
 ["SPECIAL KIT",0,2,0,0,0,2,0,4,0,6,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 ["HOME ACTION KIT",0,2,0,1,0,0,3,4,0,3,0,0,0,0,0,0,9,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0],
 ["UPGRADE KIT",0,6,0,0,6,8,4,4,0,16,0,0,13,0,0,0,10,2,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-["YOUNGSTER",0,6,6,0,8,8,4,4,0,2,0,0,40,0,0,0,3,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-["GENIUS",3,17,11,1,13,5,4,4,0,2,0,0,86,0,0,0,10,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 ['DS-030',6,30,14,6,36,12,15,8,10,17,26,0,129,0,0,0,21,6,7,0,0,0,0,0,0,2,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,2],
 ['DS-041',18,37,19,26,47,10,14,0,40,19,10,0,221,0,0,0,28,8,19,0,0,0,0,0,0,2,0,0,0,0,0,0,1,0,0,0,0,0,0,0,2,0,0,0,2],
 ['DS-029',16,8,20,0,8,0,0,0,0,0,0,0,134,0,0,0,14,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,12],
@@ -1709,7 +1709,10 @@ function isWechat() {
       <div class="kits-row"><button class="addkit" >ADV+</button></div>
       <div class="kits-row"><button class="addkit" >KL(CL)</button></div>
       <div class="kits-row"><button class="addkit" >EVO</button></div>
-      <div class="kits-row lang-ch"><button class="addkit" >国产EVO</button></div>
+      <div class="kits-row lang-ch"><button class="addkit" >世纪EVO</button></div>
+      <div class="kits-row"><button class="addkit" >UPGRADE</button></div>
+      <div class="kits-row"><button class="addkit" >YOUNGSTER</button></div>
+      <div class="kits-row"><button class="addkit" >GENIUS</button></div>
       <div class="kits-row"><button class="addkit" >OFFROAD</button></div>
       <div class="kits-row"><button class="addkit" style="font-size:1.4em;">MOeBEL S<br><span class="lang-ch">(家具 S)</span><span class="lang-en">FURNITURE S</span></button></div>
       <div class="kits-row"><button class="addkit" style="font-size:1.4em;">MOeBEL L<br><span class="lang-ch">(家具 L)</span><span class="lang-en">FURNITURE L</span></button></div>
@@ -1722,9 +1725,6 @@ function isWechat() {
       <div class="kits-row"><button class="addkit" >MOBIL</button></div>
       <div class="kits-row"><button class="addkit" >SPECIAL</button></div>
       <div class="kits-row"><button class="addkit" >HOME</button></div>
-      <div class="kits-row"><button class="addkit" >UPGRADE</button></div>
-      <div class="kits-row"><button class="addkit" >YOUNGSTER</button></div>
-      <div class="kits-row"><button class="addkit" >GENIUS</button></div>
       <div class="kits-row lang-ch"><button class="addkit" >韩DS-030</button></div>
       <div class="kits-row lang-ch"><button class="addkit" >韩DS-041</button></div>
       <div class="kits-row lang-ch"><button class="addkit" >韩DS-029</button></div>
