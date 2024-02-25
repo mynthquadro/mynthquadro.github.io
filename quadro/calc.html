@@ -111,16 +111,62 @@ var _hmt = _hmt || [];
 </script>
 
 <script>
-const parts=['Raumkupplung 5-armig','Raumkupplung 4-armig','Raumkupplung 3-armig','Flaechenkupplung 4-armig','Flaechenkupplung 3-armig','Flaechenkupplung 2-armig (90Grad)','Flaechenkupplung 2-armig (180Grad)','Winkelkupplung (45Grad)','Rohr 10 cm','Rohr 15 cm','Rohr 20 cm','Rohr 25 cm','Rohr 35 cm','Rohr 35 cm 135Grad (3 Loecher)','Rohr 75 cm','Bogenrohr','Platte 40 × 40 cm','Platte 40 × 20 cm','Lochplatte 40 × 40 cm','Rundtextile','Multirad','Multirad Radlager','Multirad Arretierung','Laufreifen','Dachtextil','Doppelrohrverbinder','Aluminiumprofil','Aluminiumprofil-Verbinder','Dachtextil (Baby Ballcage)','Laufrolle','Laufrolle Adapter','Spielsack','Rutsche','Rutschenauslauf','Bogenrutsche','Poolfolie S','Poolfolie L','Poolfolie XXL','All-Terrain Rad','All-Terrain Rad Arretierung','Raumkupplung 6-armig','Plexiglass','Lagerkupplung','Lochzapfenkupplung 1-armig','Rohr 11 cm','Rohr 17cm','Flexikupplung Scharnier','Rohrkammer'];
+const parts=['Raumkupplung 5-armig','Raumkupplung 4-armig','Raumkupplung 3-armig',
+'Flaechenkupplung 4-armig','Flaechenkupplung 3-armig','Flaechenkupplung 2-armig (90Grad)','Flaechenkupplung 2-armig (180Grad)',
+'Winkelkupplung (45Grad)','Rohr 10 cm','Rohr 15 cm','Rohr 20 cm','Rohr 25 cm','Rohr 35 cm','Rohr 35 cm 135Grad (3 Loecher)','Rohr 75 cm','Bogenrohr',
+'Platte 40 × 40 cm','Platte 40 × 20 cm','Lochplatte 40 × 40 cm','Rundtextile',
+'Multirad','Multirad Radlager','Multirad Arretierung','Laufreifen',
+'Dachtextil','Doppelrohrverbinder','Aluminiumprofil','Aluminiumprofil-Verbinder','Dachtextil (Baby Ballcage)',
+'Laufrolle','Laufrolle Adapter','Spielsack','Rutsche','Rutschenauslauf','Bogenrutsche',
+'Poolfolie S','Poolfolie L','Poolfolie XXL','All-Terrain Rad','All-Terrain Rad Arretierung',
+'Raumkupplung 6-armig','Plexiglass','Lagerkupplung','Lochzapfenkupplung 1-armig','Rohr 11 cm','Rohr 17cm','Flexikupplung Scharnier','Rohrkammer','Flexikupplung Bolzen','Lochzapfenkupplung 3-armig'];
 
-const partsCh=['5向连接件','4向连接件','3向连接件','十字连接件','T形连接件','L形连接件','1形连接件','斜角件','10厘米管','15厘米管','20厘米管','25厘米管','35厘米管','135度3洞35厘米管','75厘米管','弧形管','大板','半板','洞洞板','方形布','多用轮','多用轮垫圈','多用轮固定件','轮胎带','顶棚','双管8字连接件','铝管','铝管连接件','宝宝球池顶棚','脚轮','脚轮适配器','游戏袋','滑梯','模块式滑梯下板','弧形滑梯','小号泳池','大号泳池','加大号泳池','越野轮','越野轮连接件','6向连接件','亚克力板','轴承连接件（母头）','轴承连接件（公头）','11厘米管','17厘米管','软连接件','开口8字连接件'];
+const partsCh=['5向连接件','4向连接件','3向连接件',
+'十字连接件','T形连接件','L形连接件','1形连接件',
+'斜角件','10厘米管','15厘米管','20厘米管','25厘米管','35厘米管','135度3洞35厘米管','75厘米管','弧形管',
+'大板','半板','洞洞板','方形布',
+'多用轮','多用轮垫圈','多用轮固定件','轮胎带',
+'顶棚','双管8字连接件','铝管','铝管连接件','宝宝球池顶棚',
+'脚轮','脚轮适配器','游戏袋','滑梯','模块式滑梯下板','弧形滑梯',
+'小号泳池','大号泳池','加大号泳池','越野轮','越野轮连接件',
+'6向连接件','亚克力板','轴承连接件（母头）','轴承连接件（公头）',
+'11厘米管','17厘米管','软连接件','开口8字连接件','软连接件轴','轴承T连接件'];
 
-const partsImgSrc=['cs5-scaled.svg','cs4-scaled.svg','cs3-scaled_0.svg','cf4-scaled.svg','cf3-scaled.svg','cs2-scaled.svg','cf2-scaled.svg','c45-scaled.svg','t10-scaled.svg','t15.svg','t20-scaled.svg','t25-scaled.svg','t35.svg','ts5-scaled_1.svg','t75-scaled.svg','tc1-scaled.svg','pa4-scaled_0.svg','pa2-scaled_0.svg','po4-scaled_0.svg','xrd-scaled.svg','wmu-scaled.svg','wmb-scaled.svg','wml-scaled.svg','wtr-scaled.svg','xrf-scaled.svg','cdt-scaled_0.svg','alu-scaled.svg','alc-scaled.svg','xbb-scaled.svg','mcr-scaled.svg','wra-scaled.svg','xpb-scaled.svg','msb-scaled.svg','sro-scaled.svg','csb-scaled.svg','pls-scaled.svg','pll-scaled.svg','plx-scaled.svg','mat-scaled.svg','mal-scaled.svg','cs6-scaled.svg','pxg-scaled.svg','cbr-scaled.svg','ch1-scaled.svg','t10-scaled.svg','t15.svg','cxb-scaled.svg','ccl-scaled.svg'];
+const partsImgSrc=['cs5-scaled.svg','cs4-scaled.svg','cs3-scaled_0.svg',
+'cf4-scaled.svg','cf3-scaled.svg','cs2-scaled.svg','cf2-scaled.svg',
+'c45-scaled.svg','t10-scaled.svg','t15.svg','t20-scaled.svg','t25-scaled.svg','t35.svg','ts5-scaled_1.svg','t75-scaled.svg','tc1-scaled.svg',
+'pa4-scaled_0.svg','pa2-scaled_0.svg','po4-scaled_0.svg','xrd-scaled.svg',
+'wmu-scaled.svg','wmb-scaled.svg','wml-scaled.svg','wtr-scaled.svg',
+'xrf-scaled.svg','cdt-scaled_0.svg','alu-scaled.svg','alc-scaled.svg','xbb-scaled.svg',
+'mcr-scaled.svg','wra-scaled.svg','xpb-scaled.svg','msb-scaled.svg','sro-scaled.svg','csb-scaled.svg',
+'pls-scaled.svg','pll-scaled.svg','plx-scaled.svg','mat-scaled.svg','mal-scaled.svg',
+'cs6-scaled.svg','pxg-scaled.svg','cbr-scaled.svg','ch1-scaled.svg',
+'t10-scaled.svg','t15.svg','cxb-scaled.svg','ccl-scaled.svg','cxa.svg','ch3.svg'];
 
-const partsEn=['5way connector, black;','4way connector, black;','3way connector, black;','cross connector, black;','T connector, black;','elbow, black;','2way connector, black;','diagonal connector, black;','tube, 10 cm, red;','tube, 15 cm, red;','tube, 20 cm, red;','tube, 25 cm, red;','tube, 35 cm, red;','TBD','tube, 75 cm, red;','tube bend, red;','panel, for 35 cm x 35 cm, red;','panel, for 15 cm x 35 cm, red;','TBD','textil, red;','multi wheel, red;','bearing for multi wheel, black;','steering lock, red;','TBD','roof cover;','double tube connector, red;','alu-profile, 60 cm, alu;','connector for alu-profiles, 40 cm, alu;','roof cover, large;','casters, black;','TBD','bag, blue;','straight slide without run-out, red;','run-out for slide, yellow;','curved slide without run-out, green;','pool small, blue;','pool large, blue;','TBD','floating wheel, black;','hub cap, red;','6way connector, black;','TBD','bearing joint, black;','1way hole coupling, black;','tube, 11 cm, red;','tube, 17 cm, red;','flexible connector, 1 arm without bolt, black;','tube clamp (pool/lodge), red;'];/*暂无对应英文：35cm3洞管，洞洞板，多轮履带，万向轮转接头，超大泳池布，亚克力板*/
+const partsEn=['5way connector, black;','4way connector, black;','3way connector, black;',
+'cross connector, black;','T connector, black;','elbow, black;','2way connector, black;',
+'diagonal connector, black;','tube, 10 cm, red;','tube, 15 cm, red;','tube, 20 cm, red;','tube, 25 cm, red;','tube, 35 cm, red;','TBD','tube, 75 cm, red;','tube bend, red;',
+'panel, for 35 cm x 35 cm, red;','panel, for 15 cm x 35 cm, red;','TBD','textil, red;',
+'multi wheel, red;','bearing for multi wheel, black;','steering lock, red;','TBD',
+'roof cover;','double tube connector, red;','alu-profile, 60 cm, alu;','connector for alu-profiles, 40 cm, alu;','roof cover, large;',
+'casters, black;','TBD','bag, blue;','straight slide without run-out, red;','run-out for slide, yellow;','curved slide without run-out, green;',
+'pool small, blue;','pool large, blue;','TBD','floating wheel, black;','hub cap, red;',
+'6way connector, black;','TBD','bearing joint, black;','1way hole coupling, black;',
+'tube, 11 cm, red;','tube, 17 cm, red;','flexible connector, 1 arm without bolt, black;','tube clamp (pool/lodge), red;','flexi-connector-bolt暂定, balck;','hole-t-connector暂定, balck;'];
+/*暂无对应英文：35cm3洞管，洞洞板，多轮履带，万向轮转接头，超大泳池布，亚克力板*/
 
-const partsForExport=['5通连接器, black;','4通连接器, black;','3通连接器, black;','十字连接器, black;','T型连接器, black;','L型连接器, black;','一字连接器, black;','45度连接器, black;','管, 10 cm, red;','管, 15 cm, red;','管, 20 cm, red;','管, 25 cm, red;','管, 35 cm, red;','TBD','管, 75 cm, red;','弧形管, red;','面板, 35 cm x 35 cm, red;','面板, 15 cm x 35 cm, red;','TBD','布片, red;','多轮, red;','多轮轴承, black;','多轮锁, red;','TBD','房顶;','双管连接器, red;','铝管, 60 cm, alu;','铝管连接器, 40 cm, alu;','大房顶, large;','脚轮, black;','TBD','布兜, blue;','直滑梯（无尾部）, red;','滑梯尾部, yellow;','弧形滑梯（无尾部）, green;','小游泳池, blue;','大游泳池, blue;','TBD','越野轮, black;','越野轮锁, red;','6通连接器, black;','TBD','轴承连接器, black;','孔连接器, black;','管, 11 cm, red;','管, 17 cm, red;','柔性连接器铰链, black;','管夹（游泳池/小屋）, red;'];/*暂无对应英文：35cm3洞管，洞洞板，多轮履带，万向轮转接头，超大泳池布，亚克力板*/
-
+const partsForExport=['5通连接器, black;','4通连接器, black;','3通连接器, black;',
+'十字连接器, black;','T型连接器, black;','L型连接器, black;','一字连接器, black;',
+'45度连接器, black;','管, 10 cm, red;','管, 15 cm, red;','管, 20 cm, red;','管, 25 cm, red;','管, 35 cm, red;','TBD','管, 75 cm, red;','弧形管, red;',
+'面板, 35 cm x 35 cm, red;','面板, 15 cm x 35 cm, red;','TBD','布片, red;',
+'多轮, red;','多轮轴承, black;','多轮锁, red;','TBD',
+'房顶;','双管连接器, red;','铝管, 60 cm, alu;','铝管连接器, 40 cm, alu;','大房顶, large;',
+'脚轮, black;','TBD','布兜, blue;','直滑梯（无尾部）, red;','滑梯尾部, yellow;','弧形滑梯（无尾部）, green;',
+'小游泳池, blue;','大游泳池, blue;','TBD','越野轮, black;','越野轮锁, red;',
+'6通连接器, black;','TBD','轴承连接器, black;','孔连接器, black;',
+'管, 11 cm, red;','管, 17 cm, red;','柔性连接器铰链, black;','管夹（游泳池/小屋）, red;','软连接件轴暂定, balck;','轴承T连接件暂定, balck;'];
+/*暂无对应中文：35cm3洞管，洞洞板，多轮履带，万向轮转接头，超大泳池布，亚克力板*/
+	
 const kits=[["My First QUADRO",0,4,7,0,9,4,1,4,0,0,0,4,30,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 ["STARTER",2,7,6,0,8,8,3,0,0,0,0,0,48,0,0,0,3,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 ["BASIC",2,10,6,2,8,8,5,4,0,8,0,0,46,0,0,0,4,0,0,1,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -868,6 +914,7 @@ if (window.addEventListener) {
 }
 
 let kitsvalue=[];/*save current kits amounts for calc*/
+
 function FillHtml(){
   /*display gitee link for some timezone*/
   const timezone=Intl.DateTimeFormat().resolvedOptions().timeZone.split('/')[1];
@@ -900,7 +947,7 @@ function FillHtml(){
   let addHtml='';
   for (let i = 0;i<parts.length;i++){
     const p="alert('"+parts[i]+"["+partsCh[i].replaceAll('(','[').replaceAll(')',']')+"]"+"');";
-    addHtml+='<div class="part-row"><div class="part-row-img" onclick="'+p+'"><img src="'+partsImgSrc[i]+'"></div><div  contenteditable="true" class="amount"></div></div>';
+    addHtml+='<div class="part-row"><div class="part-row-img" onclick="'+p+'"><img src="'+partsImgSrc[i]+'"></div><div  contenteditable="true" onclick="partsChanged()" class="amount"></div></div>';
   }
   document.getElementById("partslistdech").innerHTML=addHtml;
 
@@ -953,6 +1000,11 @@ function FillHtml(){
     dropArea.addEventListener('drop', handleFileDrop);
 }
 
+let partsIsNotNull=false;
+function partsChanged(){
+  partsIsNotNull=true;
+}
+
 var files;
 /*change color of qdf file*/
 function changeColor(element){
@@ -979,7 +1031,7 @@ function handleFileSelect(event) {
 function getRandomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-
+//随机染色
 function multicolor() {
       const colorset = [
         '1.,0.,0.', '0.,0.5,0.1', '0.,0.,1.', '1.,1.,0.',
@@ -1057,7 +1109,7 @@ function multicolor() {
         reader.readAsText(files[i]);
       }
 }
-
+//连接件染色
 function connectorColor() {
       if (!files) {
         document.getElementById('info').innerHTML += '请上传qdf文件<br>';
@@ -1168,11 +1220,13 @@ function getdesign(){
 
     let searchAge=document.getElementById("models-age").value;
     let imgwidth=9;
-    if(window.innerWidth<window.innerHeight+100){
+    if(window.innerWidth<window.innerHeight+100){//对于横屏和竖屏，每行显示结果数不同
         imgwidth=18;
     }
     const amounts=document.getElementsByClassName('amount');
-    let pass,info,designamount,resulthtml='',havePartNum;
+    let pass,missingPart,info,designamount,resulthtml='',havePartNum,increasePart;
+    //增量搜索：最多增加n个部件就可以搭建的模型
+    increasePart=document.getElementById('increase-percent').value ? parseInt(document.getElementById('increase-percent').value) : 0;
     for (let i =0;i<design.length;i++){
       /*search age*/
       let keyword=design[i][1].split('$');
@@ -1188,6 +1242,7 @@ function getdesign(){
       }
 
         pass=true;
+        missingPart=0;
         info='';
         for (let j =0;j<amounts.length;j++){
             designamount=design[i][j+2];/*design[i][0]:designname,design[i][1]:img_num*/
@@ -1214,9 +1269,16 @@ function getdesign(){
                 }else if(j==41 && parseInt(amounts[16].textContent)>=(design[i][20]+design[i][18]+design[i][43])){
                     info+='<div>you need '+designamount+' Plexiglass or replace with Lochplatte 40 × 40 cm.</div>';
                 }else{
-                    /*console.log('design'+i+','+parts[j]+':'+amounts[j].textContent+'<'+designamount);*/
-                    pass=false;
-                    break;
+                    if(increasePart == 0){
+                      pass=false;
+                      break;
+                    }else{
+                      missingPart += (designamount-havePartNum);
+                      if(missingPart > increasePart){
+                        pass=false;
+                        break;
+                      }
+                    }
                 }
             }
         }
@@ -1310,6 +1372,7 @@ rs.forEach(
 
 /*calculate parts amount base on kitsvalue*/
 function Calc(){
+  partsChanged();
   let rs=[],result,temp;
   const cks=document.querySelectorAll('.kits-amount');
   /*kit index and amount to Array*/
@@ -1467,13 +1530,22 @@ function showdesign(num){
   document.getElementsByClassName('se-container')[0].style.display='block';
   document.getElementById('design-info').innerHTML=designinfo;
   
-  let partinfo='';
+  let partinfo=partsIsNotNull ? '下列括号中为拥有零件数<br>':'';
+  const amounts=document.getElementsByClassName('amount');
+  const displayHaveParts = partsIsNotNull ? 'inline' : 'none';
   for(let i =2;i<design[num].length;i++){
     if(design[num][i]>0){
+      const havePartNum = amounts[i-2].textContent ? parseInt(amounts[i-2].textContent) : 0;
+      let styleColor = '';
+      if (havePartNum < design[num][i]){
+        styleColor='red';
+      }else{
+        styleColor='green';
+      }
       const p="alert('"+parts[i-2]+"["+partsCh[i-2].replaceAll('(','[').replaceAll(')',']')+"]"+"');";
       partinfo+='<div class="part-row"><div class="part-row-img" onclick="'
 	+p+'"><img src="'+partsImgSrc[i-2]+'"></div><div  class="se-amount">'
-	+design[num][i]+'</div></div>';
+	+design[num][i]+'<span style="display:'+displayHaveParts+';color:'+ styleColor +';">(' + havePartNum +')</span></div></div>';
     }
   }
   document.getElementById('part-info').style.height='calc(80vh - 2em - '+document.getElementById('design-info').offsetHeight+'px';
@@ -1612,6 +1684,10 @@ function exportParts(language){
   URL.revokeObjectURL(url);
 }
 
+function importParts(){
+  alert('施工中');
+}
+
 /*change tab*/
 function openTab(evt, tabName) {
   let i, tabcontent, tablinks;
@@ -1748,8 +1824,9 @@ function isWechat() {
         <button onclick="ResetKitsNum();" style="background-color:rgb(231,143,10);color:white;"><span class="lang-en">Reset</span><span class="lang-ch">重置</span></button>
         <button onclick="saveParts();" style="background-color:rgb(255,172,42);color:white;"><span class="lang-en">Save</span><span class="lang-ch">保存</span></button>
         <button onclick="loadParts();" style="background-color:rgb(255,172,42);color:white;"><span class="lang-en">Load</span><span class="lang-ch">读取</span></button>
-        <button onclick="exportParts(1);" style="background-color:rgb(253,198,72);color:white;"><span class="lang-en">Export(EN)</span><span class="lang-ch">导出英文版</span></button>
-        <button onclick="exportParts(0);" style="background-color:rgb(253,198,72);color:white;"><span class="lang-en">Export(CH)</span><span class="lang-ch">导出中文版</span></button>
+        <button onclick="exportParts(1);" style="background-color:rgb(253,198,72);color:white;"><span class="lang-en">Export qbl(EN)</span><span class="lang-ch">导出qbl(英)</span></button>
+        <button onclick="exportParts(0);" style="background-color:rgb(253,198,72);color:white;"><span class="lang-en">Export qbl(CH)</span><span class="lang-ch">导出qbl(中)</span></button>
+        <button onclick="importParts();" style="background-color:rgb(253,198,72);color:white;"><span class="lang-en">Import qbl</span><span class="lang-ch">导入qbl</span></button>
       </div>
 
       <div class="parts-info">
@@ -1774,6 +1851,11 @@ function isWechat() {
           <option value="4">4</option>
           <option value="N/A">N/A</option>
         </select>
+        <br>
+        <div style="font-size:2em;margin:20px 0;">
+        <span class="lang-en">add more parts</span><span class="lang-ch">增量搜索</span>
+        <input style="font-size:100%;width:100px;" type="number" id="increase-percent" value="0"/>
+        </div>
         <button onclick="getdesign();" style="background-color:rgb(231,143,10);color:white;"><span class="lang-en">Available models/Refresh</span><span class="lang-ch">可用模型/刷新</span></button>
         <br><span class="lang-en">Texile,double tube connector,alu-profile and pools are not considered. Holey panel and plexiglass could be replaced. </span><span class="lang-ch">布品、8字件、铝管及泳池布不考虑在计算结果内，洞洞板及亚克力板可被普通板代替。</span>
         <div> </div>
@@ -1817,8 +1899,6 @@ function isWechat() {
 	  <option value="pyramide">金字塔</option>
           <option value="learning tower">学习塔</option>
 	  <option value="ladder">斜梯</option>
-	  <option value="chair">椅子</option>	
-	  <option value="table">桌子</option>	
 	  <option value="27">斜坡</option>
           <option value="34">直梯</option>
           <option value="36">弧形梯</option>
@@ -1831,7 +1911,9 @@ function isWechat() {
           <option value="cube">立方体</option>
           <option value="tower">塔</option>
           <option value="goal">球门</option>
-          <option value="bridge">廊桥</option>  	  
+          <option value="bridge">廊桥</option>
+	  <option value="chair">椅子</option>
+	  <option value="table">桌子</option>
 	  <option value="walking helper">学步栏</option>
 	  <option value="changing table">尿布台</option>
 	  <option value="easel">书画架</option>
@@ -1859,13 +1941,14 @@ function isWechat() {
           <option value="platform">platform</option>
           <option value="bridge">bridge</option>
 	  <option value="chair">chair</option>
+	  <option value="table">table</option>
 	  <option value="trampoline">trampoline</option>
 	  <option value="swing">swing</option>
 	  <option value="balance bridge">balance bridge</option>
 	  <option value="ball pool">ball pool</option>
 	  <option value="walking helper">walking helper</option>
 	  <option value="changing table">changing table</option>
-	  <option value="easel">书画架</option>
+	  <option value="easel">easel</option>
 	  <option value="cabinet">cabinet</option>
         </select>
         <br>
@@ -1905,7 +1988,7 @@ function isWechat() {
       </div>
       <input type="file" id="fileInput" style="display:none;" multiple><br>
       颜色系列（可多选）：<div id='color-select'></div>
-      <button onclick='multicolor();'>染色并下载</button><hr>
+      <button onclick='multicolor();'>随机染色</button><hr>
       <img style="width:90%;" src="connectors.JPG"><br>
       *连接件颜色示例<br>
       <button onclick='connectorColor();'>连接件染色</button>
