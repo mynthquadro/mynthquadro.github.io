@@ -1341,20 +1341,8 @@ function getdesign(){
                 }
             }
         }
-        if(pass){
-            if(design[i][0].substring(0,1)=='M'){
-                recommendhtml[0].push('<div class="possible" style="display:inline-block;"><img onclick="showdesign('+i+')" style="height:8em;width:'
-                                    +imgwidth+'vw;cursor:pointer;object-fit:contain;" src="../quadro/diy/'
-                                   +design[i][0]+
-                                   '.JPG"><div style="display:none;">'
-                                   +info+'</div></div>');
-            }else{
-                recommendhtml[0].push('<div class="possible" style="display:inline-block;"><img onclick="showdesign('+i+')" style="height:8em;width:'
-                                   +imgwidth+'vw;cursor:pointer;object-fit:contain;" src="../quadro/webimg/'
-                                   +design[i][0].toUpperCase()+'-brand.webp"><div style="display:none;">'
-                                   +info+'</div></div>');
-            }
-
+        if(pass){//如有必要，可以添加info
+          recommendhtml[0].push(i+'$0');
         }
     }
 
@@ -1370,6 +1358,10 @@ function getdesign(){
 
 /*forpage for available designs*/
 function forpage(page,perpage,which){
+    let imgwidth=9;
+    if(window.innerWidth<window.innerHeight+100){//对于横屏和竖屏，每行显示结果数不同
+        imgwidth=18;
+    }
     currentpage[which]=page;
     perpagedefault[which]=perpage;
     let maxindex = perpage;
@@ -1386,7 +1378,35 @@ function forpage(page,perpage,which){
       document.getElementsByClassName('re-next')[which].disabled = false;
     }
     for (let i =0;i<maxindex;i++){
-        pagehtml+=recommendhtml[which][page*perpage+i];
+      let modelhtml='';
+      let modeltemp=recommendhtml[which][page*perpage+i].split('$');//可用模型格式(which=0)：model-id $ selected；搜索模型格式(which=0)：model-id
+      const selectedcsss=modeltemp[1]==1 ? 'border:2px cyan solid;' : '';
+      if(which==0){//可用模型
+        if(design[parseInt(modeltemp[0])][0].substring(0,1)=='M'){
+          modelhtml='<div class="possible" style="display:inline-block;'+selectedcsss+'" id="possible'+(page*perpage+i)+'"><img onclick="showdesign('+parseInt(modeltemp[0])+','+(page*perpage+i)+')" style="height:8em;width:'
+                                    +imgwidth+'vw;cursor:pointer;object-fit:contain;" src="../quadro/diy/'
+                                   +design[parseInt(modeltemp[0])][0]+
+                                   '.JPG"></div>';
+        }else{
+          modelhtml='<div class="possible" style="display:inline-block;'+selectedcsss+'" id="possible'+(page*perpage+i)+'"><img onclick="showdesign('+parseInt(modeltemp[0])+','+(page*perpage+i)+')" style="height:8em;width:'
+                                   +imgwidth+'vw;cursor:pointer;object-fit:contain;" src="../quadro/webimg/'
+                                   +design[parseInt(modeltemp[0])][0].toUpperCase()+
+                                   '-brand.webp"></div>';
+        }
+      }else{//搜索模型
+        if(design[parseInt(modeltemp[0])][0].substring(0,1)=='M'){
+          modelhtml='<div class="se-re" style="display:inline-block;"><img  onclick="showdesign('
+		+parseInt(modeltemp[0])+')" style="height:7em;width:'
+		+imgwidth+'vw;cursor:pointer;object-fit:contain;" src="../quadro/diy/'
+                                   +design[parseInt(modeltemp[0])][0]+'.JPG"></div>';
+        }else{
+          modelhtml='<div class="se-re" style="display:inline-block;"><img  onclick="showdesign('
+		+parseInt(modeltemp[0])+')" style="height:7em;width:'
+		+imgwidth+'vw;cursor:pointer;object-fit:contain;" src="../quadro/webimg/'
+                                   +design[parseInt(modeltemp[0])][0].toUpperCase()+'-brand.webp"></div>';
+        }
+      }
+      pagehtml+=modelhtml;
     }
     document.getElementsByClassName('re-container')[which].innerHTML=pagehtml;
     document.getElementsByClassName('re-current')[which].textContent=page+1;
@@ -1535,17 +1555,7 @@ function searchmodel(){
 
     /*add result*/
     if(searchtrue==true && hasSearch==true){
-        if(design[i][0].substring(0,1)=='M'){
-            recommendhtml[1].push('<div class="se-re" style="display:inline-block;"><img  onclick="showdesign('
-		+i+')" style="height:7em;width:'
-		+imgwidth+'vw;cursor:pointer;object-fit:contain;" src="../quadro/diy/'
-                                   +design[i][0]+'.JPG"></div>');
-        }else{
-            recommendhtml[1].push('<div class="se-re" style="display:inline-block;"><img  onclick="showdesign('
-		+i+')" style="height:7em;width:'
-		+imgwidth+'vw;cursor:pointer;object-fit:contain;" src="../quadro/webimg/'
-                                   +design[i][0].toUpperCase()+'-brand.webp"></div>');
-        }
+      recommendhtml[1].push(i+'$0');
     }
   }
   if (recommendhtml[1].length>0){
@@ -1558,7 +1568,7 @@ function searchmodel(){
 }
 
 /*show design detail for search result*/
-function showdesign(num){
+function showdesign(num,recommend_id=-1){
   let designinfo='';
   if(design[num][0].substring(0,1)=='M'){
     designinfo='<a target="_blank"  style="font-size:2em;" href="../quadro/diy/'
@@ -1586,10 +1596,16 @@ function showdesign(num){
 	  }
     designinfo+='<br>'+designarr[2]+'<br>'+designarr[5]+', age:'+designarr[4];/*english name + dimension + age*/
   }
+  if(recommend_id!=-1){
+    let modeltemp=recommendhtml[0][recommend_id].split('$');//可用模型格式(which=0)：model-id $ selected
+    const selectedtext=modeltemp[1]==1 ? 'checked' : '';
+    designinfo+='<br><span style="font-size:2em;">加入多选：<input style="height:20px;" onchange="showCompare('+recommend_id+')" type="checkbox" '+selectedtext+'></span><br>';
+  }
   document.getElementsByClassName('se-container')[0].style.display='block';
   document.getElementById('design-info').innerHTML=designinfo;
+
   
-  let partinfo=partsIsNotNull ? '括号中数值为所拥有零件数,绿色表示足够，红色表示缺件<br>':'';
+  let partinfo=partsIsNotNull ? '下列括号中为拥有零件数<br>':'';
   const amounts=document.getElementsByClassName('amount');
   const displayHaveParts = partsIsNotNull ? 'inline' : 'none';
   for(let i =2;i<design[num].length;i++){
@@ -1609,6 +1625,50 @@ function showdesign(num){
   }
   document.getElementById('part-info').style.height='calc(80vh - 2em - '+document.getElementById('design-info').offsetHeight+'px';
   document.getElementById('part-info').innerHTML=partinfo;
+}
+
+/*多选计算总零件数*/
+function showCompare(recommend_id){
+  //将选中的模型标记为已选中
+  let modeltemp=recommendhtml[0][recommend_id].split('$');//可用模型格式(which=0)：model-id $ selected
+  const selectedtext=modeltemp[1]==1 ? '0' : '1';
+  recommendhtml[0][recommend_id]=modeltemp[0] + '$' + selectedtext;
+  if(selectedtext==0){
+    document.getElementById('possible'+recommend_id).style.border='none';
+  }else{
+    document.getElementById('possible'+recommend_id).style.border='2px cyan solid';
+  }
+  //计算总零件数
+  partsCompareArr=new Array(parts.length).fill(0);
+  for(let i =0;i<recommendhtml[0].length;i++){
+    const modelArr=recommendhtml[0][i].split('$');
+    if (modelArr[1]=='0'){//没有被选中，跳过
+      continue;
+    }
+    const designTemp=design[parseInt(modelArr[0])];
+    for(let j = 2;j<designTemp.length;j++){
+      partsCompareArr[j-2] += designTemp[j];
+    }
+  }
+  //显示总零件数
+  let resultHTML='多选零件总数(括号中为拥有零件数)<br>';
+  const amounts=document.getElementsByClassName('amount');
+  for(let i =0;i<partsCompareArr.length;i++){
+    if(partsCompareArr[i] != 0){
+      const havePartNum = amounts[i].textContent ? parseInt(amounts[i].textContent) : 0;
+      let styleColor = '';
+      if (havePartNum < partsCompareArr[i]){
+        styleColor='red';
+      }else{
+        styleColor='green';
+      }
+      const alertFunc="alert('"+parts[i]+"["+partsCh[i].replaceAll('(','[').replaceAll(')',']')+"]"+"');";
+      resultHTML+=`<div class="part-row"><div class="part-row-img" onclick="${alertFunc}"><img src="${partsImgSrc[i]}"></div>
+      <div  class="se-amount">${partsCompareArr[i]}<span style="color:${styleColor};">(${havePartNum})</span></div></div>`;
+    }
+  }
+  const compareElm=document.getElementById('re-compare');
+  compareElm.innerHTML=resultHTML;
 }
 
 /*lang:0->chinese,1->english*/
@@ -1939,6 +1999,9 @@ function isWechat() {
           <div class="re-current" style="display:inline-block;font-size:2em;color:#0008;min-width:1.5em;text-align: center;"></div>
           <button class="re-next" onclick="nextpage(0);"><span class="lang-en">next</span><span class="lang-ch">下一页</span></button>
         </div>
+
+	<div id="re-compare"></div>
+	      
       </div>
     </div>
 
