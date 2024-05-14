@@ -987,7 +987,7 @@ function FillHtml(){
   const timezone=Intl.DateTimeFormat().resolvedOptions().timeZone.split('/')[1];
   const china=['Shanghai','Urumqi'];
   if (china.indexOf(timezone)>=0 && document.URL.indexOf('github')>=0){
-    document.getElementById('mirror-link').innerHTML='<a href="https://mynthquadro.gitee.io/quadro/calc.html" style="font-size:1.5em;">如遇卡顿请点此链接前往国内镜像站</a>';
+    document.getElementById('mirror-link').innerHTML='<a href="https://mynthquadro-github-io.vercel.app/quadro/calc.html" style="font-size:1.5em;">如遇卡顿请点此链接前往镜像站</a>';
   }
 
     if(parts.length != partsCh.length || parts.length != partsImgSrc.length){
