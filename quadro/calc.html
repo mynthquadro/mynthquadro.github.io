@@ -1150,12 +1150,7 @@
           Calc();
         });
       }
-      /*fill color select*/
-      const color_set_name = ['经典色', 'Home粉', 'Home绿', 'Home蓝', 'Dio黄'];
-      for (let i = 0; i < color_set_name.length; i++) {
-        const text = '<div class="color-set" data-id="' + i + '" onclick="changeColor(this)">' + color_set_name[i] + '</div>'
-        document.getElementById("color-select").insertAdjacentHTML('beforeend', text);
-      }
+
       /*intial file input*/
       const fileInput = document.getElementById("fileInput");
       fileInput.addEventListener('change', handleFileSelect);
@@ -2351,13 +2346,27 @@
     <!-- tab3 染色 -->
     <div id="Tab3" class="tabcontent">
       <br>
-      <div style="width:49%;min-height:70px;cursor:pointer;border:2px solid #ccc;background:white;" id="dropArea">
-        <span id="dropInfo">拖动qdf文件到此处或点此选择文件，然后选择颜色系列</span>
+      <div style="width:calc(100% - 300px); float:left;">
+        <div style="width:49%;min-height:70px;cursor:pointer;border:2px solid #ccc;background:white;" id="dropArea">
+          <span id="dropInfo">拖动qdf文件到此处或点此选择文件，然后选择颜色系列</span>
+        </div>
+        <input type="file" id="fileInput" style="display:none;" multiple><br>
+        颜色系列（可多选）：
+        <div id="color-select">
+          <div class="color-set" data-id="0" onclick="changeColor(this)">经典色</div>
+          <div class="color-set" data-id="1" onclick="changeColor(this)">Home粉</div>
+          <div class="color-set" data-id="2" onclick="changeColor(this)">Home绿</div>
+          <div class="color-set" data-id="3" onclick="changeColor(this)">Home蓝</div>
+          <div class="color-set" data-id="4" onclick="changeColor(this)">Dio黄</div>
+        </div>
+        <button onclick='multicolor();'>随机染色</button>
       </div>
-      <input type="file" id="fileInput" style="display:none;" multiple><br>
-      颜色系列（可多选）：<div id='color-select'></div>
-      <button onclick='multicolor();'>随机染色</button>
-      <hr>
+
+      <div style="width:300px;float:right;">
+        搭友们如果对小工具满意的话<br>
+        扫这里投喂个鸡腿鼓励一下^o^<br><img src="wechatpayqr.webp" style="width:300px;height:300px;" >
+      </div>
+      <hr style="clear:both;">
       <img style="width:90%;" src="connectors.JPG"><br>
       *连接件颜色示例<br>
       <button onclick='connectorColor();'>连接件染色</button><br>
@@ -2372,9 +2381,6 @@
       <button onclick='tubeColor();'>管染色</button><br>
      
       <div id='info'></div>
-      <br>
-      <div>搭友们要是对小码农的小工具满意的话<br>
-      <div>扫这里投喂个鸡腿鼓励一下^o^<br><img src="wechatpay.webp" style="width:300px;clip:rect(25px,20px,20px,40px);" ></div>
     </div>
     <!-- end of tab3 -->
     <!-- tab4下载链接 -->
