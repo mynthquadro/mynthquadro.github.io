@@ -1773,7 +1773,14 @@
     /*show design detail for search result*/
     function showdesign(num, recommend_id = -1) {
       let designinfo = '';
-      if (design[num][0].substring(0, 1) == 'M') {
+      if (design[num][0].substring(0, 2) == 'MA') {
+        designinfo = '<span style="font-size:2em;">'+design[num][0]+'</span>';
+        designinfo += ' <a style="font-size:2em;" href="../quadro/diy/'
+            + design[num][0] +
+            '.qdf" download="'
+            + design[num][0] +
+            '.qdf">下载qdf</a>';
+      }else if (design[num][0].substring(0, 1) == 'M') {
         designinfo = '<a target="_blank"  style="font-size:2em;" href="../quadro/diy/'
           + design[num][0] +
           '.pdf">' + design[num][0] + '</a>';
