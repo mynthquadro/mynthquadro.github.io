@@ -1153,6 +1153,17 @@
       design_num_elm[0].textContent = design.length;
       design_num_elm[1].textContent = design.length;
 
+      /*计算自定义造型数*/
+      const m_design_num_elm = document.getElementById("m-design-count");
+      let m_design_count = 0;
+      design.forEach(model => {
+        const modelName = model[0];
+        if (modelName.charAt(0) === 'M' && modelName.charAt(1) !== 'A') {
+          m_design_count++;
+        }
+      });
+      m_design_num_elm.textContent = m_design_count;
+
       const kitsbtn = document.getElementsByClassName("addkit");
       const kitsa = document.getElementsByClassName("kits-amount");
       const reducekitsbtn = document.getElementsByClassName("reducekit");
@@ -1584,29 +1595,37 @@
         let modelhtml = '';
         let modeltemp = recommendhtml[which][page * perpage + i].split('$');//可用模型格式(which=0)：model-id $ selected；搜索模型格式(which=0)：model-id
         const selectedcsss = modeltemp[1] == 1 ? 'border:2px cyan solid;' : '';
+        const modelName = design[parseInt(modeltemp[0])][0];
         if (which == 0) {//可用模型
-          if (design[parseInt(modeltemp[0])][0].substring(0, 1) == 'M') {
-            modelhtml = '<div class="possible" style="display:inline-block;' + selectedcsss + '" id="possible' + (page * perpage + i) + '"><img onclick="showdesign(' + parseInt(modeltemp[0]) + ',' + (page * perpage + i) + ')" style="height:12em;width:'
-              + imgwidth + 'vw;cursor:pointer;object-fit:contain;" src="diy/'
-              + design[parseInt(modeltemp[0])][0] +
-              '.JPG"></div>';
-          } else {
-            modelhtml = '<div class="possible" style="display:inline-block;' + selectedcsss + '" id="possible' + (page * perpage + i) + '"><img onclick="showdesign(' + parseInt(modeltemp[0]) + ',' + (page * perpage + i) + ')" style="height:12em;width:'
-              + imgwidth + 'vw;cursor:pointer;object-fit:contain;" src="webimg/'
-              + design[parseInt(modeltemp[0])][0].toUpperCase() +
-              '-brand.webp"></div>';
+          if (modelName.substring(0, 2) == 'MA') {//quadro程序自带造型
+            modelhtml = `
+  <div class="possible" style="display:inline-block;${selectedcsss}" id="possible${page * perpage + i}">
+    <img onclick="showdesign(${parseInt(modeltemp[0])}, ${page * perpage + i})" style="height:12em;width:${imgwidth}vw;cursor:pointer;object-fit:contain;" src="alt/${modelName}.JPG">
+  </div>`;
+          } else if (modelName.substring(0, 1) == 'M') {//自制造型
+            modelhtml = `
+  <div class="possible" style="display:inline-block;${selectedcsss}" id="possible${page * perpage + i}">
+    <img onclick="showdesign(${parseInt(modeltemp[0])}, ${page * perpage + i})" style="height:12em;width:${imgwidth}vw;cursor:pointer;object-fit:contain;" src="diy/${modelName}.JPG">
+  </div>`;
+          } else {//官网造型
+            modelhtml = `
+  <div class="possible" style="display:inline-block;${selectedcsss}" id="possible${page * perpage + i}">
+    <img onclick="showdesign(${parseInt(modeltemp[0])}, ${page * perpage + i})" style="height:12em;width:${imgwidth}vw;cursor:pointer;object-fit:contain;" src="webimg/${modelName.toUpperCase()}-brand.webp">
+  </div>`;
           }
         } else {//搜索模型
-          if (design[parseInt(modeltemp[0])][0].substring(0, 1) == 'M') {
-            modelhtml = '<div class="se-re" style="display:inline-block;"><img  onclick="showdesign('
-              + parseInt(modeltemp[0]) + ')" style="height:12em;width:'
-              + imgwidth + 'vw;cursor:pointer;object-fit:contain;" src="diy/'
-              + design[parseInt(modeltemp[0])][0] + '.JPG"></div>';
-          } else {
-            modelhtml = '<div class="se-re" style="display:inline-block;"><img  onclick="showdesign('
-              + parseInt(modeltemp[0]) + ')" style="height:12em;width:'
-              + imgwidth + 'vw;cursor:pointer;object-fit:contain;" src="webimg/'
-              + design[parseInt(modeltemp[0])][0].toUpperCase() + '-brand.webp"></div>';
+          if (modelName.substring(0, 2) == 'MA') {//quadro程序自带造型
+            modelhtml = `<div class="se-re" style="display:inline-block;">
+            <img onclick="showdesign(${parseInt(modeltemp[0])})" style="height:12em;width:${imgwidth}vw;cursor:pointer;object-fit:contain;" src="alt/${modelName}.JPG">
+            </div>`;
+          } else if (modelName.substring(0, 1) == 'M') {//自制造型
+            modelhtml = `<div class="se-re" style="display:inline-block;">
+            <img onclick="showdesign(${parseInt(modeltemp[0])})" style="height:12em;width:${imgwidth}vw;cursor:pointer;object-fit:contain;" src="diy/${modelName}.JPG">
+            </div>`;
+          } else {//官网造型
+            modelhtml = `<div class="se-re" style="display:inline-block;">
+            <img onclick="showdesign(${parseInt(modeltemp[0])})" style="height:12em;width:${imgwidth}vw;cursor:pointer;object-fit:contain;" src="webimg/${modelName.toUpperCase()}-brand.webp">
+            </div>`;
           }
         }
         pagehtml += modelhtml;
@@ -1773,14 +1792,14 @@
     /*show design detail for search result*/
     function showdesign(num, recommend_id = -1) {
       let designinfo = '';
-      if (design[num][0].substring(0, 2) == 'MA') {
+      if (design[num][0].substring(0, 2) == 'MA') {//quadro程序自带造型
         designinfo = '<span style="font-size:2em;">'+design[num][0]+'</span>';
         designinfo += ' <a style="font-size:2em;" href="../quadro/diy/'
             + design[num][0] +
             '.qdf" download="'
             + design[num][0] +
             '.qdf">下载qdf</a>';
-      }else if (design[num][0].substring(0, 1) == 'M') {
+      }else if (design[num][0].substring(0, 1) == 'M') {//自制造型
         designinfo = '<a target="_blank"  style="font-size:2em;" href="../quadro/diy/'
           + design[num][0] +
           '.pdf">' + design[num][0] + '</a>';
@@ -1795,7 +1814,7 @@
             + design[num][0] +
             '.qdf">下载qdf</a>';
         }
-      } else {
+      } else {//官网造型
         const designarr = design[num][1].split('$');
         if (false) {//isWechat()
           designinfo = '请复制链接到浏览器打开:<br>https://quadromdb.com/de/designs/' + design[num][0];
@@ -2260,7 +2279,7 @@
     <!-- tab2 搜索模型 -->
     <div id="Tab2" class="tabcontent">
       <br>
-      <span class="lang-ch">编号指quadro官网造型编号(Axxxx或Bxxxx或Cxxxx)，DIY造型编号(以M开头，目前为M1-M248)</span>
+      <span class="lang-ch">编号指quadro官网造型编号(Axxxx或Bxxxx或Cxxxx)，DIY造型编号(以M开头，目前为M1-M<span id="m-design-count"></span>)</span>
       <span class="lang-en">Model number refers to model number on QUADRO website(Axxxx or Bxxxx or Cxxxx) or DIY model
         number (starting with M)</span>
       <div class='search-model'>
