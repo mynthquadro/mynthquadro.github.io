@@ -1405,7 +1405,7 @@
       /*fill partslist*/
       let addHtml = '';
       for (let i = 0; i < parts.length; i++) {
-        const p = "alert('" + parts[i] + "[" + partsCh[i].replaceAll('(', '[').replaceAll(')', ']') + "]" + "');";
+        const p = "alert('" + parts[i] + "[" + partsCh[i].replace(/\(/g, '[').replace(/\)/g, ']') + "]" + "');";
         addHtml += '<div class="part-row"><div class="part-row-img" onclick="' + p + '"><img src="' + partsImgSrc[i] + '"></div><div  contenteditable="true" onclick="partsChanged()" class="amount"></div></div>';
       }
       document.getElementById("partslistdech").innerHTML = addHtml;
@@ -1571,7 +1571,7 @@
             } else if (fileContent[j].includes('connector3')) {
               fileContent[j] = fileContent[j].substring(0, start_index + 1) + '1' + fileContent[j].substring(end_index);
             }
-            fileResult += fileContent[j] + '\n';
+            fileResult += fileContent[j].replace(/\r/g,'') + '\r\n';
           }
 
           downloadColorQDF(name, fileResult);
@@ -1643,7 +1643,7 @@
                   break;
               }
             }
-            fileResult += fileContent[j] + '\n';
+            fileResult += fileContent[j].replace(/\r/g,'') + '\r\n';
           }
 
           downloadColorQDF(name, fileResult);
@@ -1710,7 +1710,7 @@
             } else if (fileContent[j].includes('connector3{')) {
               fileContent[j] = fileContent[j].substring(0, start_index + 1) + '1' + fileContent[j].substring(end_index);
             }
-            fileResult += fileContent[j] + '\n';
+            fileResult += fileContent[j].replace(/\r/g,'') + '\r\n';
           }
 
           downloadColorQDF(name, fileResult);
@@ -1986,7 +1986,7 @@
       currentpage[1] = 0;
       document.getElementsByClassName('re-current')[1].textContent = 1;
       /*get search model nummer and part by language*/
-      let searchNum = document.getElementsByClassName("search-num")[lang].value.toUpperCase().replaceAll('Ä', 'A').replaceAll('Ö', 'O').replaceAll('Ü', 'U');/*ß.uppercase=SS*/
+      let searchNum = document.getElementsByClassName("search-num")[lang].value.toUpperCase().replace(/Ä/g, 'A').replace(/Ö/g, 'O').replace(/Ü/g, 'U');/*ß.uppercase=SS*/
       let searchPart = document.getElementsByClassName("search-part")[lang].value;
       let searchName = 0;
       if (isNaN(parseInt(searchPart))) {
@@ -2002,7 +2002,7 @@
       for (let i = 0; i < design.length; i++) {
         searchtrue = true;
         hasSearch = false;
-        keyword = design[i][1].toUpperCase().replaceAll('Ä', 'A').replaceAll('Ö', 'O').replaceAll('Ü', 'U').split('$');/*keyword[0]:number,[1]:german name,[2]:english name*/
+        keyword = design[i][1].toUpperCase().replace(/Ä/g, 'A').replace(/Ö/g, 'O').replace(/Ü/g, 'U').split('$');/*keyword[0]:number,[1]:german name,[2]:english name*/
         /*search model nummer or keyword*/
         if (searchNum != '') {
           hasSearch = true;
@@ -2108,7 +2108,7 @@
           } else {
             styleColor = 'green';
           }
-          const p = "alert('" + parts[i - 2] + "[" + partsCh[i - 2].replaceAll('(', '[').replaceAll(')', ']') + "]" + "');";
+          const p = "alert('" + parts[i - 2] + "[" + partsCh[i - 2].replace(/\(/g, '[').replace(/\)/g, ']') + "]" + "');";
           partinfo += '<div class="part-row"><div class="part-row-img" onclick="'
             + p + '"><img src="' + partsImgSrc[i - 2] + '"></div><div  class="se-amount">'
             + design[num][i] + '<span style="display:' + displayHaveParts + ';color:' + styleColor + ';">(' + havePartNum + ')</span></div></div>';
@@ -2163,7 +2163,7 @@
           } else {
             styleColor = 'green';
           }
-          const alertFunc = "alert('" + parts[i] + "[" + partsCh[i].replaceAll('(', '[').replaceAll(')', ']') + "]" + "');";
+          const alertFunc = "alert('" + parts[i] + "[" + partsCh[i].replace(/\(/g, '[').replace(/\)/g, ']') + "]" + "');";
           resultHTML += `<div class="part-row"><div class="part-row-img" onclick="${alertFunc}"><img src="${partsImgSrc[i]}"></div>
       <div  class="se-amount">${partsCompareArr[i]}<span style="color:${styleColor};">(${havePartNum})</span></div></div>`;
         }
