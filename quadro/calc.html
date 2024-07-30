@@ -1884,12 +1884,12 @@
           if (modelName.substring(0, 2) == 'MA') {//quadro程序自带造型
             modelhtml = `
   <div class="possible" style="display:inline-block;${selectedcsss}" id="possible${page * perpage + i}">
-    <img onclick="showdesign(${parseInt(modeltemp[0])}, ${page * perpage + i})" style="height:12em;width:${imgwidth}vw;cursor:pointer;object-fit:contain;" src="alt/${modelName}.JPG">
+    <img onclick="showdesign(${parseInt(modeltemp[0])}, ${page * perpage + i})" style="height:12em;width:${imgwidth}vw;cursor:pointer;object-fit:contain;" src="alt_img/${modelName}.webp">
   </div>`;
           } else if (modelName.substring(0, 1) == 'M') {//自制造型
             modelhtml = `
   <div class="possible" style="display:inline-block;${selectedcsss}" id="possible${page * perpage + i}">
-    <img onclick="showdesign(${parseInt(modeltemp[0])}, ${page * perpage + i})" style="height:12em;width:${imgwidth}vw;cursor:pointer;object-fit:contain;" src="diy/${modelName}.JPG">
+    <img onclick="showdesign(${parseInt(modeltemp[0])}, ${page * perpage + i})" style="height:12em;width:${imgwidth}vw;cursor:pointer;object-fit:contain;" src="diy_img/${modelName}.webp">
   </div>`;
           } else {//官网造型
             modelhtml = `
@@ -1900,11 +1900,11 @@
         } else {//搜索模型
           if (modelName.substring(0, 2) == 'MA') {//quadro程序自带造型
             modelhtml = `<div class="se-re" style="display:inline-block;">
-            <img onclick="showdesign(${parseInt(modeltemp[0])})" style="height:12em;width:${imgwidth}vw;cursor:pointer;object-fit:contain;" src="alt/${modelName}.JPG">
+            <img onclick="showdesign(${parseInt(modeltemp[0])})" style="height:12em;width:${imgwidth}vw;cursor:pointer;object-fit:contain;" src="alt_img/${modelName}.webp">
             </div>`;
           } else if (modelName.substring(0, 1) == 'M') {//自制造型
             modelhtml = `<div class="se-re" style="display:inline-block;">
-            <img onclick="showdesign(${parseInt(modeltemp[0])})" style="height:12em;width:${imgwidth}vw;cursor:pointer;object-fit:contain;" src="diy/${modelName}.JPG">
+            <img onclick="showdesign(${parseInt(modeltemp[0])})" style="height:12em;width:${imgwidth}vw;cursor:pointer;object-fit:contain;" src="diy_img/${modelName}.webp">
             </div>`;
           } else {//官网造型
             modelhtml = `<div class="se-re" style="display:inline-block;">
@@ -2078,13 +2078,13 @@
       let designinfo = '';
       if (design[num][0].substring(0, 2) == 'MA') {//quadro程序自带造型
         designinfo = '<span style="font-size:2em;">'+design[num][0]+'</span>';
-        designinfo += ' <a style="font-size:2em;" href="../quadro/diy/'
+        designinfo += ' <a style="font-size:2em;" href="../quadro/alt/'
             + design[num][0] +
             '.qdf" download="'
             + design[num][0] +
             '.qdf">下载qdf</a>';
       }else if (design[num][0].substring(0, 1) == 'M') {//自制造型
-        designinfo = '<a target="_blank"  style="font-size:2em;" href="../quadro/diy/'
+        designinfo = '<a target="_blank"  style="font-size:2em;" href="../quadro/diy_pdf/'
           + design[num][0] +
           '.pdf">' + design[num][0] + '</a>';
         const designNum = parseInt(design[num][0].replace('M', ''));
@@ -2092,7 +2092,7 @@
         if (designNum < 55 || designNum == 53001 || noQdf.includes(designNum)) {
           //缺少qdf文件
         } else {
-          designinfo += ' <a  style="font-size:2em;" href="../quadro/diy/'
+          designinfo += ' <a  style="font-size:2em;" href="../quadro/diy_qdf/'
             + design[num][0] +
             '.qdf" download="'
             + design[num][0] +
@@ -2161,8 +2161,10 @@
         }
         
         const designTemp = design[parseInt(modelArr[0])];
-        if(designTemp[0].charAt(0) == 'M'){
-          multiHTML+=`<div class="select-thumbnail" style="display:inline-block;"><img onclick="showdesign(${parseInt(modelArr[0])},${i})" style="height:8em;width:9vw;cursor:pointer;object-fit:contain;" src="diy/${designTemp[0]}.JPG"></div>`;
+        if(designTemp[0].substring(0, 2) == 'MA'){
+          multiHTML+=`<div class="select-thumbnail" style="display:inline-block;"><img onclick="showdesign(${parseInt(modelArr[0])},${i})" style="height:8em;width:9vw;cursor:pointer;object-fit:contain;" src="alt/${designTemp[0]}.webp"></div>`;
+        }else if(designTemp[0].charAt(0) == 'M'){
+          multiHTML+=`<div class="select-thumbnail" style="display:inline-block;"><img onclick="showdesign(${parseInt(modelArr[0])},${i})" style="height:8em;width:9vw;cursor:pointer;object-fit:contain;" src="diy_img/${designTemp[0]}.webp"></div>`;
         }else{
           multiHTML+=`<div class="select-thumbnail" style="display:inline-block;"><img onclick="showdesign(${parseInt(modelArr[0])},${i})" style="height:8em;width:9vw;cursor:pointer;object-fit:contain;" src="webimg/${designTemp[0].toUpperCase()}-brand.webp"></div>`;
         }
