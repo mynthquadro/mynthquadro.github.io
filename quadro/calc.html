@@ -1884,7 +1884,7 @@
           if (modelName.substring(0, 2) == 'MA') {//quadro程序自带造型
             modelhtml = `
   <div class="possible" style="display:inline-block;${selectedcsss}" id="possible${page * perpage + i}">
-    <img onclick="showdesign(${parseInt(modeltemp[0])}, ${page * perpage + i})" style="height:12em;width:${imgwidth}vw;cursor:pointer;object-fit:contain;" src="alt_img/${modelName}.webp">
+    <img onclick="showdesign(${parseInt(modeltemp[0])}, ${page * perpage + i})" style="height:12em;width:${imgwidth}vw;cursor:pointer;object-fit:contain;" src="alt/${modelName}.webp">
   </div>`;
           } else if (modelName.substring(0, 1) == 'M') {//自制造型
             modelhtml = `
@@ -1900,7 +1900,7 @@
         } else {//搜索模型
           if (modelName.substring(0, 2) == 'MA') {//quadro程序自带造型
             modelhtml = `<div class="se-re" style="display:inline-block;">
-            <img onclick="showdesign(${parseInt(modeltemp[0])})" style="height:12em;width:${imgwidth}vw;cursor:pointer;object-fit:contain;" src="alt_img/${modelName}.webp">
+            <img onclick="showdesign(${parseInt(modeltemp[0])})" style="height:12em;width:${imgwidth}vw;cursor:pointer;object-fit:contain;" src="alt/${modelName}.webp">
             </div>`;
           } else if (modelName.substring(0, 1) == 'M') {//自制造型
             modelhtml = `<div class="se-re" style="display:inline-block;">
