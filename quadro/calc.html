@@ -1428,7 +1428,7 @@
       let addHtml = '';
       for (let i = 0; i < parts.length; i++) {
         const p = "alert('" + parts[i] + "[" + partsCh[i].replace(/\(/g, '[').replace(/\)/g, ']') + "]" + "');";
-        addHtml += '<div class="part-row"><div class="part-row-img" onclick="' + p + '"><img src="' + partsImgSrc[i] + '"></div><div  contenteditable="true" onclick="partsChanged()" class="amount"></div></div>';
+        addHtml += '<div class="part-row"><div class="part-row-img" onclick="' + p + '"><img src="part_img/' + partsImgSrc[i] + '"></div><div  contenteditable="true" onclick="partsChanged()" class="amount"></div></div>';
       }
       document.getElementById("partslistdech").innerHTML = addHtml;
 
@@ -2132,7 +2132,7 @@
           }
           const p = "alert('" + parts[i - 2] + "[" + partsCh[i - 2].replace(/\(/g, '[').replace(/\)/g, ']') + "]" + "');";
           partinfo += '<div class="part-row"><div class="part-row-img" onclick="'
-            + p + '"><img src="' + partsImgSrc[i - 2] + '"></div><div  class="se-amount">'
+            + p + '"><img src="part_img/' + partsImgSrc[i - 2] + '"></div><div  class="se-amount">'
             + design[num][i] + '<span style="display:' + displayHaveParts + ';color:' + styleColor + ';">(' + havePartNum + ')</span></div></div>';
         }
       }
@@ -2188,7 +2188,7 @@
             styleColor = 'green';
           }
           const alertFunc = "alert('" + parts[i] + "[" + partsCh[i].replace(/\(/g, '[').replace(/\)/g, ']') + "]" + "');";
-          resultHTML += `<div class="part-row"><div class="part-row-img" onclick="${alertFunc}"><img src="${partsImgSrc[i]}"></div>
+          resultHTML += `<div class="part-row"><div class="part-row-img" onclick="${alertFunc}"><img src="part_img/${partsImgSrc[i]}"></div>
       <div  class="se-amount">${partsCompareArr[i]}<span style="color:${styleColor};">(${havePartNum})</span></div></div>`;
         }
       }
