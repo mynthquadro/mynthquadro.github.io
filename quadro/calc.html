@@ -216,13 +216,35 @@
       display: block;
       font-size: 2em;
       border-radius: 5px;
+      margin:10px;
     }
 
     .show-design-img {
       display: block;
-      max-height: 50%;
-      width: 60%;
+      max-height: 40vh;
+      max-width: 40vw;
       object-fit: contain;
+    }
+
+    .possible, .se-re{
+      display:inline-block;
+      text-align: center;
+    }
+
+    .possible>img, .se-re>img{
+      height:12em;
+      width:100%;
+      cursor:pointer;
+      object-fit:contain;
+    }
+
+    .design-title{
+      font-size: 1.5em;
+    }
+
+    .color-info{
+      font-size:2em;
+      color:red;
     }
 
     @media screen and (orientation: portrait) {
@@ -815,7 +837,7 @@
       }
 
       if (recommendhtml[0].length == 0) {
-        document.getElementsByClassName('recommendinfo')[0].innerHTML = '<span class="lang-en">No available design.</span><span class="lang-ch">没有可用模型。</span>';
+        document.getElementsByClassName('recommendinfo')[0].innerHTML = '<span class="lang-en" style="font-size:2em;color:red;">No available design.</span><span class="lang-ch" style="font-size:2em;color:red;">没有可用模型</span>';
         document.getElementsByClassName('re-footer')[0].style.display = 'none';
       } else {
         document.getElementsByClassName('recommendinfo')[0].innerHTML = '<span class="lang-en">Available design</span><span class="lang-ch">可用模型</span>: ' + recommendhtml[0].length;
@@ -853,32 +875,38 @@
         if (which == 0) {//可用模型
           if (modelName.substring(0, 2) == 'MA') {//quadro程序自带造型
             modelhtml = `
-  <div class="possible" style="display:inline-block;${selectedcsss}" id="possible${page * perpage + i}">
-    <img onclick="showdesign(${parseInt(modeltemp[0])}, ${page * perpage + i})" style="height:12em;width:${imgwidth}vw;cursor:pointer;object-fit:contain;" src="alt/${modelName}.webp">
+  <div class="possible" style="width:${imgwidth}vw;${selectedcsss}" id="possible${page * perpage + i}">
+    <img onclick="showdesign(${parseInt(modeltemp[0])}, ${page * perpage + i})" src="alt/${modelName}.webp">
+    <span class="design-title">${modelName}</span>
   </div>`;
           } else if (modelName.substring(0, 1) == 'M') {//自制造型
             modelhtml = `
-  <div class="possible" style="display:inline-block;${selectedcsss}" id="possible${page * perpage + i}">
-    <img onclick="showdesign(${parseInt(modeltemp[0])}, ${page * perpage + i})" style="height:12em;width:${imgwidth}vw;cursor:pointer;object-fit:contain;" src="diy_img/${modelName}.webp">
+  <div class="possible" style="width:${imgwidth}vw;${selectedcsss}" id="possible${page * perpage + i}">
+    <img onclick="showdesign(${parseInt(modeltemp[0])}, ${page * perpage + i})" src="diy_img/${modelName}.webp">
+    <span class="design-title">${modelName}</span>
   </div>`;
           } else {//官网造型
             modelhtml = `
-  <div class="possible" style="display:inline-block;${selectedcsss}" id="possible${page * perpage + i}">
-    <img onclick="showdesign(${parseInt(modeltemp[0])}, ${page * perpage + i})" style="height:12em;width:${imgwidth}vw;cursor:pointer;object-fit:contain;" src="webimg/${modelName.toUpperCase()}-brand.webp">
+  <div class="possible" style="width:${imgwidth}vw;${selectedcsss}" id="possible${page * perpage + i}">
+    <img onclick="showdesign(${parseInt(modeltemp[0])}, ${page * perpage + i})" src="webimg/${modelName.toUpperCase()}-brand.webp">
+    <span class="design-title">${modelName}</span>
   </div>`;
           }
         } else {//搜索模型
           if (modelName.substring(0, 2) == 'MA') {//quadro程序自带造型
-            modelhtml = `<div class="se-re" style="display:inline-block;">
-            <img onclick="showdesign(${parseInt(modeltemp[0])})" style="height:12em;width:${imgwidth}vw;cursor:pointer;object-fit:contain;" src="alt/${modelName}.webp">
+            modelhtml = `<div class="se-re" style="width:${imgwidth}vw;">
+            <img onclick="showdesign(${parseInt(modeltemp[0])})" src="alt/${modelName}.webp">
+            <span class="design-title">${modelName}</span>
             </div>`;
           } else if (modelName.substring(0, 1) == 'M') {//自制造型
-            modelhtml = `<div class="se-re" style="display:inline-block;">
-            <img onclick="showdesign(${parseInt(modeltemp[0])})" style="height:12em;width:${imgwidth}vw;cursor:pointer;object-fit:contain;" src="diy_img/${modelName}.webp">
+            modelhtml = `<div class="se-re" style="width:${imgwidth}vw;">
+            <img onclick="showdesign(${parseInt(modeltemp[0])})" src="diy_img/${modelName}.webp">
+            <span class="design-title">${modelName}</span>
             </div>`;
           } else {//官网造型
-            modelhtml = `<div class="se-re" style="display:inline-block;">
-            <img onclick="showdesign(${parseInt(modeltemp[0])})" style="height:12em;width:${imgwidth}vw;cursor:pointer;object-fit:contain;" src="webimg/${modelName.toUpperCase()}-brand.webp">
+            modelhtml = `<div class="se-re" style="width:${imgwidth}vw;">
+            <img onclick="showdesign(${parseInt(modeltemp[0])})" src="webimg/${modelName.toUpperCase()}-brand.webp">
+            <span class="design-title">${modelName}</span>
             </div>`;
           }
         }
@@ -1002,6 +1030,8 @@
           searchLength = searchWidth;
           searchWidth = tempLength;
         }
+        document.getElementsByClassName("search-length")[0].value=searchLength;
+        document.getElementsByClassName("search-length")[1].value=searchWidth;
       } else {
         searchLength = 0;
       }
@@ -1099,7 +1129,7 @@
         forpage(0, perpagedefault[1], 1);
       } else {
         document.getElementsByClassName("se-footer")[0].style.display = 'none';
-        document.getElementsByClassName("re-container")[1].innerHTML = '<span class="lang-en">no result</span><span class="lang-ch">没有结果</span>';
+        document.getElementsByClassName("re-container")[1].innerHTML = '<span class="lang-en" style="font-size:2em;color:red;">no result</span><span class="lang-ch" style="font-size:2em;color:red;">没有符合条件的模型</span>';
       }
     }
 
@@ -1857,13 +1887,13 @@
 
   <!-- design详情页 -->
   <div class='se-container'
-    style="display:none;border:1px solid grey;position:fixed;left:10vw;top:10vh;width:80vw;height:80vh;background:white;">
+    style="display:none;border:1px solid grey;position:fixed;left:10vw;top:10vh;width:80vw;height:80vh;background:white;overflow-y: scroll;">
     <div class="container-head">
       <span style="font-size:2em;width:1.6em;cursor:pointer;float: right;text-align:center;"
         onclick="document.getElementsByClassName('se-container')[0].style.display='none';">☒</span>
       <span id="design-info"></span>
     </div>
-    <div id="part-info" style="margin:3px;overflow-y: scroll;"></div>
+    <div id="part-info" style="margin:3px;"></div>
   </div>
 
 </body>
