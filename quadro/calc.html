@@ -43,6 +43,11 @@
       background-color: rgb(255, 244, 218)!important; /* 模拟点击变亮的效果 */
     }
 
+    button:disabled {
+      background-color: lightgrey!important;
+      color:grey!important;
+    }
+
     .kits-input {
       display: block;
       margin-top: 0.5em;
@@ -442,7 +447,7 @@
         <br><br>
         
         <div class='includes-select-area2' style="border-radius: 10px;border:2px dashed rgb(231,143,10)">
-          <div style="font-size:2em;margin:10px;"><span class="lang-en">includes</span><span class="lang-ch">包含（可多选）</span></div>
+          <div style="font-size:2em;margin:10px;"><span class="lang-en">includes</span><span class="lang-ch">包含部件（可多选）</span></div>
           <div class="includes-select"  value="trampoline"><span class="lang-en">trampoline</span><span class="lang-ch">蹦床</span></div>
           <div class="includes-select"  value="swing"><span class="lang-en">swing</span><span class="lang-ch">秋千</span></div>
           <div class="includes-select"  value="balance bridge"><span class="lang-en">balance bridge</span><span class="lang-ch">平衡桥</span></div>
@@ -477,7 +482,7 @@
         <br><br>
         <span style="font-size:2em;"><span class="lang-en">age</span><span class="lang-ch">年龄</span></span>
 
-        <select style="font-size:2em;border-radius:5px;border-color:#0b486b;" id="search-age">
+        <select style="font-size:2em;border-radius:5px;border-color:#0b486b;" class="search-age">
           <option value="-1">--</option>
           <option value="0.5">0.5</option>
           <option value="1">1</option>
@@ -490,13 +495,17 @@
         </select>
 
         <br><br>
+        <span style="font-size:2em;"><span class="lang-en">dimension</span><span class="lang-ch">面积</span></span>
+        <input class="search-length" style="font-size:2em;width:4em;" type="number"/> X <input class="search-length" style="font-size:2em;width:4em;" type="number"/><span class="lang-en" style="font-size:2em;">cm</span><span class="lang-ch" style="font-size:2em;">厘米</span>
+
+        <br><br>
         <button onclick="searchmodel();" style="background-color:rgb(231,143,10);color:white;"><span
             class="lang-en">search</span><span class="lang-ch">搜索</span></button>
         <div class="re-container"></div>
         <div class='se-footer' style="display:none;">
           <span style="font-size:2em;"><span class="lang-en">models per page</span><span class="lang-ch">每页显示</span>:
           </span>
-          <select style="font-size:2em;" id="re-page" onchange="forpage(0,this.value,1);">
+          <select style="font-size:2em;" id="se-page" onchange="forpage(0,this.value,1);">
             <option value="15">15</option>
             <option value="30">30</option>
             <option value="60">60</option>

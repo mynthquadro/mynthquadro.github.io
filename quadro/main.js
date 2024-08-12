@@ -730,29 +730,42 @@ function searchmodel() {
     recommendhtml[1] = [];
     currentpage[1] = 0;
     document.getElementsByClassName('re-current')[1].textContent = 1;
-    /*get search model nummer and part by language*/
-    let searchNum = document.getElementsByClassName("search-num")[lang].value.toUpperCase().replace(/Ä/g, 'A').replace(/Ö/g, 'O').replace(/Ü/g, 'U');/*ß.uppercase=SS*/
+    /*get search model nummer and part from user*/
+    const searchNum = document.getElementsByClassName("search-num")[lang].value.toUpperCase().replace(/Ä/g, 'A').replace(/Ö/g, 'O').replace(/Ü/g, 'U');/*ß.uppercase=SS*/
     const searchPartElm = document.querySelectorAll('.includes-select-area2>.selected');
     let searchNameArr = [];
     let searchPartArr = [];
     searchPartElm.forEach((elm) => {
-        const elm_val=elm.getAttribute('value');
+        const elm_val = elm.getAttribute('value');
         if (isNaN(parseInt(elm_val))) {
             searchNameArr.push(elm_val.toUpperCase());
         } else {
             searchPartArr.push(parseInt(elm_val));
         }
     });
-    let searchAge = document.getElementById("search-age").value;
+    /*获取搜索年龄和面积*/
+    const searchAge = document.getElementsByClassName("search-age")[0].value;
+    let searchLength = document.getElementsByClassName("search-length")[0].value;
+    let searchWidth = document.getElementsByClassName("search-length")[1].value;
+    if (searchLength && searchWidth) {//使length大于等于width
+        searchLength=parseInt(searchLength);
+        searchWidth=parseInt(searchWidth);
+        if (searchWidth > searchLength) {
+            let tempLength = searchLength;
+            searchLength = searchWidth;
+            searchWidth = tempLength;
+        }
+    } else {
+        searchLength = 0;
+    }
 
-    let keyword = [];
     let searchtrue = true;
     let hasSearch = false;
     let agetemp = [];
     for (let i = 0; i < design.length; i++) {
         searchtrue = true;
         hasSearch = false;
-        keyword = design[i][1].toUpperCase().replace(/Ä/g, 'A').replace(/Ö/g, 'O').replace(/Ü/g, 'U').split('$');/*keyword[0]:number,[1]:german name,[2]:english name*/
+        const keyword = design[i][1].toUpperCase().replace(/Ä/g, 'A').replace(/Ö/g, 'O').replace(/Ü/g, 'U').split('$');/*keyword[0]:number,[1]:german name,[2]:english name*/
         /*search model nummer or keyword*/
         if (searchNum != '') {
             hasSearch = true;
@@ -760,8 +773,12 @@ function searchmodel() {
                 searchtrue = keyword[1].indexOf(searchNum) >= 0 || keyword[2].indexOf(searchNum) >= 0 || keyword[3].indexOf(searchNum) >= 0;//搜索中文、德语、英语名
             }
             searchtrue = keyword[0].indexOf(searchNum) >= 0 || searchtrue;//搜索编号
+            if(!searchtrue){
+                continue;
+            }
         }
-        if (searchNameArr.length > 0 && keyword.length > 1) {
+        
+        if (searchNameArr.length > 0 && keyword.length > 2) {
             hasSearch = true;
             for (let k = 0; k < searchNameArr.length; k++) {
                 const searchName = searchNameArr[k];
@@ -771,15 +788,20 @@ function searchmodel() {
                     searchtrue = keyword[2].indexOf(searchName) >= 0 && searchtrue;
                 }
             }
-
+            if(!searchtrue){
+                continue;
+            }
         }
 
         /*search part*/
         if (searchPartArr.length > 0) {
             hasSearch = true;
             for (let k = 0; k < searchPartArr.length; k++) {
-                const searchPart=searchPartArr[k];
+                const searchPart = searchPartArr[k];
                 searchtrue = design[i][searchPart] > 0 && searchtrue;
+            }
+            if(!searchtrue){
+                continue;
             }
         }
 
@@ -791,7 +813,36 @@ function searchmodel() {
             for (let ageI = 0; ageI < agetemp.length; ageI++) {
                 agebool = (agetemp[ageI] == searchAge) || agebool;
             }
-            searchtrue = agebool && searchtrue;
+            searchtrue = agebool;
+            if(!searchtrue){
+                continue;
+            }
+        }
+        
+
+        /*筛选面积*/
+        if (searchLength > 0 && searchWidth > 0) {
+            hasSearch = true;
+            if(keyword.length<6){
+                continue;
+            }
+            const dimension = keyword[5].split(',')[0].replace(' ', '').replace('CM', '').split('X');
+            if(dimension.length<2){
+                continue;
+            }
+            
+            let modelLength = parseInt(dimension[0]);
+            let modelWidth = parseInt(dimension[1]);
+            if (modelLength < modelWidth) {//使length大于等于width
+                let tempmodelLength = modelLength;
+                modelLength = modelWidth;
+                modelWidth = tempmodelLength;
+            }
+            if(modelLength>parseInt(searchLength)){
+                continue;
+            }else if(modelWidth>parseInt(searchWidth)){
+                continue;
+            }
         }
 
         /*add result*/
