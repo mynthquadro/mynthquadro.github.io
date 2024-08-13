@@ -189,10 +189,16 @@
     }
 
     .hhd-logo {
+      text-align: center;
       z-index: 99;
       min-width: 250px;
       width: 20vw;
       float: right;
+    }
+
+    .includes-select-area {
+      border-radius: 10px;
+      border: 2px dashed rgb(231, 143, 10);
     }
 
     .includes-select {
@@ -216,7 +222,12 @@
       display: block;
       font-size: 2em;
       border-radius: 5px;
-      margin:10px;
+      margin: 10px;
+      text-decoration: none;
+      background-color: rgb(253, 198, 72);
+      color: black;
+      width: fit-content;
+      padding: 5px 10px;
     }
 
     .show-design-img {
@@ -226,25 +237,27 @@
       object-fit: contain;
     }
 
-    .possible, .se-re{
-      display:inline-block;
+    .possible,
+    .se-re {
+      display: inline-block;
       text-align: center;
     }
 
-    .possible>img, .se-re>img{
-      height:12em;
-      width:100%;
-      cursor:pointer;
-      object-fit:contain;
+    .possible>img,
+    .se-re>img {
+      height: 12em;
+      width: 100%;
+      cursor: pointer;
+      object-fit: contain;
     }
 
-    .design-title{
+    .design-title {
       font-size: 1.5em;
     }
 
-    .color-info{
-      font-size:2em;
-      color:red;
+    .color-info {
+      font-size: 2em;
+      color: red;
     }
 
     @media screen and (orientation: portrait) {
@@ -767,7 +780,7 @@
       document.getElementsByClassName('re-footer')[0].style.display = 'none';
       document.getElementsByClassName('recommendinfo')[0].textContent = '';
 
-      let searchAge = document.getElementById("models-age").value;
+      let searchAge = document.getElementById("models-age1").value;
       let imgwidth = 9;
       if (window.innerWidth < window.innerHeight + 100) {//对于横屏和竖屏，每行显示结果数不同
         imgwidth = 18;
@@ -778,7 +791,7 @@
       increasePart = document.getElementById('increase-percent').value ? parseInt(document.getElementById('increase-percent').value) : 0;
       for (let i = 0; i < design.length; i++) {
         /*search age*/
-        let keyword = design[i][1].split('$');
+        let keyword = design[i][1].toUpperCase().split('$');
         if (searchAge != '-1' && keyword.length > 4) {
           const agetemp = keyword[4].split(', ');
           let agebool = false;
@@ -790,6 +803,78 @@
           }
         }
 
+        /*search part*/
+        const searchPartElm = Array.from(document.getElementsByClassName('includes-select-area')[0].getElementsByClassName('selected'));
+        let searchNameArr = [];
+        let searchPartArr = [];
+        searchPartElm.forEach((elm) => {
+          const elm_val = elm.getAttribute('value');
+          if (isNaN(parseInt(elm_val))) {
+            searchNameArr.push(elm_val.toUpperCase());
+          } else {
+            searchPartArr.push(parseInt(elm_val));
+          }
+        });
+        let searchtrue = true;
+        if (searchNameArr.length > 0 && keyword.length > 2) {
+          for (let k = 0; k < searchNameArr.length; k++) {
+            const searchName = searchNameArr[k];
+            searchtrue = keyword[2].indexOf(searchName) >= 0 && searchtrue;
+          }
+          if (!searchtrue) {
+            continue;
+          }
+        }
+        if (searchPartArr.length > 0) {
+          for (let k = 0; k < searchPartArr.length; k++) {
+            const searchPart = searchPartArr[k];
+            searchtrue = design[i][searchPart] > 0 && searchtrue;
+          }
+          if (!searchtrue) {
+            continue;
+          }
+        }
+
+        /*筛选面积*/
+        let searchLength = document.getElementsByClassName("search-length1")[0].value;
+        let searchWidth = document.getElementsByClassName("search-length1")[1].value;
+        if (searchLength && searchWidth) {//使length大于等于width
+          searchLength = parseInt(searchLength);
+          searchWidth = parseInt(searchWidth);
+          if (searchWidth > searchLength) {
+            let tempLength = searchLength;
+            searchLength = searchWidth;
+            searchWidth = tempLength;
+          }
+          document.getElementsByClassName("search-length1")[0].value = searchLength;
+          document.getElementsByClassName("search-length1")[1].value = searchWidth;
+        } else {
+          searchLength = 0;
+        }
+        if (searchLength > 0 && searchWidth > 0) {
+          if (keyword.length < 6) {
+            continue;
+          }
+          const dimension = keyword[5].split(',')[0].replace(' ', '').replace('CM', '').split('X');
+          if (dimension.length < 2) {
+            continue;
+          }
+
+          let modelLength = parseInt(dimension[0]);
+          let modelWidth = parseInt(dimension[1]);
+          if (modelLength < modelWidth) {//使length大于等于width
+            let tempmodelLength = modelLength;
+            modelLength = modelWidth;
+            modelWidth = tempmodelLength;
+          }
+          if (modelLength > parseInt(searchLength)) {
+            continue;
+          } else if (modelWidth > parseInt(searchWidth)) {
+            continue;
+          }
+        }
+
+        /*根据零件列表筛选可用模型*/
         pass = true;
         missingPart = 0;
         info = '';
@@ -821,7 +906,7 @@
               if (increasePart == 0) {
                 pass = false;
                 break;
-              } else {
+              } else {//增量搜索
                 missingPart += (designamount - havePartNum);
                 if (missingPart > increasePart) {
                   pass = false;
@@ -1005,9 +1090,9 @@
       recommendhtml[1] = [];
       currentpage[1] = 0;
       document.getElementsByClassName('re-current')[1].textContent = 1;
-      /*get search model nummer and part from user*/
+      /*get search model nummer and search part from user*/
       const searchNum = document.getElementsByClassName("search-num")[lang].value.toUpperCase().replace(/Ä/g, 'A').replace(/Ö/g, 'O').replace(/Ü/g, 'U');/*ß.uppercase=SS*/
-      const searchPartElm = document.querySelectorAll('.includes-select-area2>.selected');
+      const searchPartElm = Array.from(document.getElementsByClassName('includes-select-area')[1].getElementsByClassName('selected'));
       let searchNameArr = [];
       let searchPartArr = [];
       searchPartElm.forEach((elm) => {
@@ -1020,8 +1105,8 @@
       });
       /*获取搜索年龄和面积*/
       const searchAge = document.getElementsByClassName("search-age")[0].value;
-      let searchLength = document.getElementsByClassName("search-length")[0].value;
-      let searchWidth = document.getElementsByClassName("search-length")[1].value;
+      let searchLength = document.getElementsByClassName("search-length2")[0].value;
+      let searchWidth = document.getElementsByClassName("search-length2")[1].value;
       if (searchLength && searchWidth) {//使length大于等于width
         searchLength = parseInt(searchLength);
         searchWidth = parseInt(searchWidth);
@@ -1030,8 +1115,8 @@
           searchLength = searchWidth;
           searchWidth = tempLength;
         }
-        document.getElementsByClassName("search-length")[0].value=searchLength;
-        document.getElementsByClassName("search-length")[1].value=searchWidth;
+        document.getElementsByClassName("search-length2")[0].value = searchLength;
+        document.getElementsByClassName("search-length2")[1].value = searchWidth;
       } else {
         searchLength = 0;
       }
@@ -1093,7 +1178,6 @@
           }
         }
 
-
         /*筛选面积*/
         if (searchLength > 0 && searchWidth > 0) {
           hasSearch = true;
@@ -1136,6 +1220,7 @@
     /*show design detail for search result*/
     function showdesign(num, recommend_id = -1) {
       let designinfo = '';
+      const designarr = design[num][1].split('$');
       if (design[num][0].substring(0, 2) == 'MA') {//quadro程序自带造型
         designinfo = '<span style="font-size:2em;">' + design[num][0] + '</span>';
         designinfo += `<img class="show-design-img" src="alt/${design[num][0]}.webp">`;
@@ -1161,8 +1246,8 @@
             + design[num][0] +
             '.qdf">下载模型文件</a>';
         }
+        designinfo += '<br>体积: ' + designarr[5] + ', 推荐年龄: ' + designarr[4];/*dimension + age*/
       } else {//官网造型
-        const designarr = design[num][1].split('$');
         if (false) {//isWechat()
           designinfo = '请复制链接到浏览器打开:<br>https://quadromdb.com/de/designs/' + design[num][0];
         } else {
@@ -1172,7 +1257,7 @@
             + design[num][0] +
             '">查看搭建PDF和模型文件</a>';
         }
-        designinfo += '<br>' + designarr[2] + '<br>' + designarr[5] + ', age:' + designarr[4];/*english name + dimension + age*/
+        designinfo += '<br>' + designarr[2] + '<br>体积: ' + designarr[5] + ', 推荐年龄: ' + designarr[4];/*english name + dimension + age*/
       }
       if (recommend_id != -1) {//recommend_id==-1:搜索模型tab中不显示多选框
         let modeltemp = recommendhtml[0][recommend_id].split('$');//可用模型格式(which=0)：model-id $ selected
@@ -1182,7 +1267,7 @@
       document.getElementsByClassName('se-container')[0].style.display = 'block';
       document.getElementById('design-info').innerHTML = designinfo;
 
-
+      /*所需零件一览*/
       let partinfo = partsIsNotNull ? '下列括号中为拥有零件数<br>' : '';
       const amounts = document.getElementsByClassName('amount');
       const displayHaveParts = partsIsNotNull ? 'inline' : 'none';
@@ -1227,11 +1312,17 @@
 
         const designTemp = design[parseInt(modelArr[0])];
         if (designTemp[0].substring(0, 2) == 'MA') {
-          multiHTML += `<div class="select-thumbnail" style="display:inline-block;"><img onclick="showdesign(${parseInt(modelArr[0])},${i})" style="height:8em;width:9vw;cursor:pointer;object-fit:contain;" src="alt/${designTemp[0]}.webp"></div>`;
+          multiHTML += `<div class="select-thumbnail" style="display:inline-block;">
+            <img onclick="showdesign(${parseInt(modelArr[0])},${i})" style="height:8em;width:9vw;cursor:pointer;object-fit:contain;" src="alt/${designTemp[0]}.webp">
+            </div>`;
         } else if (designTemp[0].charAt(0) == 'M') {
-          multiHTML += `<div class="select-thumbnail" style="display:inline-block;"><img onclick="showdesign(${parseInt(modelArr[0])},${i})" style="height:8em;width:9vw;cursor:pointer;object-fit:contain;" src="diy_img/${designTemp[0]}.webp"></div>`;
+          multiHTML += `<div class="select-thumbnail" style="display:inline-block;">
+            <img onclick="showdesign(${parseInt(modelArr[0])},${i})" style="height:8em;width:9vw;cursor:pointer;object-fit:contain;" src="diy_img/${designTemp[0]}.webp">
+            </div>`;
         } else {
-          multiHTML += `<div class="select-thumbnail" style="display:inline-block;"><img onclick="showdesign(${parseInt(modelArr[0])},${i})" style="height:8em;width:9vw;cursor:pointer;object-fit:contain;" src="webimg/${designTemp[0].toUpperCase()}-brand.webp"></div>`;
+          multiHTML += `<div class="select-thumbnail" style="display:inline-block;">
+            <img onclick="showdesign(${parseInt(modelArr[0])},${i})" style="height:8em;width:9vw;cursor:pointer;object-fit:contain;" src="webimg/${designTemp[0].toUpperCase()}-brand.webp">
+            </div>`;
         }
 
         for (let j = 2; j < designTemp.length; j++) {
@@ -1488,7 +1579,10 @@
   </div>
 
   <div class="hhd-head">
-    <img class="hhd-logo" src="hhdlogo.webp">
+    <div class="hhd-logo">
+      <img style="width:100%" src="hhdlogo.webp" />
+      <span>攀爬架实用工具</span>
+    </div>
 
     <div>
       <button onclick="changeLang();" style="background-color:rgb(254,230,173);color:black;"><span
@@ -1501,7 +1595,7 @@
 
   <br>
   <div class="tab-body" style="margin-top:10px;">
-    <!-- 标签 -->
+    <!-- 标签标题 -->
     <div class="tablinks active" onclick="openTab(event, 'Tab1')" style="width:300px;"><span class="lang-ch">配件统计 &
         可用模型</span><span class="lang-en">kits & model</span></div>
     <div class="tablinks" onclick="openTab(event, 'Tab2')"><span class="lang-ch">模型搜索</span><span
@@ -1597,25 +1691,106 @@
       </div>
 
       <div class='recommend' style="clear:left;">
-        <span style="font-size:2em;"><span class="lang-en">age</span><span class="lang-ch">年龄</span></span>
-        <select style="font-size:2em;border-radius:5px;border-color:#0b486b;" id="models-age">
-          <option value="-1">--</option>
-          <option value="0.5">0.5</option>
-          <option value="1">1</option>
-          <option value="1.5">1.5</option>
-          <option value="2">2</option>
-          <option value="2.5">2.5</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="N/A">N/A</option>
-        </select>
+        <details style="background-color:lightgrey;padding:10px;">
+          <summary style="font-size:2em;margin:10px;cursor:pointer;">更多筛选条件</summary>
+          <div class='includes-select-area'>
+            <div style="font-size:2em;margin:10px;"><span class="lang-en">includes:</span><span
+                class="lang-ch">包含部件（可多选）:</span></div>
+            <div class="includes-select" value="trampoline"><span class="lang-en">trampoline</span><span
+                class="lang-ch">蹦床</span></div>
+            <div class="includes-select" value="swing"><span class="lang-en">swing</span><span class="lang-ch">秋千</span>
+            </div>
+            <div class="includes-select" value="balance bridge"><span class="lang-en">balance bridge</span><span
+                class="lang-ch">平衡桥</span></div>
+            <div class="includes-select" value="ball pool"><span class="lang-en">ball pool</span><span
+                class="lang-ch">球池</span></div>
+            <div class="includes-select" value="parallel"><span class="lang-en">parallel</span><span
+                class="lang-ch">双杠</span></div>
+            <div class="includes-select" value="horizontal bar"><span class="lang-en">horizontal bar</span><span
+                class="lang-ch">单杠</span></div>
+            <div class="includes-select" value="platform"><span class="lang-en">platform</span><span
+                class="lang-ch">平台</span></div>
+            <div class="includes-select" value="pyramid"><span class="lang-en">pyramid</span><span
+                class="lang-ch">金字塔</span></div>
+            <div class="includes-select" value="learning tower"><span class="lang-en">learning tower</span><span
+                class="lang-ch">学习塔</span></div>
+            <div class="includes-select" value="ladder"><span class="lang-en">ladder</span><span
+                class="lang-ch">斜梯</span>
+            </div>
+            <div class="includes-select" value="27"><span class="lang-en">ramp</span><span class="lang-ch">斜坡</span>
+            </div>
+            <div class="includes-select" value="34"><span class="lang-en">straight slide</span><span
+                class="lang-ch">直滑梯</span></div>
+            <div class="includes-select" value="36"><span class="lang-en">curved slide</span><span
+                class="lang-ch">弧形滑梯</span></div>
+            <div class="includes-select" value="22"><span class="lang-en">multi wheel</span><span
+                class="lang-ch">多轮</span></div>
+            <div class="includes-select" value="40"><span class="lang-en">offroad wheel</span><span
+                class="lang-ch">越野轮</span></div>
+            <div class="includes-select" value="31"><span class="lang-en">universal wheel</span><span
+                class="lang-ch">万向轮</span></div>
+            <div class="includes-select" value="33"><span class="lang-en">play bag</span><span
+                class="lang-ch">游戏袋</span>
+            </div>
+            <div class="includes-select" value="pool"><span class="lang-en">pool</span><span class="lang-ch">泳池</span>
+            </div>
+            <div class="includes-select" value="house"><span class="lang-en">house</span><span class="lang-ch">房子</span>
+            </div>
+            <div class="includes-select" value="cube"><span class="lang-en">cube</span><span class="lang-ch">立方体</span>
+            </div>
+            <div class="includes-select" value="tower"><span class="lang-en">tower</span><span class="lang-ch">塔</span>
+            </div>
+            <div class="includes-select" value="goal"><span class="lang-en">goal</span><span class="lang-ch">球门</span>
+            </div>
+            <div class="includes-select" value="bridge"><span class="lang-en">bridge</span><span
+                class="lang-ch">廊桥</span>
+            </div>
+            <div class="includes-select" value="chair"><span class="lang-en">chair</span><span class="lang-ch">椅子</span>
+            </div>
+            <div class="includes-select" value="table"><span class="lang-en">table</span><span class="lang-ch">桌子</span>
+            </div>
+            <div class="includes-select" value="walking helper"><span class="lang-en">walking helper</span><span
+                class="lang-ch">学步栏</span></div>
+            <div class="includes-select" value="changing table"><span class="lang-en">changing table</span><span
+                class="lang-ch">尿布台</span></div>
+            <div class="includes-select" value="easel"><span class="lang-en">easel</span><span
+                class="lang-ch">书画架</span>
+            </div>
+            <div class="includes-select" value="cabinet"><span class="lang-en">cabinet</span><span
+                class="lang-ch">柜子</span></div>
+          </div>
+
+          <br><br>
+          <span style="font-size:2em;"><span class="lang-en">age:</span><span class="lang-ch">年龄:</span> </span>
+          <select style="font-size:2em;" id="models-age1">
+            <option value="-1">--</option>
+            <option value="0.5">0.5</option>
+            <option value="1">1</option>
+            <option value="1.5">1.5</option>
+            <option value="2">2</option>
+            <option value="2.5">2.5</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="N/A">N/A</option>
+          </select>
+          <br><br>
+          <div style="font-size:2em;">
+            <span class="lang-en">dimension:</span><span class="lang-ch">面积:</span>&nbsp;
+            <input class="search-length1" style="font-size:100%;width:4em;" type="number" /> &times; <input
+              class="search-length1" style="font-size:100%;width:4em;" type="number" /> <span
+              class="lang-en">cm</span><span class="lang-ch">厘米</span>
+          </div>
+          <br>
+
+          <div style="font-size:2em;">
+            <span class="lang-en">add more parts</span><span class="lang-ch">增量搜索(需加购配件总数): </span>
+            <input style="font-size:100%;width:100px;" type="number" id="increase-percent" value="0" />
+          </div>
+        </details>
         <br>
-        <div style="font-size:2em;margin:20px 0;">
-          <span class="lang-en">add more parts</span><span class="lang-ch">增量搜索(需加购配件总数)</span>
-          <input style="font-size:100%;width:100px;" type="number" id="increase-percent" value="0" />
-        </div>
+
         <button onclick="getdesign();" style="background-color:rgb(231,143,10);color:white;"><span
-            class="lang-en">Available models/Refresh</span><span class="lang-ch">可用模型/刷新</span></button>
+            class="lang-en">Available models/Refresh</span><span class="lang-ch">搜索可用模型</span></button>
         <br><span class="lang-en">Texile,double tube connector,alu-profile and pools are not considered. Holey panel and
           plexiglass could be replaced. </span><span class="lang-ch">布品、8字件、铝管及泳池布不考虑在计算结果内，洞洞板及亚克力板可被普通板代替。</span>
         <div> </div>
@@ -1641,12 +1816,14 @@
               class="lang-ch">下一页</span></button>
         </div>
 
+        <br>
         <div id="re-multiselect" style="display: table;"></div>
         <div id="re-compare" style="display: table;"></div>
 
       </div>
     </div>
     <!-- end of tab1 -->
+
     <!-- tab2 搜索模型 -->
     <div id="Tab2" class="tabcontent">
       <br>
@@ -1661,9 +1838,9 @@
           class="search-num lang-en">
         <br><br>
 
-        <div class='includes-select-area2' style="border-radius: 10px;border:2px dashed rgb(231,143,10)">
-          <div style="font-size:2em;margin:10px;"><span class="lang-en">includes</span><span
-              class="lang-ch">包含部件（可多选）</span></div>
+        <div class='includes-select-area'>
+          <div style="font-size:2em;margin:10px;"><span class="lang-en">includes:</span><span
+              class="lang-ch">包含部件（可多选）:</span></div>
           <div class="includes-select" value="trampoline"><span class="lang-en">trampoline</span><span
               class="lang-ch">蹦床</span></div>
           <div class="includes-select" value="swing"><span class="lang-en">swing</span><span class="lang-ch">秋千</span>
@@ -1678,7 +1855,7 @@
               class="lang-ch">单杠</span></div>
           <div class="includes-select" value="platform"><span class="lang-en">platform</span><span
               class="lang-ch">平台</span></div>
-          <div class="includes-select" value="pyramide"><span class="lang-en">pyramide</span><span
+          <div class="includes-select" value="pyramid"><span class="lang-en">pyramid</span><span
               class="lang-ch">金字塔</span></div>
           <div class="includes-select" value="learning tower"><span class="lang-en">learning tower</span><span
               class="lang-ch">学习塔</span></div>
@@ -1724,9 +1901,9 @@
         </div>
 
         <br><br>
-        <span style="font-size:2em;"><span class="lang-en">age</span><span class="lang-ch">年龄</span></span>
+        <span style="font-size:2em;"><span class="lang-en">age:</span><span class="lang-ch">年龄:</span> </span>
 
-        <select style="font-size:2em;border-radius:5px;border-color:#0b486b;" class="search-age">
+        <select style="font-size:2em;" class="search-age">
           <option value="-1">--</option>
           <option value="0.5">0.5</option>
           <option value="1">1</option>
@@ -1737,14 +1914,16 @@
           <option value="4">4</option>
           <option value="N/A">N/A</option>
         </select>
-
         <br><br>
-        <span style="font-size:2em;"><span class="lang-en">dimension</span><span class="lang-ch">面积</span></span>
-        <input class="search-length" style="font-size:2em;width:4em;" type="number" /> X <input class="search-length"
-          style="font-size:2em;width:4em;" type="number" /><span class="lang-en" style="font-size:2em;">cm</span><span
-          class="lang-ch" style="font-size:2em;">厘米</span>
 
-        <br><br>
+        <div style="font-size:2em;">
+          <span class="lang-en">dimension:</span><span class="lang-ch">面积:</span>&nbsp;
+          <input class="search-length2" style="font-size:100%;width:4em;" type="number" /> &times; <input
+            class="search-length2" style="font-size:100%;width:4em;" type="number" /> <span
+            class="lang-en">cm</span><span class="lang-ch">厘米</span>
+        </div>
+        <br>
+
         <button onclick="searchmodel();" style="background-color:rgb(231,143,10);color:white;"><span
             class="lang-en">search</span><span class="lang-ch">搜索</span></button>
         <div class="re-container"></div>
@@ -1766,6 +1945,7 @@
       </div>
     </div>
     <!-- end of tab2 -->
+
     <!-- tab3 染色 -->
     <div id="Tab3" class="tabcontent">
       <br>
@@ -1807,6 +1987,7 @@
       <div id='color-info' style="color:red;font-weight:700;"></div>
     </div>
     <!-- end of tab3 -->
+
     <!-- tab4下载链接 -->
     <div id="Tab4" class="tabcontent">
       <div style="font-size:1.8em;"><span class="lang-en"><b>Quadro Homepage:</b></span><span class="lang-ch"
