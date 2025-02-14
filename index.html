@@ -278,7 +278,7 @@
     }
   </style>
 
-  <script src="models.js"></script>
+  <script src="/quadro/models.js"></script>
 
   <script>
     const parts = ['Raumkupplung 5-armig', 'Raumkupplung 4-armig', 'Raumkupplung 3-armig',
@@ -427,7 +427,7 @@
       let addHtml = '';
       for (let i = 0; i < parts.length; i++) {
         const p = "alert('" + parts[i] + "[" + partsCh[i].replace(/\(/g, '[').replace(/\)/g, ']') + "]" + "');";
-        addHtml += '<div class="part-row"><div class="part-row-img" onclick="' + p + '"><img src="part_img/' + partsImgSrc[i] + '"></div><div  contenteditable="true" onclick="partsChanged()" class="amount"></div></div>';
+        addHtml += '<div class="part-row"><div class="part-row-img" onclick="' + p + '"><img src="/quadro/part_img/' + partsImgSrc[i] + '"></div><div  contenteditable="true" onclick="partsChanged()" class="amount"></div></div>';
       }
       document.getElementById("partslistdech").innerHTML = addHtml;
 
@@ -963,36 +963,36 @@
           if (modelName.substring(0, 2) == 'MA') {//quadro程序自带造型
             modelhtml = `
   <div class="possible" style="width:${imgwidth}vw;${selectedcsss}" id="possible${page * perpage + i}">
-    <img onclick="showdesign(${parseInt(modeltemp[0])}, ${page * perpage + i})" src="alt/${modelName}.webp">
+    <img onclick="showdesign(${parseInt(modeltemp[0])}, ${page * perpage + i})" src="/quadro/alt/${modelName}.webp">
     <span class="design-title">${modelName}</span>
   </div>`;
           } else if (modelName.substring(0, 1) == 'M') {//自制造型
             modelhtml = `
   <div class="possible" style="width:${imgwidth}vw;${selectedcsss}" id="possible${page * perpage + i}">
-    <img onclick="showdesign(${parseInt(modeltemp[0])}, ${page * perpage + i})" src="diy_img/${modelName}.webp">
+    <img onclick="showdesign(${parseInt(modeltemp[0])}, ${page * perpage + i})" src="/quadro/diy_img/${modelName}.webp">
     <span class="design-title">${modelName}</span>
   </div>`;
           } else {//官网造型
             modelhtml = `
   <div class="possible" style="width:${imgwidth}vw;${selectedcsss}" id="possible${page * perpage + i}">
-    <img onclick="showdesign(${parseInt(modeltemp[0])}, ${page * perpage + i})" src="webimg/${modelName.toUpperCase()}-brand.webp">
+    <img onclick="showdesign(${parseInt(modeltemp[0])}, ${page * perpage + i})" src="/quadro/webimg/${modelName.toUpperCase()}-brand.webp">
     <span class="design-title">${modelName}</span>
   </div>`;
           }
         } else {//搜索模型
           if (modelName.substring(0, 2) == 'MA') {//quadro程序自带造型
             modelhtml = `<div class="se-re" style="width:${imgwidth}vw;">
-            <img onclick="showdesign(${parseInt(modeltemp[0])})" src="alt/${modelName}.webp">
+            <img onclick="showdesign(${parseInt(modeltemp[0])})" src="/quadro/alt/${modelName}.webp">
             <span class="design-title">${modelName}</span>
             </div>`;
           } else if (modelName.substring(0, 1) == 'M') {//自制造型
             modelhtml = `<div class="se-re" style="width:${imgwidth}vw;">
-            <img onclick="showdesign(${parseInt(modeltemp[0])})" src="diy_img/${modelName}.webp">
+            <img onclick="showdesign(${parseInt(modeltemp[0])})" src="/quadro/diy_img/${modelName}.webp">
             <span class="design-title">${modelName}</span>
             </div>`;
           } else {//官网造型
             modelhtml = `<div class="se-re" style="width:${imgwidth}vw;">
-            <img onclick="showdesign(${parseInt(modeltemp[0])})" src="webimg/${modelName.toUpperCase()}-brand.webp">
+            <img onclick="showdesign(${parseInt(modeltemp[0])})" src="/quadro/webimg/${modelName.toUpperCase()}-brand.webp">
             <span class="design-title">${modelName}</span>
             </div>`;
           }
@@ -1225,7 +1225,7 @@
       const designarr = design[num][1].split('$');
       if (design[num][0].substring(0, 2) == 'MA') {//quadro程序自带造型
         designinfo = '<span style="font-size:2em;">' + design[num][0] + '</span>';
-        designinfo += `<img class="show-design-img" src="alt/${design[num][0]}.webp">`;
+        designinfo += `<img class="show-design-img" src="/quadro/alt/${design[num][0]}.webp">`;
         designinfo += ' <a target="_blank" class="down-link" href="alt/'
           + design[num][0] +
           '.qdf" download="'
@@ -1233,7 +1233,7 @@
           '.qdf">下载模型文件</a>';
       } else if (design[num][0].substring(0, 1) == 'M') {//自制造型
         designinfo = '<span style="font-size:2em;">' + design[num][0] + '</span>';
-        designinfo += `<img class="show-design-img" src="diy_img/${design[num][0]}.webp">`;
+        designinfo += `<img class="show-design-img" src="/quadro/diy_img/${design[num][0]}.webp">`;
         designinfo += '<a target="_blank" class="down-link" href="diy_pdf/'
           + design[num][0] +
           '.pdf">查看搭建PDF</a>';
@@ -1254,7 +1254,7 @@
           designinfo = '请复制链接到浏览器打开:<br>https://quadromdb.com/de/designs/' + design[num][0];
         } else {
           designinfo = '<span style="font-size:2em;">' + design[num][0] + '</span>';
-          designinfo += `<img class="show-design-img" src="webimg/${design[num][0].toUpperCase()}-brand.webp">`;
+          designinfo += `<img class="show-design-img" src="/quadro/webimg/${design[num][0].toUpperCase()}-brand.webp">`;
           designinfo += '<a target="_blank"  class="down-link" href="https://quadromdb.com/en/designs/'
             + design[num][0] +
             '">查看搭建PDF和模型文件</a>';
@@ -1284,7 +1284,7 @@
           }
           const p = "alert('" + parts[i - 2] + "[" + partsCh[i - 2].replace(/\(/g, '[').replace(/\)/g, ']') + "]" + "');";
           partinfo += '<div class="part-row"><div class="part-row-img" onclick="'
-            + p + '"><img src="part_img/' + partsImgSrc[i - 2] + '"></div><div  class="se-amount">'
+            + p + '"><img src="/quadro/part_img/' + partsImgSrc[i - 2] + '"></div><div  class="se-amount">'
             + design[num][i] + '<span style="display:' + displayHaveParts + ';color:' + styleColor + ';">(' + havePartNum + ')</span></div></div>';
         }
       }
@@ -1315,15 +1315,15 @@
         const designTemp = design[parseInt(modelArr[0])];
         if (designTemp[0].substring(0, 2) == 'MA') {
           multiHTML += `<div class="select-thumbnail" style="display:inline-block;">
-            <img onclick="showdesign(${parseInt(modelArr[0])},${i})" style="height:8em;width:9vw;cursor:pointer;object-fit:contain;" src="alt/${designTemp[0]}.webp">
+            <img onclick="showdesign(${parseInt(modelArr[0])},${i})" style="height:8em;width:9vw;cursor:pointer;object-fit:contain;" src="/quadro/alt/${designTemp[0]}.webp">
             </div>`;
         } else if (designTemp[0].charAt(0) == 'M') {
           multiHTML += `<div class="select-thumbnail" style="display:inline-block;">
-            <img onclick="showdesign(${parseInt(modelArr[0])},${i})" style="height:8em;width:9vw;cursor:pointer;object-fit:contain;" src="diy_img/${designTemp[0]}.webp">
+            <img onclick="showdesign(${parseInt(modelArr[0])},${i})" style="height:8em;width:9vw;cursor:pointer;object-fit:contain;" src="/quadro/diy_img/${designTemp[0]}.webp">
             </div>`;
         } else {
           multiHTML += `<div class="select-thumbnail" style="display:inline-block;">
-            <img onclick="showdesign(${parseInt(modelArr[0])},${i})" style="height:8em;width:9vw;cursor:pointer;object-fit:contain;" src="webimg/${designTemp[0].toUpperCase()}-brand.webp">
+            <img onclick="showdesign(${parseInt(modelArr[0])},${i})" style="height:8em;width:9vw;cursor:pointer;object-fit:contain;" src="/quadro/webimg/${designTemp[0].toUpperCase()}-brand.webp">
             </div>`;
         }
 
@@ -1346,7 +1346,7 @@
             styleColor = 'green';
           }
           const alertFunc = "alert('" + parts[i] + "[" + partsCh[i].replace(/\(/g, '[').replace(/\)/g, ']') + "]" + "');";
-          resultHTML += `<div class="part-row"><div class="part-row-img" onclick="${alertFunc}"><img src="part_img/${partsImgSrc[i]}"></div>
+          resultHTML += `<div class="part-row"><div class="part-row-img" onclick="${alertFunc}"><img src="/quadro/part_img/${partsImgSrc[i]}"></div>
       <div  class="se-amount">${partsCompareArr[i]}<span style="color:${styleColor};">(${havePartNum})</span></div></div>`;
         }
       }
@@ -1578,17 +1578,17 @@
         </a>cheryl_5
       </div>
       <br><span style="font-size:1.8em;">需要驯兽师协助 请扫码加好友</span><br>
-      <img alt='qrcode' style='height:40%;' src='4weixin.webp'>
+      <img alt='qrcode' style='height:40%;' src='/quadro/4weixin.webp'>
       <br><span style="font-size:1.8em;">关注|好好搭| 获取更多干货分享</span><br>
-      <img alt='qrcode' style='height:20%;' src='qrcodegzh.webp'>
+      <img alt='qrcode' style='height:20%;' src='/quadro/qrcodegzh.webp'>
       <br><span style="font-size:1.8em;">微信扫码入|好好搭|群 解锁更多玩法</span><br>
-      <img alt='qrcode' style='height:50%;' src='qrcodewx.webp'>
+      <img alt='qrcode' style='height:50%;' src='/quadro/qrcodewx.webp'>
     </div>
   </div>
 
   <div class="hhd-head">
     <div class="hhd-logo">
-      <img style="width:100%" src="hhdlogo.webp" />
+      <img style="width:100%" src="/quadro/hhdlogo.webp" />
     </div>
 
     <div>
@@ -1976,10 +1976,10 @@
       <div style="width:300px;float:right;">
         研发不易～～<br>
         搭友们如果对小工具满意的话<br>
-        扫这里投喂个鸡腿鼓励一下呗^o^<br><img src="wechatpayqr.webp" style="width:300px;height:300px;">
+        扫这里投喂个鸡腿鼓励一下呗^o^<br><img src="/quadro/wechatpayqr.webp" style="width:300px;height:300px;">
       </div>
       <hr style="clear:both;">
-      <img style="width:90%;" src="connectors.webp"><br>
+      <img style="width:90%;" src="/quadro/connectors.webp"><br>
       *连接件颜色示例<br>
       <button onclick='connectorColor();'>连接件染色</button><br>
       <hr>
@@ -2012,7 +2012,7 @@
         <span class="lang-ch" style="text-decoration:underline;font-size:1.8em;">德文版软件下载</span>
       </a>
       <div style="font-size:1.8em;">汉化版软件：关注|好好搭| 公众号回复"<b>软件</b>"获取</div>
-      <img alt='qrcode' style='width:80%;' src='qrcodegzh.webp'>
+      <img alt='qrcode' style='width:80%;' src='/quadro/qrcodegzh.webp'>
       <br>
       <br>
       <br>
