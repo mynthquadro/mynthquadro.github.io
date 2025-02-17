@@ -1226,7 +1226,7 @@
       if (design[num][0].substring(0, 2) == 'MA') {//quadro程序自带造型
         designinfo = '<span style="font-size:2em;">' + design[num][0] + '</span>';
         designinfo += `<img class="show-design-img" src="/quadro/alt/${design[num][0]}.webp">`;
-        designinfo += ' <a target="_blank" class="down-link" href="alt/'
+        designinfo += ' <a target="_blank" class="down-link" href="/quadro/alt/'
           + design[num][0] +
           '.qdf" download="'
           + design[num][0] +
@@ -1234,7 +1234,7 @@
       } else if (design[num][0].substring(0, 1) == 'M') {//自制造型
         designinfo = '<span style="font-size:2em;">' + design[num][0] + '</span>';
         designinfo += `<img class="show-design-img" src="/quadro/diy_img/${design[num][0]}.webp">`;
-        designinfo += '<a target="_blank" class="down-link" href="diy_pdf/'
+        designinfo += '<a target="_blank" class="down-link" href="/quadro/diy_pdf/'
           + design[num][0] +
           '.pdf">查看搭建PDF</a>';
         const designNum = parseInt(design[num][0].replace('M', ''));
@@ -1242,7 +1242,7 @@
         if (designNum < 55 || designNum == 53001 || noQdf.includes(designNum)) {
           //缺少qdf文件
         } else {
-          designinfo += ' <a target="_blank" class="down-link" href="diy_qdf/'
+          designinfo += ' <a target="_blank" class="down-link" href="/quadro/diy_qdf/'
             + design[num][0] +
             '.qdf" download="'
             + design[num][0] +
