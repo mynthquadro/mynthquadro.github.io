@@ -1258,6 +1258,11 @@
           designinfo += '<a target="_blank"  class="down-link" href="https://quadromdb.com/en/designs/'
             + design[num][0] +
             '">查看搭建PDF和模型文件</a>';
+          designinfo += ' <a target="_blank" class="down-link" href="/quadro/web_qdf/'
+          + design[num][0].toUpperCase() +
+          '.qdf" download="'
+          + design[num][0].toUpperCase() +
+          '.qdf">下载模型文件</a>';
         }
         designinfo += '<br>' + designarr[2] + '<br>体积: ' + designarr[5] + ', 推荐年龄: ' + designarr[4];/*english name + dimension + age*/
       }
