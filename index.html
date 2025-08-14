@@ -1299,47 +1299,62 @@
       document.getElementById('part-info').style.height = 'calc(80vh - 2em - ' + document.getElementById('design-info').offsetHeight + 'px';
       document.getElementById('part-info').innerHTML = partinfo;
     }
-
+    // 新增全局数组保存选中模型
+    let selectedModels = [];
+    
     /*多选计算总零件数*/
     function showCompare(recommend_id) {
       //将选中的模型标记为已选中
       let modeltemp = recommendhtml[0][recommend_id].split('$');//可用模型格式(which=0)：model-id $ selected
+      const modelId = parseInt(modeltemp[0]);
       const selectedtext = modeltemp[1] == 1 ? '0' : '1';
-      recommendhtml[0][recommend_id] = modeltemp[0] + '$' + selectedtext;
-      if (selectedtext == 0) {
-        document.getElementById('possible' + recommend_id).style.border = 'none';
-      } else {
-        document.getElementById('possible' + recommend_id).style.border = '2px cyan solid';
-      }
-      let multiHTML = '多选模型：<br>';
-      //计算总零件数，生成缩略图
-      partsCompareArr = new Array(parts.length).fill(0);
-      for (let i = 0; i < recommendhtml[0].length; i++) {
-        const modelArr = recommendhtml[0][i].split('$');
-        if (modelArr[1] == '0') {//没有被选中，跳过
-          continue;
+     
+      // 更新 recommendhtml 状态
+      recommendhtml[0][recommend_id] = modelId + '$' + selectedtext;
+      
+      // 同步维护 selectedModels
+      if (selectedtext == '1') {
+        if (!selectedModels.includes(modelId)) {
+          selectedModels.push(modelId);
         }
-
-        const designTemp = design[parseInt(modelArr[0])];
-        if (designTemp[0].substring(0, 2) == 'MA') {
-          multiHTML += `<div class="select-thumbnail" style="display:inline-block;">
-            <img onclick="showdesign(${parseInt(modelArr[0])},${i})" style="height:8em;width:9vw;cursor:pointer;object-fit:contain;" src="/quadro/alt/${designTemp[0]}.webp">
-            </div>`;
-        } else if (designTemp[0].charAt(0) == 'M') {
-          multiHTML += `<div class="select-thumbnail" style="display:inline-block;">
-            <img onclick="showdesign(${parseInt(modelArr[0])},${i})" style="height:8em;width:9vw;cursor:pointer;object-fit:contain;" src="/quadro/diy_img/${designTemp[0]}.webp">
-            </div>`;
+          document.getElementById('possible' + recommend_id).style.border = '2px cyan solid';
         } else {
-          multiHTML += `<div class="select-thumbnail" style="display:inline-block;">
-            <img onclick="showdesign(${parseInt(modelArr[0])},${i})" style="height:8em;width:9vw;cursor:pointer;object-fit:contain;" src="/quadro/webimg/${designTemp[0].toUpperCase()}-brand.webp">
-            </div>`;
+          selectedModels = selectedModels.filter(id => id !== modelId);
+          document.getElementById('possible' + recommend_id).style.border = 'none';
         }
 
-        for (let j = 2; j < designTemp.length; j++) {
-          partsCompareArr[j - 2] += designTemp[j];
+          updateMultiSelectView();
         }
-      }
-      document.getElementById('re-multiselect').innerHTML = multiHTML;
+
+      // 单独封装更新视图和计算逻辑
+      function updateMultiSelectView() {
+        let multiHTML = '多选模型：<br>';
+        partsCompareArr = new Array(parts.length).fill(0);
+
+        for (let i = 0; i < recommendhtml[0].length; i++) {
+          const modelArr = recommendhtml[0][i].split('$');
+          if (modelArr[1] == '0') continue;
+
+          const designTemp = design[parseInt(modelArr[0])];
+          let imgSrc = '';
+          if (designTemp[0].substring(0, 2) == 'MA') {
+            imgSrc = `/quadro/alt/${designTemp[0]}.webp`;
+          } else if (designTemp[0].charAt(0) == 'M') {
+            imgSrc = `/quadro/diy_img/${designTemp[0]}.webp`;
+          } else {
+            imgSrc = `/quadro/webimg/${designTemp[0].toUpperCase()}-brand.webp`;
+          }
+          multiHTML += `<div class="select-thumbnail" style="display:inline-block;">
+            <img onclick="showdesign(${parseInt(modelArr[0])},${i})" style="height:8em;width:9vw;cursor:pointer;object-fit:contain;" src="${imgSrc}">
+          </div>`;
+
+          for (let j = 2; j < designTemp.length; j++) {
+            partsCompareArr[j - 2] += designTemp[j];
+          }
+        }
+
+        document.getElementById('re-multiselect').innerHTML = multiHTML;
+
 
       //显示总零件数
       let resultHTML = '多选零件总数(括号中为拥有零件数)：<br>';
@@ -1377,7 +1392,19 @@
         //document.getElementById('Tab3').style.display='block';
       }
     }
-
+    // 重新搜索或更新 recommendhtml 后调用
+    function restoreSelections() {
+      for (let i = 0; i < recommendhtml[0].length; i++) {
+        let modeltemp = recommendhtml[0][i].split('$');
+        const modelId = parseInt(modeltemp[0]);
+        if (selectedModels.includes(modelId)) {
+          recommendhtml[0][i] = modelId + '$1';
+          let el = document.getElementById('possible' + i);
+          if (el) el.style.border = '2px cyan solid';
+        }
+      }
+      updateMultiSelectView();
+    }
     /*save and load kits and parts amount in cookie*/
     function setCookie(cname, cvalue, exdays) {
       let expires = '';
