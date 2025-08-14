@@ -1376,7 +1376,20 @@
       const compareElm = document.getElementById('re-compare');
       compareElm.innerHTML = resultHTML;
     }
-
+    // 重新搜索或更新 recommendhtml 后调用
+      function restoreSelections() {
+        for (let i = 0; i < recommendhtml[0].length; i++) {
+          let modeltemp = recommendhtml[0][i].split('$');
+          const modelId = parseInt(modeltemp[0]);
+          if (selectedModels.includes(modelId)) {
+            recommendhtml[0][i] = modelId + '$1';
+            let el = document.getElementById('possible' + i);
+            if (el) el.style.border = '2px cyan solid';
+          }
+        }
+        updateMultiSelectView();
+      }
+    
     /*lang:0->chinese,1->english*/
     let lang = 0;
     function changeLang() {
@@ -1392,19 +1405,7 @@
         //document.getElementById('Tab3').style.display='block';
       }
     }
-    // 重新搜索或更新 recommendhtml 后调用
-    function restoreSelections() {
-      for (let i = 0; i < recommendhtml[0].length; i++) {
-        let modeltemp = recommendhtml[0][i].split('$');
-        const modelId = parseInt(modeltemp[0]);
-        if (selectedModels.includes(modelId)) {
-          recommendhtml[0][i] = modelId + '$1';
-          let el = document.getElementById('possible' + i);
-          if (el) el.style.border = '2px cyan solid';
-        }
-      }
-      updateMultiSelectView();
-    }
+    
     /*save and load kits and parts amount in cookie*/
     function setCookie(cname, cvalue, exdays) {
       let expires = '';
