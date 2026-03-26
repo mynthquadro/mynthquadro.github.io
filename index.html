@@ -6,12 +6,10 @@
   <meta name="keywords" content="攀爬架, 爬爬架, quadro, model, 好好搭, 模型, hohoda, 攀爬架宝库, 吞金兽驯兽师">
   <meta name="apple-mobile-web-app-title" content="攀爬架宝库">
   <meta name="google-site-verification" content="o7OyMXeaQLqCcWFLUIoRlUurThMOReYF_pQxd6HPh0Y" />
-  <link rel="apple-touch-icon" href="/quadro/hohodalogo.ico" type="image/x-icon">
-  <link rel="shortcut icon" href="/quadro/hohodalogo.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="./quadro/hohodalogo.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="./quadro/hohodalogo.ico" type="image/x-icon">
   <meta charset="utf-8">
-   <title>攀爬架宝库</title>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6065671789763206"
-     crossorigin="anonymous"></script>
+  <title>攀爬架宝库</title>
   <style>
     .color-set {
       display: inline-block;
@@ -279,7 +277,7 @@
     }
   </style>
 
-  <script src="/quadro/models.js"></script>
+  <script src="./quadro/models.js"></script>
 
   <script>
     const parts = ['Raumkupplung 5-armig', 'Raumkupplung 4-armig', 'Raumkupplung 3-armig',
@@ -386,9 +384,9 @@
       ['大兽套', 4, 17, 15, 2, 19, 14, 4, 4, 0, 25, 0, 4, 88, 0, 0, 2, 10, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       ['羊毛家具', 4, 15, 14, 2, 14, 13, 3, 0, 0, 23, 0, 0, 57, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       ['B1', 10, 28, 10, 10, 32, 24, 0, 4, 0, 56, 0, 8, 130, 0, 0, 0, 8, 2, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
-      ['A5', 6 , 9, 15, 1, 17, 11, 2, 4, 0, 16, 0, 4, 75, 0, 0, 1, 11, 3, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      ['Transformer(TF)', 4 , 19, 15, 3, 23, 19, 4, 4, 0, 24, 0, 4, 108, 0, 0, 0, 10, 6, 0, 0, 2, 2, 2, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-      ['TF扩展', 4 , 13, 14, 1, 11, 13, 3, 4, 0, 23, 0, 0, 57, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      ['A5', 6, 9, 15, 1, 17, 11, 2, 4, 0, 16, 0, 4, 75, 0, 0, 1, 11, 3, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      ['Transformer(TF)', 4, 19, 15, 3, 23, 19, 4, 4, 0, 24, 0, 4, 108, 0, 0, 0, 10, 6, 0, 0, 2, 2, 2, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      ['TF扩展', 4, 13, 14, 1, 11, 13, 3, 4, 0, 23, 0, 0, 57, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
     ];
 
     if (window.addEventListener) {
@@ -431,7 +429,7 @@
       let addHtml = '';
       for (let i = 0; i < parts.length; i++) {
         const p = "alert('" + parts[i] + "[" + partsCh[i].replace(/\(/g, '[').replace(/\)/g, ']') + "]" + "');";
-        addHtml += '<div class="part-row"><div class="part-row-img" onclick="' + p + '"><img src="/quadro/part_img/' + partsImgSrc[i] + '"></div><div  contenteditable="true" onclick="partsChanged()" class="amount"></div></div>';
+        addHtml += '<div class="part-row"><div class="part-row-img" onclick="' + p + '"><img src="./quadro/part_img/' + partsImgSrc[i] + '"></div><div  contenteditable="true" onclick="partsChanged()" class="amount"></div></div>';
       }
       document.getElementById("partslistdech").innerHTML = addHtml;
 
@@ -967,36 +965,36 @@
           if (modelName.substring(0, 2) == 'MA') {//quadro程序自带造型
             modelhtml = `
   <div class="possible" style="width:${imgwidth}vw;${selectedcsss}" id="possible${page * perpage + i}">
-    <img onclick="showdesign(${parseInt(modeltemp[0])}, ${page * perpage + i})" src="/quadro/alt/${modelName}.webp">
+    <img onclick="showdesign(${parseInt(modeltemp[0])}, ${page * perpage + i})" src="./quadro/alt/${modelName}.webp">
     <span class="design-title">${modelName}</span>
   </div>`;
           } else if (modelName.substring(0, 1) == 'M') {//自制造型
             modelhtml = `
   <div class="possible" style="width:${imgwidth}vw;${selectedcsss}" id="possible${page * perpage + i}">
-    <img onclick="showdesign(${parseInt(modeltemp[0])}, ${page * perpage + i})" src="/quadro/diy_img/${modelName}.webp">
+    <img onclick="showdesign(${parseInt(modeltemp[0])}, ${page * perpage + i})" src="./quadro/diy_img/${modelName}.webp">
     <span class="design-title">${modelName}</span>
   </div>`;
           } else {//官网造型
             modelhtml = `
   <div class="possible" style="width:${imgwidth}vw;${selectedcsss}" id="possible${page * perpage + i}">
-    <img onclick="showdesign(${parseInt(modeltemp[0])}, ${page * perpage + i})" src="/quadro/webimg/${modelName.toUpperCase()}-brand.webp">
+    <img onclick="showdesign(${parseInt(modeltemp[0])}, ${page * perpage + i})" src="./quadro/webimg/${modelName.toUpperCase()}-brand.webp">
     <span class="design-title">${modelName}</span>
   </div>`;
           }
         } else {//搜索模型
           if (modelName.substring(0, 2) == 'MA') {//quadro程序自带造型
             modelhtml = `<div class="se-re" style="width:${imgwidth}vw;">
-            <img onclick="showdesign(${parseInt(modeltemp[0])})" src="/quadro/alt/${modelName}.webp">
+            <img onclick="showdesign(${parseInt(modeltemp[0])})" src="./quadro/alt/${modelName}.webp">
             <span class="design-title">${modelName}</span>
             </div>`;
           } else if (modelName.substring(0, 1) == 'M') {//自制造型
             modelhtml = `<div class="se-re" style="width:${imgwidth}vw;">
-            <img onclick="showdesign(${parseInt(modeltemp[0])})" src="/quadro/diy_img/${modelName}.webp">
+            <img onclick="showdesign(${parseInt(modeltemp[0])})" src="./quadro/diy_img/${modelName}.webp">
             <span class="design-title">${modelName}</span>
             </div>`;
           } else {//官网造型
             modelhtml = `<div class="se-re" style="width:${imgwidth}vw;">
-            <img onclick="showdesign(${parseInt(modeltemp[0])})" src="/quadro/webimg/${modelName.toUpperCase()}-brand.webp">
+            <img onclick="showdesign(${parseInt(modeltemp[0])})" src="./quadro/webimg/${modelName.toUpperCase()}-brand.webp">
             <span class="design-title">${modelName}</span>
             </div>`;
           }
@@ -1229,16 +1227,16 @@
       const designarr = design[num][1].split('$');
       if (design[num][0].substring(0, 2) == 'MA') {//quadro程序自带造型
         designinfo = '<span style="font-size:2em;">' + design[num][0] + '</span>';
-        designinfo += `<img class="show-design-img" src="/quadro/alt/${design[num][0]}.webp">`;
-        designinfo += ' <a target="_blank" class="down-link" href="/quadro/alt/'
+        designinfo += `<img class="show-design-img" src="./quadro/alt/${design[num][0]}.webp">`;
+        designinfo += ' <a target="_blank" class="down-link" href="./quadro/alt/'
           + design[num][0] +
           '.qdf" download="'
           + design[num][0] +
           '.qdf">下载模型文件</a>';
       } else if (design[num][0].substring(0, 1) == 'M') {//自制造型
         designinfo = '<span style="font-size:2em;">' + design[num][0] + '</span>';
-        designinfo += `<img class="show-design-img" src="/quadro/diy_img/${design[num][0]}.webp">`;
-        designinfo += '<a target="_blank" class="down-link" href="/quadro/diy_pdf/'
+        designinfo += `<img class="show-design-img" src="./quadro/diy_img/${design[num][0]}.webp">`;
+        designinfo += '<a target="_blank" class="down-link" href="./quadro/diy_pdf/'
           + design[num][0] +
           '.pdf">查看搭建PDF</a>';
         const designNum = parseInt(design[num][0].replace('M', ''));
@@ -1246,7 +1244,7 @@
         if (designNum < 55 || designNum == 53001 || noQdf.includes(designNum)) {
           //缺少qdf文件
         } else {
-          designinfo += ' <a target="_blank" class="down-link" href="/quadro/diy_qdf/'
+          designinfo += ' <a target="_blank" class="down-link" href="./quadro/diy_qdf/'
             + design[num][0] +
             '.qdf" download="'
             + design[num][0] +
@@ -1258,15 +1256,15 @@
           designinfo = '请复制链接到浏览器打开:<br>https://mdb.quadroworld.com/de/designs/' + design[num][0];
         } else {
           designinfo = '<span style="font-size:2em;">' + design[num][0] + '</span>';
-          designinfo += `<img class="show-design-img" src="/quadro/webimg/${design[num][0].toUpperCase()}-brand.webp">`;
+          designinfo += `<img class="show-design-img" src="./quadro/webimg/${design[num][0].toUpperCase()}-brand.webp">`;
           designinfo += '<a target="_blank"  class="down-link" href="https://mdb.quadroworld.com/de/designs/'
             + design[num][0] +
             '">查看搭建PDF和模型文件</a>';
-          designinfo += ' <a target="_blank" class="down-link" href="/quadro/web_qdf/'
-          + design[num][0].toUpperCase() +
-          '.qdf" download="'
-          + design[num][0].toUpperCase() +
-          '.qdf">下载模型文件</a>';
+          designinfo += ' <a target="_blank" class="down-link" href="./quadro/web_qdf/'
+            + design[num][0].toUpperCase() +
+            '.qdf" download="'
+            + design[num][0].toUpperCase() +
+            '.qdf">下载模型文件</a>';
         }
         designinfo += '<br>' + designarr[2] + '<br>体积: ' + designarr[5] + ', 推荐年龄: ' + designarr[4];/*english name + dimension + age*/
       }
@@ -1293,7 +1291,7 @@
           }
           const p = "alert('" + parts[i - 2] + "[" + partsCh[i - 2].replace(/\(/g, '[').replace(/\)/g, ']') + "]" + "');";
           partinfo += '<div class="part-row"><div class="part-row-img" onclick="'
-            + p + '"><img src="/quadro/part_img/' + partsImgSrc[i - 2] + '"></div><div  class="se-amount">'
+            + p + '"><img src="./quadro/part_img/' + partsImgSrc[i - 2] + '"></div><div  class="se-amount">'
             + design[num][i] + '<span style="display:' + displayHaveParts + ';color:' + styleColor + ';">(' + havePartNum + ')</span></div></div>';
         }
       }
@@ -1302,59 +1300,59 @@
     }
     // 新增全局数组保存选中模型
     let selectedModels = [];
-    
+
     /*多选计算总零件数*/
     function showCompare(recommend_id) {
       //将选中的模型标记为已选中
       let modeltemp = recommendhtml[0][recommend_id].split('$');//可用模型格式(which=0)：model-id $ selected
       const modelId = parseInt(modeltemp[0]);
       const selectedtext = modeltemp[1] == 1 ? '0' : '1';
-     
+
       // 更新 recommendhtml 状态
       recommendhtml[0][recommend_id] = modelId + '$' + selectedtext;
-      
+
       // 同步维护 selectedModels
       if (selectedtext == '1') {
         if (!selectedModels.includes(modelId)) {
           selectedModels.push(modelId);
         }
-          document.getElementById('possible' + recommend_id).style.border = '2px cyan solid';
+        document.getElementById('possible' + recommend_id).style.border = '2px cyan solid';
+      } else {
+        selectedModels = selectedModels.filter(id => id !== modelId);
+        document.getElementById('possible' + recommend_id).style.border = 'none';
+      }
+
+      updateMultiSelectView();
+    }
+
+    // 单独封装更新视图和计算逻辑
+    function updateMultiSelectView() {
+      let multiHTML = '多选模型：<br>';
+      partsCompareArr = new Array(parts.length).fill(0);
+
+      for (let i = 0; i < recommendhtml[0].length; i++) {
+        const modelArr = recommendhtml[0][i].split('$');
+        if (modelArr[1] == '0') continue;
+
+        const designTemp = design[parseInt(modelArr[0])];
+        let imgSrc = '';
+        if (designTemp[0].substring(0, 2) == 'MA') {
+          imgSrc = `./quadro/alt/${designTemp[0]}.webp`;
+        } else if (designTemp[0].charAt(0) == 'M') {
+          imgSrc = `./quadro/diy_img/${designTemp[0]}.webp`;
         } else {
-          selectedModels = selectedModels.filter(id => id !== modelId);
-          document.getElementById('possible' + recommend_id).style.border = 'none';
+          imgSrc = `./quadro/webimg/${designTemp[0].toUpperCase()}-brand.webp`;
         }
-
-          updateMultiSelectView();
-        }
-
-      // 单独封装更新视图和计算逻辑
-      function updateMultiSelectView() {
-        let multiHTML = '多选模型：<br>';
-        partsCompareArr = new Array(parts.length).fill(0);
-
-        for (let i = 0; i < recommendhtml[0].length; i++) {
-          const modelArr = recommendhtml[0][i].split('$');
-          if (modelArr[1] == '0') continue;
-
-          const designTemp = design[parseInt(modelArr[0])];
-          let imgSrc = '';
-          if (designTemp[0].substring(0, 2) == 'MA') {
-            imgSrc = `/quadro/alt/${designTemp[0]}.webp`;
-          } else if (designTemp[0].charAt(0) == 'M') {
-            imgSrc = `/quadro/diy_img/${designTemp[0]}.webp`;
-          } else {
-            imgSrc = `/quadro/webimg/${designTemp[0].toUpperCase()}-brand.webp`;
-          }
-          multiHTML += `<div class="select-thumbnail" style="display:inline-block;">
+        multiHTML += `<div class="select-thumbnail" style="display:inline-block;">
             <img onclick="showdesign(${parseInt(modelArr[0])},${i})" style="height:8em;width:9vw;cursor:pointer;object-fit:contain;" src="${imgSrc}">
           </div>`;
 
-          for (let j = 2; j < designTemp.length; j++) {
-            partsCompareArr[j - 2] += designTemp[j];
-          }
+        for (let j = 2; j < designTemp.length; j++) {
+          partsCompareArr[j - 2] += designTemp[j];
         }
+      }
 
-        document.getElementById('re-multiselect').innerHTML = multiHTML;
+      document.getElementById('re-multiselect').innerHTML = multiHTML;
 
 
       //显示总零件数
@@ -1370,7 +1368,7 @@
             styleColor = 'green';
           }
           const alertFunc = "alert('" + parts[i] + "[" + partsCh[i].replace(/\(/g, '[').replace(/\)/g, ']') + "]" + "');";
-          resultHTML += `<div class="part-row"><div class="part-row-img" onclick="${alertFunc}"><img src="/quadro/part_img/${partsImgSrc[i]}"></div>
+          resultHTML += `<div class="part-row"><div class="part-row-img" onclick="${alertFunc}"><img src="./quadro/part_img/${partsImgSrc[i]}"></div>
       <div  class="se-amount">${partsCompareArr[i]}<span style="color:${styleColor};">(${havePartNum})</span></div></div>`;
         }
       }
@@ -1378,19 +1376,19 @@
       compareElm.innerHTML = resultHTML;
     }
     // 重新搜索或更新 recommendhtml 后调用
-      function restoreSelections() {
-        for (let i = 0; i < recommendhtml[0].length; i++) {
-          let modeltemp = recommendhtml[0][i].split('$');
-          const modelId = parseInt(modeltemp[0]);
-          if (selectedModels.includes(modelId)) {
-            recommendhtml[0][i] = modelId + '$1';
-            let el = document.getElementById('possible' + i);
-            if (el) el.style.border = '2px cyan solid';
-          }
+    function restoreSelections() {
+      for (let i = 0; i < recommendhtml[0].length; i++) {
+        let modeltemp = recommendhtml[0][i].split('$');
+        const modelId = parseInt(modeltemp[0]);
+        if (selectedModels.includes(modelId)) {
+          recommendhtml[0][i] = modelId + '$1';
+          let el = document.getElementById('possible' + i);
+          if (el) el.style.border = '2px cyan solid';
         }
-        updateMultiSelectView();
       }
-    
+      updateMultiSelectView();
+    }
+
     /*lang:0->chinese,1->english*/
     let lang = 0;
     function changeLang() {
@@ -1406,7 +1404,7 @@
         //document.getElementById('Tab3').style.display='block';
       }
     }
-    
+
     /*save and load kits and parts amount in cookie*/
     function setCookie(cname, cvalue, exdays) {
       let expires = '';
@@ -1524,7 +1522,54 @@
     }
 
     function importParts() {
-      alert('施工中...敬请期待');
+      const partsAmountElm = document.getElementsByClassName("amount");
+      // 创建隐藏的文件选择器
+      const input = document.createElement("input");
+      input.type = "file";
+      input.accept = ".qbl";
+
+      input.onchange = function () {
+        const file = input.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+          const content = e.target.result;
+
+          // 按行分割（兼容不同系统换行）
+          const lines = content.split(/\r?\n/);
+
+          // 判断语言（看第一行是否在英文数组中）
+          let isEnglish = false;
+          if (lines.length > 0) {
+            const firstLineKey = lines[0].split(";")[0] + ";";
+            isEnglish = partsEn.includes(firstLineKey);
+          }
+
+          const partsArray = isEnglish ? partsEn : partsForExport;
+
+          // 逐行处理
+          lines.forEach(line => {
+            if (!line.trim()) return;
+
+            const [name, amount] = line.split(";");
+            if (!name || amount === undefined) return;
+
+            const key = name + ";";
+            const index = partsArray.indexOf(key);
+
+            if (index !== -1 && partsAmountElm[index]) {
+              partsAmountElm[index].textContent = amount;
+            }
+          });
+        };
+
+        reader.readAsText(file, "utf-8");
+      };
+
+      // 触发文件选择
+      input.click();
     }
 
     /*change tab*/
@@ -1583,7 +1628,7 @@
       const hm = document.createElement("script");
       if (document.URL.indexOf('github') > 0) {
         hm.src = "https://hm.baidu.com/hm.js?47ca844c9f8336373dd26747473782ef";
-      } else {/*gitee*/
+      } else {//gitee
         hm.src = "https://hm.baidu.com/hm.js?09347eeb425c22061c2bd6a512f18fe6";
       }
       const s = document.getElementsByTagName("script")[0];
@@ -1610,8 +1655,7 @@
              cursor:pointer;
              float:right;
              text-align:center;
-             border-radius:4px;"
-        onclick="minimal();">&times;</span>
+             border-radius:4px;" onclick="minimal();">&times;</span>
     </div>
     <div id='qrcode-body' style="transition:0.5s;height:80vh;">
       <div style="font-size:1.8em;" class="coupon">
@@ -1626,17 +1670,17 @@
         </a>cheryl_5
       </div>
       <br><span style="font-size:1.8em;">需要驯兽师协助 请扫码加好友</span><br>
-      <img alt='qrcode' style='height:40%;' src='/quadro/4weixin.webp'>
+      <img alt='qrcode' style='height:40%;' src='./quadro/4weixin.webp'>
       <br><span style="font-size:1.8em;">关注|好好搭| 获取更多干货分享</span><br>
-      <img alt='qrcode' style='height:20%;' src='/quadro/qrcodegzh.webp'>
+      <img alt='qrcode' style='height:20%;' src='./quadro/qrcodegzh.webp'>
       <br><span style="font-size:1.8em;">微信扫码入|好好搭|群 解锁更多玩法</span><br>
-      <img alt='qrcode' style='height:50%;' src='/quadro/qrcodewx.webp'>
+      <img alt='qrcode' style='height:50%;' src='./quadro/qrcodewx.webp'>
     </div>
   </div>
 
   <div class="hhd-head">
     <div class="hhd-logo">
-      <img style="width:100%" src="/quadro/hhdlogo.webp" />
+      <img style="width:100%" src="./quadro/hhdlogo.webp" />
     </div>
 
     <div>
@@ -1873,7 +1917,8 @@
             style="display:inline-block;font-size:2em;color:#0008;min-width:1.5em;text-align: center;"></div>
           <button class="re-next" onclick="nextpage(0);"><span class="lang-en">next</span><span
               class="lang-ch">下一页</span></button>
-          <div style="font-size:2em;color:rgb(231,143,10);">造型有啦！周边上哪入？👀看这里吧👉<a href='https://myquadro.github.io'> 驯兽师羊毛厂</a></div>
+          <div style="font-size:2em;color:rgb(231,143,10);">造型有啦！周边上哪入？👀看这里吧👉<a href='https://myquadro.github.io'>
+              驯兽师羊毛厂</a></div>
         </div>
 
         <br>
@@ -2001,7 +2046,8 @@
             style="display:inline-block;font-size:2em;color:#0008;min-width:1.5em;text-align: center;"></div>
           <button class="re-next" onclick="nextpage(1);"><span class="lang-en">next</span><span
               class="lang-ch">下一页</span></button>
-          <div style="font-size:2em;color:rgb(231,143,10);">造型有啦！周边上哪入？👀看这里吧👉<a href='https://myquadro.github.io'> 驯兽师羊毛厂</a></div>
+          <div style="font-size:2em;color:rgb(231,143,10);">造型有啦！周边上哪入？👀看这里吧👉<a href='https://myquadro.github.io'>
+              驯兽师羊毛厂</a></div>
         </div>
       </div>
     </div>
@@ -2029,10 +2075,10 @@
       <div style="width:300px;float:right;">
         研发不易～～<br>
         搭友们如果对小工具满意的话<br>
-        扫这里投喂个鸡腿鼓励一下呗^o^<br><img src="/quadro/wechatpayqr.webp" style="width:300px;height:300px;">
+        扫这里投喂个鸡腿鼓励一下呗^o^<br><img src="./quadro/wechatpayqr.webp" style="width:300px;height:300px;">
       </div>
       <hr style="clear:both;">
-      <img style="width:90%;" src="/quadro/connectors.webp"><br>
+      <img style="width:90%;" src="./quadro/connectors.webp"><br>
       *连接件颜色示例<br>
       <button onclick='connectorColor();'>连接件染色</button><br>
       <hr>
@@ -2065,7 +2111,7 @@
         <span class="lang-ch" style="text-decoration:underline;font-size:1.8em;">德文版软件下载</span>
       </a>
       <div style="font-size:1.8em;">汉化版软件：关注|好好搭| 公众号回复"<b>软件</b>"获取</div>
-      <img alt='qrcode' style='width:80%;' src='/quadro/qrcodegzh.webp'>
+      <img alt='qrcode' style='width:80%;' src='./quadro/qrcodegzh.webp'>
       <br>
       <br>
       <br>
